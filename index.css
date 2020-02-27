@@ -47,7 +47,6 @@
 
 #loginnote {
     height: 300px;
-    float:left;
     bottom: 300px;
 }
 
@@ -60,4 +59,8 @@
     height: 300px;
     top: 800px;
     left: 500px;
+}
+
+#intro {
+    color:orange;
 }
