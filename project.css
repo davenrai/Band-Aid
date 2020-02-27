@@ -24,64 +24,23 @@ a {
 }
 
 .appLogo {
-	width: 30px;
+	width: 70px;
 	margin-left: 40px;
 }
 
 .bannerPic {
 	display: block;
 	width: 100%;
-	height: 300px;
+	height: 400px;
 }
 
 
 /*** Profile Statistics Bar styles below ***/
 
-#profileStats {
-	padding: 5px;
-	background-color: white;
-}
-
-#profileStats ul {
-	margin: 0px;
-	padding: 3px;
-	margin-left: 390px;
-}
-
-#profileStats ul li {
-	margin-right: 20px;
-	font-weight: bold;
-	list-style: none; /* Gets rid of list bullet points */
-	text-align: center;
-	
-	/* Add a proper display property: We want the stats to have 
-	a height, but also appear side-by-side */
-
-	display: inline-block;	
-}
-
-.profileStatsNumber {
-	display: block;
-	font-size: 150%;
-}
-
-
-/*** Profile info box styles below ***/
-
-#profileInfo {
-	background-color: white;
-	padding: 10px;
-	margin-top:20px;
-	margin-left: 50px;
-	width: 300px;
-	min-height: 300px;
-	float: left;
-}
-
 
 /*** Timeline styles below ***/
 
-#timeline {
+#userMenu {
 	border-radius: 10px;
 	background-color: white;
 	margin-left: 390px;
@@ -89,40 +48,47 @@ a {
 	width: 600px;
 }
 
-.timelineHeader {
+.userMenuHeader {
 	border-bottom: 1px solid grey;
 }
 
-.timelineHeader ul {
+/* .userMenuHeader ul {
 	margin: 0px;
 }
 
-.timelineHeader ul li {
+.useMenuHeader ul li {
 	padding: 10px;
 	margin-right: 20px;
 	font-size: 150%;
 	font-weight: bold;
 	display: inline-block;
-}
+} */
 
 
-/*** Tweet styles below ***/
+/*** Menu option styles below ***/
 
-.tweet {
+.userInputBox {
 	background-color: white;
 	min-height: 100px;
 	overflow: auto;
 	border-bottom: 1px solid gray;
 }
 
-/* For the div that holds the tweet icon */
-.tweetIconContainer {
+#makeNameForm {
+	background-color: white;
+	min-height: 100px;
+	overflow: auto;
+	border-bottom: 1px solid gray;
+}
+
+/* For the div that holds the user menu input form */
+.userMenuBoxContainer {
 	width: 80px;
 	float: left;
 }
 
 
-.tweetIcon {
+.userMenuIcon {
 	height: 60px;
 	width: 60px;
 	margin-top: 10px;
@@ -132,33 +98,11 @@ a {
 }
 
 
-.tweetContent {
+.userInfoFormBox {
 	margin: 0px;
 	margin-top: 20px;
 	margin-left: 80px;
 
-}
-
-/* For pictures inside tweets (like the Robarts pic) */
-.tweetContentPicture {
-	max-width: 500px;
-}
-
-
-/* Style the big profile picture circle here. */
-#bigProfilePicCircle {
-
-	position: absolute;
-	top: 230px; /*230px - 100px radius */
-	left: 100px;
-}
-
-#bigProfilePicCircleImage {
-
-	border: solid 4px white;
-	width: 200px;
-	height: 200px;
-	border-radius: 50%;
 }
 
 
