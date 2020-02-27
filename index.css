@@ -11,17 +11,27 @@
     float: left;
 }
 
-#logo {
+/* #appLogo {
     float:left;
     position: relative;
     height: 50px;
 }
 
-#headerbar {
+#header {
     height: 150px;
     width: 1200px;
     background-color:silver;
     float:left;
+} */
+
+#header {
+	padding: 10px;
+	background-color: silver;
+}
+
+.appLogo {
+	width: 100px;
+	margin-left: 40px;
 }
 
 #login {
@@ -32,11 +42,13 @@
 .loginclass {
     top: 200px;
     left: 500px;
+    float:left;
 }
 
 #loginnote {
     height: 300px;
-    top: 800px;
+    float:left;
+    bottom: 300px;
 }
 
 .signupclass {
@@ -47,4 +59,5 @@
 #signupnote {
     height: 300px;
     top: 800px;
+    left: 500px;
 }
