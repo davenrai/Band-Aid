@@ -10,23 +10,25 @@
 <body>
     <div id="header">
         <img class="appLogo" src="logo.png">
-        <h1>Timeline</h1>
+        <span id="title">Request Timeline</span>
+        <a id="profileLink" href="my_profile.html">My Profile</a>
     </div>
 
+
     <!-- The Timeline Section -->
-    <div id="new-request">
-        New Request
-        <form id="request-form">
-            <input id="venue-name" type="text" placeholder="Venue name">
-            <input id="venue-loc" type="text" placeholder="Venue location">
-            <input id="venue-email" type="text" placeholder="Your email">
-            <input id="venue-phone" type="text" placeholder="Your phone number"><br><br>
-            <textarea id="req-desc" rows="2" cols="80">Tell us more about your venue's band request!</textarea><br>
+    <div id="newRequest">
+        <strong>New Request</strong>
+        <form id="requestForm">
+            <input id="venueName" type="text" placeholder="Venue name">
+            <input id="venueLoc" type="text" placeholder="Venue location">
+            <input id="venueEmail" type="text" placeholder="Your email">
+            <input id="venuePhone" type="text" placeholder="Your phone number"><br><br>
+            <textarea id="reqDesc" rows="2" cols="80">Tell us more about your venue's band request!</textarea><br>
             <input type="submit" value="Submit Request - Rock ON!">
         </form>
     </div>
-    
-    <div id="request-list">
+
+    <div id="requestList">
         <div class="request">
             <p>
                 <strong>Ein-Stein Bier Halle</strong><br>
@@ -35,6 +37,7 @@
                 Looking for some jazzy tunes! Weekly on Wednesdays at 8pm.
             </p>
             <button class="fulfull">I'm down!</button>
+            <span class="green">2 Available</span>
         </div>
         <div class="request">
             <p>
@@ -44,6 +47,17 @@
                 Open until 2am - anyone available for a late night gig on March 6th?
             </p>
             <button class="fulfill">I'm down!</button>
+            <span class="green">1 Available</span>
+        </div>
+        <div class="request">
+            <p>
+                <strong>Bahen Centre</strong><br>
+                40 St George St, Toronto, ON M5S 2E4<br>
+                (416) 978-2011<br><br>
+                Hosting a Computer Science Party in BA 1190 for CSC309! April 1st, 7pm.
+            </p>
+            <button class="fulfill">I'm down!</button>
+            <span class="green">1 Available</span>
         </div>
     </div>
 </body>
