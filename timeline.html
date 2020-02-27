@@ -17,11 +17,35 @@
     </div>
 
     <!-- The Timeline Section -->
-    <div id="intro">
-        Welcome to Band-Aid! We are an online community hub that aims to connect venues with casual performers. Check us
-        out!
+    <form id="request-form">
+        <input id="venue-name" type="text" placeholder="Venue name">
+        <input id="venue-loc" type="text" placeholder="Venue location">
+        <input id="venue-email" type="text" placeholder="Your email">
+        <input id="venue-phone" type="text" placeholder="Your phone number"><br><br>
+        <textarea id="req-desc" rows="2" cols="80">Tell us more about your venue's band request!</textarea><br>
+        <input type="submit" value="Submit Request - Rock ON!">
+    </form>
+    
+    <div id="request-list">
+        <div class="request">
+            <p>
+                <strong>Ein-Stein Bier Halle</strong><br>
+                229 College St, Toronto, ON M5T 1R4<br>
+                (416) 597-8346<br><br>
+                Looking for some jazzy tunes! Weekly on Wednesdays at 8pm.
+            </p>
+            <button class="fulfull">I'm down!</button>
+        </div>
+        <div class="request">
+            <p>
+                <strong>El Furniture Warehouse</strong><br>
+                410 Bloor St W, Toronto, ON M5S 1X5<br>
+                (647) 350-7326<br><br>
+                Open until 2am - anyone available for a late night gig on March 6th?
+            </p>
+            <button class="fulfill">I'm down!</button>
+        </div>
     </div>
-
 </body>
 
 </html>
