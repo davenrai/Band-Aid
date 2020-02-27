@@ -14,17 +14,23 @@ a {
  	color: black;
 }
 
+h1 {
+	color: black;
+	font-size: 350%;
+	text-align: center;
+	margin : 25px;
+}
 
 
 /*** Header and banner styles below ***/
 
 #header {
-	padding: 5px;
-	background-color: white;
+	padding: 10px;
+	background-color: #006700;
 }
 
 .appLogo {
-	width: 70px;
+	width: 100px;
 	margin-left: 40px;
 }
 
@@ -64,6 +70,24 @@ a {
 	display: inline-block;
 } */
 
+.profilePic {
+
+	width: 300px;
+	height: 380px;
+	padding-left: 100px;
+}
+#profileInfo {
+	padding: 10px;
+	
+	min-height: 300px;
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 300px;
+
+}
+
+#spotify {
+}
 
 /*** Menu option styles below ***/
 
