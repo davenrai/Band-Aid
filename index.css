@@ -1,5 +1,50 @@
-body {
-    color: green;
-    background-color: blue;
+#title {
+    color: purple;
+    font-size: xx-large;
+    font-style: italic;
+    left: 550px;
+    position: relative;
+    top: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    font-style: oblique;
+    float: left;
 }
 
+#logo {
+    float:left;
+    position: relative;
+    height: 50px;
+}
+
+#headerbar {
+    height: 150px;
+    width: 1200px;
+    background-color:silver;
+    float:left;
+}
+
+#login {
+    top: 500px;
+    left:1000px;
+}
+
+.loginclass {
+    top: 200px;
+    left: 500px;
+}
+
+#loginnote {
+    height: 300px;
+    top: 800px;
+}
+
+.signupclass {
+    top: 200px;
+    left: 500px;
+}
+
+#signupnote {
+    height: 300px;
+    top: 800px;
+}
