@@ -3,12 +3,10 @@
     font-size: xx-large;
     font-style: italic;
     left: 550px;
-    position: relative;
     top: 100px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-style: oblique;
-    float: left;
 }
 
 /* #appLogo {
@@ -36,7 +34,7 @@
 
 #login {
     top: 500px;
-    left:1000px;
+    left: 500px;
 }
 
 .loginclass {
