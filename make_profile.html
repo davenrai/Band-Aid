@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +15,17 @@
 	<!-- The header -->
 	<div id="header">
 		<!-- <Website logo"> -->
+
+		<img class = "appLogo" src="logo.png">
+	
+	 </div>
+	 
+
 		<img class="appLogo" src="logo.png">
 
 
 	</div>
+
 
 
 
@@ -26,8 +34,25 @@
 		<!-- Purple bar. -->
 
 
+	 </div>
+	 
+
+
+
 
 	</div>
+
+ 	<!-- The User Menu Section -->
+ 	<div id='makeUserProfileContainer'>
+
+ 		<div class='userMenuHeader'>
+ 			<ul>
+	 			<li><a href="">Let others know when you can play</a></li>
+ 			</ul>
+ 		</div>
+
+ 		<!-- User signup name box input  -->
+ 		<div class='makeProfileBoxes'>
 
 
 
@@ -46,12 +71,50 @@
 
 			<div class='userInfoFormBox'>
 				<strong>
-					Make a profile
+					Create a username
 				</strong>
+
+                <form id='nameForm'>
+                    <input id='tName' type="text" name="task" placeholder="Your full name here">
+                    <input type="submit" value="Submit">
+                </form>
+			</div>
+
+         </div>
+         
+          		<!-- User geenre input  -->
+ 		<div class='makeProfileBoxes'>
+
+			<div class='userInfoFormBox'>
+				<strong>
+					What genre do you play?
+				</strong>
+                <form id='genreForm'>
+                    <input id='tName' type="text" name="task" placeholder="Your fav genre">
+                    <input type="submit" value="Submit">
+                </form>
+			</div>
+
+
+
+         </div>
+         
+         <div class='makeProfileBoxes'>
+
+			<div class='userInfoFormBox'>
+				<strong>
+					Who do you play like?
+				</strong>
+                <form id='topArtistsForm'>
+                    <input id='tName' type="text" name="task" placeholder="Your Top 3 artists">
+                    <input type="submit" value="Submit">
+                </form>
+
 				<form id='nameForm'>
 					<input id='tName' type="text" name="task" placeholder="Your full name here">
 					<input type="submit" value="Your full name here">
 				</form>
+
 			</div>
 
 		</div>
