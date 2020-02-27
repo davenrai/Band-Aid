@@ -52,15 +52,15 @@ h1 {
 	margin: 40px;
 }
 
-#profileLink {
+.headerLink {
 	color: purple;
 	font-size: x-large;
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	background-color: peachpuff;
 	padding: 5px;
-	position: absolute;
-	right: 0px;
-	margin: 40px;
+	margin-right: 40px;
+	margin-top: 40px;
+	float: right;
 }
 
 /*** Timeline styles below ***/
