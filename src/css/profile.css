@@ -1,0 +1,178 @@
+/*** CSC Project ***/
+
+
+/*** Completed body style below ***/
+body {
+	background-color: #e6ecf0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+/*** Removes default style from links ***/
+a {
+	text-decoration: none;
+	color: black;
+}
+
+h1 {
+	color: black;
+	font-size: 350%;
+	text-align: center;
+	margin: 25px;
+}
+
+
+/*** Header and banner styles below ***/
+
+#header {
+	margin-block-end: 10px;
+	background-color: silver;
+}
+
+.appLogo {
+	height: 100px;
+	margin: 10px;
+}
+
+.bannerPic {
+	display: block;
+	width: 100%;
+	height: 400px;
+}
+
+#title {
+	color: purple;
+	font-size: xx-large;
+	font-style: italic;
+	padding: 10px;
+	position: absolute;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-weight: bold;
+	font-style: oblique;
+	margin: 40px;
+}
+
+.headerLink {
+	color: purple;
+	font-size: x-large;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	background-color: peachpuff;
+	padding: 5px;
+	margin-right: 40px;
+	margin-top: 40px;
+	float: right;
+}
+
+/*** Timeline styles below ***/
+
+#newRequest {
+	background-color: peachpuff;
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+}
+
+#requestList {
+	padding: 10px;
+}
+
+.request {
+	background-color: thistle;
+	padding: 10px;
+	display: inline-block;
+	max-width: 20%;
+	min-width: 20%;
+
+}
+
+#userMenu {
+	border-radius: 10px;
+	background-color: white;
+	margin-left: 390px;
+	margin-top: 20px;
+	width: 600px;
+}
+
+.userMenuHeader {
+	border-bottom: 1px solid grey;
+}
+
+/* .userMenuHeader ul {
+	margin: 0px;
+}
+
+.useMenuHeader ul li {
+	padding: 10px;
+	margin-right: 20px;
+	font-size: 150%;
+	font-weight: bold;
+	display: inline-block;
+} */
+
+.profilePic {
+
+	width: 300px;
+	height: 380px;
+	padding-left: 100px;
+}
+
+#profileInfo {
+	padding: 10px;
+
+	min-height: 300px;
+	margin-left: 100px;
+	margin-top: 20px;
+	width: 300px;
+
+}
+
+#spotify {}
+
+/*** Menu option styles below ***/
+
+.userInputBox {
+	background-color: white;
+	min-height: 100px;
+	overflow: auto;
+	border-bottom: 1px solid gray;
+}
+
+#makeNameForm {
+	background-color: white;
+	min-height: 100px;
+	overflow: auto;
+	border-bottom: 1px solid gray;
+}
+
+/* For the div that holds the user menu input form */
+.userMenuBoxContainer {
+	width: 80px;
+	float: left;
+}
+
+.userMenuIcon {
+	height: 60px;
+	width: 60px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-radius: 50%;
+}
+
+.userInfoFormBox {
+	margin: 0px;
+	margin-top: 20px;
+	margin-left: 80px;
+}
+
+.grey {
+	color: grey;
+}
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
