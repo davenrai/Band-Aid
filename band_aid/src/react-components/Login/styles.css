@@ -1,0 +1,34 @@
+h1 {
+    text-align: center;
+}
+
+.submit__button-link {
+    text-decoration: none;
+    padding: 5px;
+  }
+  
+  .submit__button {
+    width: 250px;
+    height: 80px;
+  }
+  
+  /* Increase specificity to override component styles */
+  .MuiButton-root.submit__button {
+    background-color: transparent;
+    border: 4px darkslategrey solid;
+    border-radius: 0;
+    padding: 50px;
+  }
+  
+  .submit__button .MuiButton-label {
+    font-size: 1.5em;
+    color: darkslategrey;
+  }
+
+  .forms {
+      padding-bottom: 10;
+  }
+  .buttons{
+      position: absolute;
+      padding-top: 200px;
+  }
