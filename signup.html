@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="signup.css">
         <title>Sign-Up</title>
     </head>
-<body> 
 
+
+<body>
 
     <div id = "header"> 
         <img class = "appLogo" src = "logo.png">
     </div>
 
-<div id='title'>
-    Sign Up
-</div>
+    <div class="container">
+    <form action>
+        <label for="username">username</label>
+        <input type="text" id="username" name="username" placeholder="Your username">
+    
+        <label for="password">password</label>
+        <input type="text" id="password" name="password" placeholder="Your password">
 
-<input id="username" type="text" placeholder="Username">
-<input id="password" type="text" placeholder="Password">
-<input id="typeOfUser" type="text" placeholder="Restaurant or Performer?">
-<input id="Age" type="text" placeholder="Age">
-<input id="email" type="text" placeholder="Email">
+        <label for="email">email</label>
+        <input type="text" id="email;" name="email" placeholder="Your email">
+    
+        <label for="venue">Venue type</label>
+        <select id="venue" name="venue">
+        <option value="Performer">Performer</option>
+        <option value="Restaurant_Bar">Restaurant/Bar</option>
+        </select>
+    
+        <input type="submit" value="Submit">
+    </form>
 
+    <!-- <button id="signup" onclick="location.href = './make_profile.html'">Sign Up</button> -->
+    </div>
 
+    <div id='title'>
+        Sign Up
+    </div>
 
-
-
-
-    <button id="signup" onclick="location.href = './make_profile.html'">Sign Up</button>
-
-
-
-</body>
-</html>
-
+<body>
