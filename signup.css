@@ -53,7 +53,7 @@ input[type=text] {
  
   /* The signup button */
 input[type=submit] {
-    width: 50%;
+    width: 40%;
     background-color: darkorchid;
     color: white;
     padding: 15px 20px;
