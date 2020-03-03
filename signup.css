@@ -17,12 +17,7 @@
     height: 50px;
 } */
 
-/* #header {
-    height: 150px;
-    width: 1200px;
-    background-color:silver;
-    float:left;
-} */
+
 
 #header {
 	padding: 10px;
@@ -34,8 +29,18 @@
 	margin-left: 40px;
 }
 
+input[type=text] {
+    width: 40%;
+    padding: 15px 20px;
+    margin: 8px 1px;
+    display: block;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
 
-#username, #password, #email, #venue {
+
+#venue {
     width: 40%;
     padding: 15px 20px;
     margin: 8px 1px;
