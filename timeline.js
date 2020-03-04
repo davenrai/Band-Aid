@@ -1,6 +1,7 @@
 const requestForm = document.querySelector("#requestForm");
 const requestList = document.querySelector("#requestList");
 requestForm.addEventListener("submit", addNewBandRequest);
+requestList.addEventListener('click', removeRequest)
 
 let numBandRequests = 0;
 const requests = [];
@@ -69,6 +70,12 @@ function fulfillRequest(e) {
     }
 }
 
-function removeRequest(request) {
-
+function removeRequest(e) {
+    e.preventDefault;
+    if (e.target.classList.contains('fulfill')) {
+        console.log('remove')
+        const requestToRemove = e.target.parentElement
+        console.log(requestToRemove)
+        requestList.removeChild(requestToRemove)
+    }
 }

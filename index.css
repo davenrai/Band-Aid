@@ -27,6 +27,12 @@
     margin-left: 400px
 }
 
+#header {
+    height: 150px;
+    width: 1200px;
+    background-color:silver;
+    float:left;
+} */
 
 #header {
 	padding: 10px;
