@@ -1,6 +1,6 @@
 const requestForm = document.querySelector("#requestForm");
 const requestList = document.querySelector("#requestList");
-bookAddForm.addEventListener("submit", addNewBandRequest);
+requestForm.addEventListener("submit", addNewBandRequest);
 
 let numBandRequests = 0;
 
@@ -34,6 +34,24 @@ function updateRequestTimeline(request) {
     const reqTitle = document.createElement("strong");
     reqTitle.innerText = request.name;
     reqText.appendChild(reqTitle);
-
-    requestList.appendChild(reqText);
+    const lineBreak = document.createElement("br");
+    reqText.appendChild(lineBreak);
+    const reqLoc = document.createTextNode(request.loc);
+    const reqPhone = document.createTextNode(request.phone + " ");
+    const reqEmail = document.createTextNode(request.email);
+    const reqDesc = document.createTextNode(request.desc);
+    reqText.appendChild(reqLoc);
+    reqText.appendChild(lineBreak);
+    reqText.appendChild(reqPhone);
+    reqText.appendChild(reqEmail);
+    reqText.appendChild(lineBreak);
+    reqText.appendChild(lineBreak);
+    reqText.appendChild(reqDesc);
+    newRequest.appendChild(reqText);
+    const fulfillButton = document.createElement("button");
+    fulfillButton.className = "fulfill";
+    const buttonText = document.createTextNode("I'm down!");
+    fulfillButton.appendChild(buttonText);
+    newRequest.appendChild(fulfillButton);
+    requestList.appendChild(newRequest);
 }
