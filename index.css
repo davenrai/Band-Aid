@@ -115,3 +115,7 @@
     cursor: pointer;
     display: block;
 }
+
+body {
+    background-color: #e6ecf0;
+}
