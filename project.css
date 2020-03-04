@@ -144,24 +144,12 @@ h1 {
 }
 
 /* For the div that holds the user menu input form */
-.userMenuBoxContainer {
-	width: 80px;
-	float: left;
-}
+#makeProfileForm {
+	padding: 10px;
+	margin: 5px;
+	background-color: seashell;
+	display: inline-block;
 
-.userMenuIcon {
-	height: 60px;
-	width: 60px;
-	margin-top: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	border-radius: 50%;
-}
-
-.userInfoFormBox {
-	margin: 0px;
-	margin-top: 20px;
-	margin-left: 80px;
 }
 
 .grey {
