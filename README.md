@@ -8,7 +8,7 @@ Once you sign up, you can add in details about yourself to create a profile.
 
 Lastly, there is admin log in. Use "admin" for both the username and password. The admin will have several functionalities in the future, such as deleting users and requests, changing passwords, and changing the details of events on the mass timeline.
 
-
+Finally, we started working with React. As we said in the TA meeting, none of us had much familiarity with react, but we tried our best. To see how much react we have got going, in the terminal, type "cd band_aid." Then you type "npm install" and "npm start." We are hoping to use react for phase 2, but we did not have time to learn and fully apply react for phase 1.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
