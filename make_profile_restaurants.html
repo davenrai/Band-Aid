@@ -14,69 +14,17 @@
 		<a class="headerLink" href="index.html">Log Out</a>
 	</div>
 
-	<!-- The User Menu Section -->
-	<div id='makeUserProfileContainer'>
-
-		<!-- User signup name box input  -->
-		<div class='makeProfileBoxes'>
-			<!-- The Timeline Section -->
-			<div id='makeName'>
-				<!-- User signup name box input  -->
-				<div id='makeNameForm'>
-					<div class='userInfoFormBox'>
-						<strong>
-							Create a username
-						</strong>
-						<form id='nameForm'>
-							<input id='tName' type="text" name="task" placeholder="Your full name here">
-							<input type="submit" value="Submit">
-						</form>
-					</div>
-				</div>
-
-				<!-- User genre input  -->
-				<div class='makeProfileBoxes'>
-					<div class='userInfoFormBox'>
-						<strong>
-							Contact Information
-						</strong>
-						<form id='emailForm'>
-							<input id='emailField' type="text" name="task" placeholder="Email address">
-							<input type="submit" value="Submit">
-						</form>
-						<form id='phoneForm'>
-							<input id='phoneField' type="text" name="task" placeholder="Phone number">
-							<input type="submit" value="Submit">
-						</form>
-
-						<strong>
-							Restaurant Details
-						</strong>
-						<form id='genreForm'>
-							<input id='tName' type="text" name="task" placeholder="Restaurant Location">
-							<input type="submit" value="Submit">
-						</form>
-					</div>
-				</div>
-
-				<div class='makeProfileBoxes'>
-					<div class='userInfoFormBox'>
-						<strong>
-							Type of Restaurant
-						</strong>
-						<form id='topArtistsForm'>
-							<input id='tName' type="text" name="task" placeholder="Family-friendly, etc.">
-							<input type="submit" value="Submit">
-						</form>
-						<form id='nameForm'>
-							<input id='tName' type="text" name="task" placeholder="Restaurant Hours">
-							<input type="submit" value="Your full name here">
-						</form>
-					</div>
-				</div>
-			</div>
-			<script type="text/javascript" src="make_profile.js"></script>
-		</div>
+	<!-- User signup name box input  -->
+	<div class="makeProfile">
+		<form id="makeProfileForm">
+			<input id="profileName" type="text" placeholder="Full name"><br>
+			<input id="profileEmail" type="text" placeholder="Email address"><br>
+			<input id="profilePhone" type="text" placeholder="Phone number"><br>
+			<input id="profileLocation" type="text" placeholder="Location address"><br>
+			<input id="profileType" type="text" placeholder="Family-friendly, casual, etc."><br>
+			<input id="profileHours" type="text" placeholder="Opening hours"><br>
+			<input type="submit" value="Submit">
+		</form>
 	</div>
 
 </body>
