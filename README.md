@@ -1,15 +1,3 @@
-To start our app, please go to the index.html file. This is the main page for our application, "Band-Aid." To log in, press log in and use "user" as both the password and the username. This immediately takes you to our request timeline. Currently, you can add a request to our timeline and it will add it. 
-
-At the top, there is a button that says "My Profile." This will take you to a standard profile page (for now), but later users will be able to create their own profiles! You can use the log out button at the top to log out of our application.
-
-Next, you can sign up. You can pick a username, password, and say which email you need. Right now, you can add anything. You also have the option to pick if you are restaurant or performer. 
-
-Once you sign up, you can add in details about yourself to create a profile. 
-
-Lastly, there is admin log in. Use "admin" for both the username and password. The admin will have several functionalities in the future, such as deleting users and requests, changing passwords, and changing the details of events on the mass timeline.
-
-Finally, we started working with React. As we said in the TA meeting, none of us had much familiarity with react, but we tried our best. To see how much react we have got going, in the terminal, type "cd band_aid." Then you type "npm install" and "npm start." We are hoping to use react for phase 2, but we did not have time to learn and fully apply react for phase 1.
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
