@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="login.css">
-        <title>Login</title>
-    </head>
-<body> 
+
+<head>
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+
+<body>
 
 
-    <div id = "header"> 
-        <img class = "appLogo" src = "logo.png">
+    <div id="header">
+        <img class="appLogo" src="logo.png">
     </div>
 
-<div id='title'>
-    Login
-</div>
+    <div id='title'>
+        Login
+    </div>
 
-<div class="container">
-    <form action>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Your username">
-    
-        <label for="password">Password</label>
-        <input type="text" id="password" name="password" placeholder="Your password">
+    <div class="container">
+        <form action>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Your username">
 
- 
-        <!-- <input type="submit" value="Submit" onclick="location.href = './timeline.html'"> -->
-    </form>
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" placeholder="Your password">
 
-    <button id="login" onclick="location.href = './timeline.html'">Login</button>
-</div>
+            <!-- Here, we expect a server call to ensure that the given username and password is registered-->
+        </form>
+
+        <button id="login" onclick="location.href = './timeline.html'">Login</button>
+    </div>
 </body>
+
 </html>
