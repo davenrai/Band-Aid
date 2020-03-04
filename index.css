@@ -2,25 +2,31 @@
     color: purple;
     font-size: xx-large;
     font-style: italic;
-    left: 550px;
-    top: 100px;
+    margin-left: 550px;
+    margin-top: 100px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     font-style: oblique;
 }
 
-/* #appLogo {
-    float:left;
-    position: relative;
-    height: 50px;
+#intro {
+    margin-left: 300px;
+    margin-top: 15px;
+    color:orange;
 }
 
-#header {
-    height: 150px;
-    width: 1200px;
-    background-color:silver;
-    float:left;
-} */
+#button_container {
+    display: block;
+    margin-top: 50px;
+    margin-left: 590px
+}
+
+#logo_container {
+    display: block;
+    margin-top: 100px;
+    margin-left: 400px
+}
+
 
 #header {
 	padding: 10px;
@@ -59,6 +65,5 @@
     left: 500px;
 }
 
-#intro {
-    color:orange;
-}
+
+
