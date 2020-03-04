@@ -51,7 +51,7 @@ label {
 .container {
     margin-top: 150px;
     border-radius: 5px;
-    background-color: white;
+    background-color: e6ecf0;
     padding: 20px;
 }
 
@@ -69,3 +69,8 @@ label {
 #login:hover {
     background-color: purple;
 } 
+body {
+	background-color: #e6ecf0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
