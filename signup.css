@@ -51,7 +51,7 @@ input[type=text] {
   /* The signup button */
 #signup {
     width: 40%;
-    background-color: darkorchid;
+    background-color: orange;
     color: white;
     padding: 15px 20px;
     margin: 8px 450px;
