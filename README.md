@@ -4,7 +4,9 @@ At the top, there is a button that says "My Profile." This will take you to a st
 
 Next, you can sign up. You can pick a username, password, and say which email you need. Right now, you can add anything. You also have the option to pick if you are restaurant or performer. 
 
-Once you sign up, you can add in details. 
+Once you sign up, you can add in details about yourself to create a profile. 
+
+Lastly, there is admin log in. Use "admin" for both the username and password. The admin will have several functionalities in the future, such as deleting users and requests, changing passwords, and changing the details of events on the mass timeline.
 
 
 
