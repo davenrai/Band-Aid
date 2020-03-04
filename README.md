@@ -1,6 +1,6 @@
 # Team 08
 
-To start our app, please go to the index.html file. This is the main page for our application, "Band-Aid." To log in, press log in and use "user" as both the password and the username. This immediately takes you to our request timeline. Currently, you can add a request to our timeline and it will add it. 
+To start our app, please go to the index.html file. This is the main page for our application, "Band-Aid." To log in, press log in and use "user" as both the password and the username. This immediately takes you to our request timeline. Currently, you can add a request to our timeline and it will add it.
 
 At the top, there is a button that says "My Profile." This will take you to a standard profile page (for now), but later users will be able to create their own profiles! You can use the log out button at the top to log out of our application.
 
