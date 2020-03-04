@@ -52,7 +52,7 @@ input[type=text] {
 
  
   /* The signup button */
-input[type=submit] {
+/* input[type=submit] {
     width: 40%;
     background-color: darkorchid;
     color: white;
@@ -61,7 +61,7 @@ input[type=submit] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+  } */
   
 
   /* Different colour when hover over signup button */
