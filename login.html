@@ -15,12 +15,20 @@
     Log In
 </div>
 
-<input id="username" type="text" placeholder="Username">
-<input id="password" type="text" placeholder="Password">
+<div class="container">
+    <form action>
+        <label for="username">username</label>
+        <input type="text" id="username" name="username" placeholder="Your username">
+    
+        <label for="password">password</label>
+        <input type="text" id="password" name="password" placeholder="Your password">
 
+ 
+        <!-- <input type="submit" value="Submit" onclick="location.href = './timeline.html'"> -->
+    </form>
 
-<button id="login" onclick="location.href = './timeline.html'">Log In</button>
-
+    <button id="login" onclick="location.href = './timeline.html'">Log In</button>
+</div>
 </body>
 </html>
 
