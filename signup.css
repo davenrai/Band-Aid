@@ -11,14 +11,6 @@
     float: left;
 }
 
-/* #appLogo {
-    float:left;
-    position: relative;
-    height: 50px;
-} */
-
-
-
 #header {
 	padding: 10px;
 	background-color: silver;
@@ -37,7 +29,7 @@ input[type=text] {
     border: 1px solid lightgray;
     border-radius: 5px;
     box-sizing: border-box;
-  }
+}
 
 
 #usertype {
@@ -48,26 +40,13 @@ input[type=text] {
     border: 1px solid lightgray;
     border-radius: 5px;
     box-sizing: border-box;
-  }
+}
 
  
-  /* The signup button */
-/* input[type=submit] {
-    width: 40%;
-    background-color: darkorchid;
-    color: white;
-    padding: 15px 20px;
-    margin: 8px 450px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  } */
-  
-
   /* Different colour when hover over signup button */
 #signup:hover {
     background-color: purple;
-  } 
+} 
 
   /* The signup button */
 #signup {
@@ -79,21 +58,21 @@ input[type=text] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+}
   
 
   /* Different colour when hover over signup button */
 input[type=submit]:hover {
     background-color: purple;
-  } 
+} 
 
   label {
     margin-left:450px;
-  } 
+} 
 
- .container {
+.container {
     margin-top: 100px;
     border-radius: 5px;
     background-color: white;
     padding: 20px;
-  }
+}
