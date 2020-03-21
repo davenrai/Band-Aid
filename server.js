@@ -21,6 +21,32 @@ const { ObjectID } = require('mongodb')
 const bodyParser = require('body-parser') 
 app.use(bodyParser.json())
 
+// express-session for managing user sessions
+const session = require('express-session')
+app.use(bodyParser.urlencoded({ extended: true }));
+
+/*** Session handling **************************************/
+// Create a session cookie
+app.use(session({
+    secret: 'oursecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60000,
+        httpOnly: true
+    }
+}));
+
+// Our own express middleware to check for 
+// an active user on the session cookie (indicating a logged in user.)
+const sessionChecker = (req, res, next) => {
+    if (req.session.user) {
+        res.redirect('/dashboard'); // redirect to dashboard if logged in.
+    } else {
+        next(); // next() moves on to the route.
+    }    
+};
+
 
 /*** Webpage routes below **********************************/
 
@@ -36,15 +62,132 @@ app.get('/', (req, res) => {
 
 /*** API Routes below ************************************/
 
+// A route to login and create a session
+app.post('/users/login', (req, res) => {
+	const email = req.body.email
+    const password = req.body.password
+
+    // Use the static method on the User model to find a user
+    // by their email and password
+	User.findByEmailPassword(email, password).then((user) => {
+	    if (!user) {
+            res.redirect('/login');
+        } else {
+            // Add the user's id to the session cookie.
+            // We can check later if this exists to ensure we are logged in.
+            req.session.user = user._id;
+            req.session.email = user.email
+            res.redirect('/dashboard');
+        }
+    }).catch((error) => {
+		res.status(400).redirect('/login');
+    })
+})
+
+// A route to logout a user
+app.get('/users/logout', (req, res) => {
+	// Remove the session
+	req.session.destroy((error) => {
+		if (error) {
+			res.status(500).send(error)
+		} else {
+			res.redirect('/')
+		}
+	})
+})
+
+/** User routes below **/
+// Set up a POST route to *create* a user of your web app (*not* a performer).
+app.post('/users', (req, res) => {
+	log(req.body)
+
+	// Create a new user
+	const user = new User({
+		email: req.body.email,
+		password: req.body.password
+	})
+
+	// Save the user
+	user.save().then((user) => {
+		res.send(user)
+	}, (error) => {
+		res.status(400).send(error) // 400 for bad request
+	})
+})
+
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+	if (req.session.user) {
+		User.findById(req.session.user).then((user) => {
+			if (!user) {
+				return Promise.reject()
+			} else {
+				req.user = user
+				next()
+			}
+		}).catch((error) => {
+			res.status(401).send("Unauthorized")
+		})
+	} else {
+		res.status(401).send("Unauthorized")
+	}
+}
+
+
+/*** Webpage routes below **********************************/
+// Inject the sessionChecker middleware to any routes that require it.
+// sessionChecker will run before the route handler and check if we are
+// logged in, ensuring that we go to the dashboard if that is the case.
+
+// The various redirects will ensure a proper flow between login and dashboard
+// pages so that your users have a proper experience on the front-end.
+
+// route for root: should redirect to login route
+app.get('/', sessionChecker, (req, res) => {
+	res.redirect('/login')
+})
+
+// login route serves the login page
+app.get('/login', sessionChecker, (req, res) => {
+	//res.sendFile(__dirname + '/public/login.html')
+	// render the handlebars template for the login page
+	res.render('login.hbs');
+})
+
+// dashboard route will check if the user is logged in and server
+// the dashboard page
+app.get('/dashboard', (req, res) => {
+	if (req.session.user) {
+		//res.sendFile(__dirname + '/public/dashboard.html')
+		// render the handlebars template with the email of the user
+		res.render('dashboard.hbs', {
+			email: req.session.email
+		})
+	} else {
+		res.redirect('/login')
+	}
+})
+
+// static js directory
+app.use("/js", express.static(__dirname + '/public/js'))
+
+// static img directory
+app.use("/img", express.static(__dirname + '/public/img'))
+
+/*********************************************************/
+
+/*** API Routes below ************************************/
+
 /** Performer resource routes **/
 // a POST route to *create* a performer
-app.post('/performers', (req, res) => {
+app.post('/performers', authenticate, (req, res) => {
 	// log(req.body)
 
 	// Create a new performer using the Performer mongoose model
 	const performer = new Performer({
 		name: req.body.name,
-		year: req.body.year
+		genre: req.body.genre,
+		creator: req.user._id // creator id from the authenticate middleware
 	})
 
 	// Save performer to the database
@@ -55,19 +198,51 @@ app.post('/performers', (req, res) => {
 	})
 })
 
+
+/** Performer resource routes **/
+// a POST route to *create* a performer
+// app.post('/performers', (req, res) => {
+// 	// log(req.body)
+
+// 	// Create a new performer using the Performer mongoose model
+// 	const performer = new Performer({
+// 		name: req.body.name,
+// 		year: req.body.year
+// 	})
+
+// 	// Save performer to the database
+// 	performer.save().then((result) => {
+// 		res.send(result)
+// 	}, (error) => {
+// 		res.status(400).send(error) // 400 for bad request
+// 	})
+// })
+
+
 // a GET route to get all performers
-app.get('/performers', (req, res) => {
-	Performer.find().then((performers) => {
+app.get('/performers', authenticate, (req, res) => {
+	Performer.find({
+		creator: req.user._id // from authenticate middleware
+	}).then((performers) => {
 		res.send({ performers }) // can wrap in object if want to add more properties
 	}, (error) => {
 		res.status(500).send(error) // server error
 	})
 })
 
-/// a GET route to get a performer by their id.
+// a GET route to get all performers
+// app.get('/performers', (req, res) => {
+// 	Performer.find().then((performers) => {
+// 		res.send({ performers }) // can wrap in object if want to add more properties
+// 	}, (error) => {
+// 		res.status(500).send(error) // server error
+// 	})
+// })
+
+/// a GET route to get a peformer by their id.
 // id is treated as a wildcard parameter, which is why there is a colon : beside it.
 // (in this case, the database id, but you can make your own id system for your project)
-app.get('/performers/:id', (req, res) => {
+app.get('/performers/:id', authenticate, (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	// log(req.params.id)
 	const id = req.params.id
@@ -75,12 +250,12 @@ app.get('/performers/:id', (req, res) => {
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
-		return;  // so that we don't run the rest of the handler.
+		return;
 	}
 
-	// Otherwise, findById
-	Performer.findById(id).then((performer) => {
-		if (!peformer) {
+	// Otherwise, find by the id and creator
+	Performer.findOne({_id: id, creator: req.user._id}).then((performer) => {
+		if (!performer) {
 			res.status(404).send()  // could not find this performer
 		} else {
 			/// sometimes we wrap returned object in another object:
@@ -93,8 +268,37 @@ app.get('/performers/:id', (req, res) => {
 
 })
 
+/// a GET route to get a performer by their id.
+// id is treated as a wildcard parameter, which is why there is a colon : beside it.
+// (in this case, the database id, but you can make your own id system for your project)
+// app.get('/performers/:id', (req, res) => {
+// 	/// req.params has the wildcard parameters in the url, in this case, id.
+// 	// log(req.params.id)
+// 	const id = req.params.id
+
+// 	// Good practise: Validate id immediately.
+// 	if (!ObjectID.isValid(id)) {
+// 		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+// 		return;  // so that we don't run the rest of the handler.
+// 	}
+
+// 	// Otherwise, findById
+// 	Performer.findById(id).then((performer) => {
+// 		if (!peformer) {
+// 			res.status(404).send()  // could not find this performer
+// 		} else {
+// 			/// sometimes we wrap returned object in another object:
+// 			//res.send({performer})   
+// 			res.send(performer)
+// 		}
+// 	}).catch((error) => {
+// 		res.status(500).send()  // server error
+// 	})
+
+// })
+
 /// a DELETE route to remove a performer by their id.
-app.delete('/performer/:id', (req, res) => {
+app.delete('/performers/:id', authenticate, (req, res) => {
 	const id = req.params.id
 
 	// Validate id
@@ -104,7 +308,7 @@ app.delete('/performer/:id', (req, res) => {
 	}
 
 	// Delete a performer by their id
-	Performer.findByIdAndRemove(id).then((performer) => {
+	Performer.findOneAndDelete({_id: id, creator: req.user._id}).then((performer) => {
 		if (!performer) {
 			res.status(404).send()
 		} else {   
@@ -115,14 +319,37 @@ app.delete('/performer/:id', (req, res) => {
 	})
 })
 
+
+/// a DELETE route to remove a performer by their id.
+// app.delete('/performer/:id', (req, res) => {
+// 	const id = req.params.id
+
+// 	// Validate id
+// 	if (!ObjectID.isValid(id)) {
+// 		res.status(404).send()
+// 		return;
+// 	}
+
+// 	// Delete a performer by their id
+// 	Performer.findByIdAndRemove(id).then((performer) => {
+// 		if (!performer) {
+// 			res.status(404).send()
+// 		} else {   
+// 			res.send(performer)
+// 		}
+// 	}).catch((error) => {
+// 		res.status(500).send() // server error, could not delete.
+// 	})
+// })
+
 // a PATCH route for changing properties of a resource.
 // (alternatively, a PUT is used more often for replacing entire resources).
-app.patch('/performers/:id', (req, res) => {
+app.patch('/performers/:id', authenticate, (req, res) => {
 	const id = req.params.id
 
 	// get the updated name and genre only from the request body.
-	// const { name, genre } = req.body
-	// const body = { name, genre }
+	const { name, genre } = req.body
+	const body = { name, genre }
 
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send()
@@ -143,10 +370,29 @@ app.patch('/performers/:id', (req, res) => {
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 /*************************************************/
 // Express server listening...
 const port = process.env.PORT || 5000
 app.listen(port, () => {
 	log(`Listening on port ${port}...`)
 }) 
-
