@@ -1,4 +1,4 @@
-/* Student mongoose model */
+/* Performer mongoose model */
 const mongoose = require('mongoose')
 
 const Performer = mongoose.model('Performer', {

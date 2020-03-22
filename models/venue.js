@@ -1,4 +1,4 @@
-/* Student mongoose model */
+/* Venue mongoose model */
 const mongoose = require('mongoose')
 
 const Venue = mongoose.model('Venue', {
@@ -13,7 +13,7 @@ const Venue = mongoose.model('Venue', {
 		required: true,
 		minlength: 1,
 		trim: true
-    }
+    },
     id: {
 		type: Number,
 		required: true,
