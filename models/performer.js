@@ -13,7 +13,7 @@ const Performer = mongoose.model('Performer', {
 		required: true,
 		minlength: 1,
 		trim: true
-    }
+    },
     id: {
 		type: Number,
 		required: true,
