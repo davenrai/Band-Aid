@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
     date: String
 });
 
-// Reservations will be embedded in the Restaurant model
+// Events will be embedded in the Venue model
 const VenueSchema = new mongoose.Schema({
 	id: {
 		type: Number,

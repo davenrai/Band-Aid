@@ -6,7 +6,7 @@ const EventSchema = new mongoose.Schema({
     date: String
 });
 
-// Reservations will be embedded in the Restaurant model
+// Events will be embedded in the Performer model
 const PerformerSchema = new mongoose.Schema({
 	id: {
 		type: Number,
@@ -25,11 +25,6 @@ const PerformerSchema = new mongoose.Schema({
 		minlength: 1,
 		trim: true
     },
-    id: {
-		type: Number,
-		required: true,
-		// default: 1
-	}
 })
 
 module.exports = { Performer }
