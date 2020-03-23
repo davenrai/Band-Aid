@@ -1,38 +1,40 @@
-.App {
+/* Top-level shared styles */
+/* You can keep styles that are shared by different components here */
+
+html {
+  height: 100%;
+}
+
+body {
+  color: darkslategrey;
+  background-color: white;
+  margin: 40px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+p {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  padding: 20px 0 40px 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.app__input .MuiInput-underline:after {
+  border-color: darkslategray;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app__input .MuiFormLabel-root,
+.app__input .MuiFormLabel-root.Mui-focused {
+  color: darkslategray;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.MuiTextField-root.app__horizontal-center,
+.MuiButton-root.app__horizontal-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -1,80 +1,146 @@
-# Team 08
+# React Express Auth
 
-To start our app, please go to the index.html file. This is the main page for our application, "Band-Aid." To log in, press log in and use "user" as both the password and the username. This immediately takes you to our request timeline. Currently, you can add a request to our timeline and it will add it. You can also delete a request by saying "I'm down," which means that the request has been taken care of. Later on, we hope to show contact information so that they can contact that venue. To go to the admin view, the log in should be with username and password as "admin."
+This example demonstrates how to:
 
-At the top, there is a button that says "My Profile." This will take you to a standard profile page (for now), but later users will be able to create their own profiles! You can use the log out button at the top to log out of our application.
+-   connect your React frontend to Express backend and MongoDB
+-   create user sessions using cookies
+-   use global state and prop drilling
+-   organize your app so that your code is maintainable
+-   make your app prettier using Material UI ✨
 
-Next, you can sign up. You can pick a username, password, and say which email you need. Right now, you can add anything. You also have the option to pick if you are restaurant or performer. This will take you to different make profile pages, depending on if you choose to sign up as a performer or a restaurant/bar. 
+Note: The JSON routes (`/students`) are *not* protected (no authentication required).  You can (and should!) add this using similar middleware techniques we used in lecture.
 
-Finally, we started working with React. As we said in the TA meeting, none of us had much familiarity with react, but we tried our best. To see how much react we have got going, in the terminal, type "cd band_aid." Then you type "npm install" and "npm start." We are hoping to use react for phase 2, but we did not have time to learn and fully apply react for phase 1.
+## Setup
+Start your local Mongo database.  For example, in a separate terminal window:
 
-The data we plan to store is user data and request data. 
+```
+# create and run local Mongo database in the root directory of the repo
+mkdir mongo-data
+mongod --dbpath mongo-data
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Then, in the root directory of the repo, run:
+```
+# install server dependencies in the root directory
+npm install
 
-## Available Scripts
+# install frontend dependencies in the client directory
+cd client
+npm install
+```
 
-In the project directory, you can run:
+Alternatively, you can run `npm run setup` in the root directory which runs a script to execute all the above commands (not including starting the mongo database, since it should be run in a separate window). This is a shortcut command defined in [package.json](package.json).
 
-### `npm start`
+## Development
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+During development, run the following commands to build your React app and start the Express server.  You should re-run these commands for your app to reflect any changes in the code. Make sure mongo is still running on a separate terminal.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+# build the React app
+cd client
+npm run build
 
-### `npm test`
+# go back to the root directory
+cd ..
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# run the server
+node server.js
+```
 
-### `npm run build`
+Alternatively, you can run `npm run build-run` in the root directory which runs a script to execute all the above commands. This is a shortcut command defined in [package.json](package.json).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Creating a User
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+There is no frontend form to create a user on the app, so before you login send a `POST` request to `/users` with something like:
+```
+{
+    "email": "bob@gmail.com",
+    "password": "123456"
+}
+```
+Then proceed to `http://localhost:5000` in your browser and login with your credentials.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Directory Structure
 
-### `npm run eject`
+```
+react-express-auth
+├── db
+│   └── mongoose.js
+├── models
+│   ├── user.js
+│   └── student.js
+├── package.json
+├── server.js
+└── client
+    ├── public
+    │   ├── index.html
+    │   └── ...
+    ├── tests
+    │   └── ...
+    └── src
+        ├── actions
+        │   ├── student.js
+        │   └── user.js
+        ├── react-components
+        │   ├── Dashboard
+        │   │   └── index.js
+        │   ├── StudentForm
+        │   │   ├── index.js
+        │   │   └── styles.css
+        │   ├── Student
+        │   │   ├── index.js
+        │   │   └── styles.css
+        │   └── ...
+        ├── index.js
+        ├── index.css
+        ├── App.js
+        ├── App.css
+        ├── package.json
+        └── serviceWorker.js
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## React Components
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Each React component lives in a separate directory with its own `index.js` and `styles.css`. Import them from parent components as needed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Styles
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Unique styles associated with each React component are kept separate. If the same styles are shared between multiple React components, keep them in a top-level, shared CSS file (i.e. App.css) to avoid repeated styles.
 
-## Learn More
+### Material UI
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The following Material UI components are used in this app:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   Button
+-   TextField
+-   Grid
+-   Table
+-   Table Body
+-   Table Row
+-   Table Cell
 
-### Code Splitting
+You can find more components [here](https://material-ui.com/).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Note that you can override the default styles of these components by increasing CSS selector specificity.
 
-### Analyzing the Bundle Size
+### Actions
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+To keep your `index.js` files clean and simple, import required methods from an associated action file. Following this structure can help organize your code and keep it manageable.
 
-### Making a Progressive Web App
+## Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+The `start` and `heroku-postbuild` scripts included in [package.json](package.json) will tell Heroku how to run your app.  You can deploy to Heroku easily:
 
-### Advanced Configuration
+```
+# create a new empty Heroku app in the root directory (only need to be done once)
+heroku create
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+# deploy the latest committed version of your code to Heroku
+git push heroku master
+```
 
-### Deployment
+Don't forget to set the `MONGODB_URI` environmental variable to use a cloud Mongo database (like Atlas).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+

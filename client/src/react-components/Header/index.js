@@ -1,19 +1,37 @@
 import React from "react";
-import logo from "./static/logo.png"
+import Button from "@material-ui/core/Button";
 
+import { logout } from "./../../actions/user";
+
+import "./../../App.css";
 import "./styles.css";
 
-/* Component for the Home page */
+/* The Header Component */
 class Header extends React.Component {
-  render() {
+    
+    // logs out the user
+    logoutUser = (app) => {
+        this.props.history.push("/login");
+        logout(app);
+    };
 
-    return (
-      <div className="header">
-        <h1>Band-Aid</h1>
-        <img src={logo}></img>
-      </div>
-    );
-  }
+    render() {
+        const { title, subtitle, app } = this.props;
+
+        return (
+            <div className="header">
+                <h1>{title}</h1>
+                <h3>{subtitle}</h3>
+                <Button
+                    onClick={() => this.logoutUser(app)}
+                    className="app__horizontal-center"
+                    variant="contained"
+                >
+                    Logout
+                </Button>
+            </div>
+        );
+    }
 }
 
 export default Header;
