@@ -1,7 +1,18 @@
 /* Student mongoose model */
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const Performer = mongoose.model('Performer', {
+const EventSchema = new mongoose.Schema({
+    place: String,
+    date: String
+});
+
+// Reservations will be embedded in the Restaurant model
+const PerformerSchema = new mongoose.Schema({
+	id: {
+		type: Number,
+		required: true,
+		// default: 1
+	},
 	name: {
 		type: String,
 		required: true,
@@ -13,12 +24,10 @@ const Performer = mongoose.model('Performer', {
 		required: true,
 		minlength: 1,
 		trim: true
-    }
-    id: {
-		type: Number,
-		required: true,
-		// default: 1
-	}
-})
+	},
+    events: [EventSchema]
+});
+
+const Performer = mongoose.model('Performer', PerformerSchema);
 
 module.exports = { Performer }
