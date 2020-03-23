@@ -1,5 +1,5 @@
-/* Student mongoose model */
-const mongoose = require('mongoose');
+/* Venue mongoose model */
+const mongoose = require('mongoose')
 
 const EventSchema = new mongoose.Schema({
     place: String,
@@ -24,10 +24,12 @@ const VenueSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1,
 		trim: true
-	},
-    events: [EventSchema]
-});
-
-const Venue = mongoose.model('Venue', VenueSchema);
+    },
+    id: {
+		type: Number,
+		required: true,
+		// default: 1
+	}
+})
 
 module.exports = { Venue }

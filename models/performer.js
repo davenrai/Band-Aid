@@ -1,5 +1,5 @@
-/* Student mongoose model */
-const mongoose = require('mongoose');
+/* Performer mongoose model */
+const mongoose = require('mongoose')
 
 const EventSchema = new mongoose.Schema({
     place: String,
@@ -24,10 +24,12 @@ const PerformerSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1,
 		trim: true
-	},
-    events: [EventSchema]
-});
-
-const Performer = mongoose.model('Performer', PerformerSchema);
+    },
+    id: {
+		type: Number,
+		required: true,
+		// default: 1
+	}
+})
 
 module.exports = { Performer }
