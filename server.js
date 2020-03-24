@@ -110,9 +110,6 @@ app.post('/users', (req, res) => {
 })
 
 
-
-
-/*** Webpage routes below **********************************/
 // sessionChecker will run before the route handler and check if we are
 // logged in, ensuring that we go to the dashboard if that is the case.
 
@@ -306,6 +303,14 @@ app.patch('/performers/:id', authenticate, (req, res) => {
 
 //---------------------------------------------------------------------------
 
+/*** Webpage routes below **********************************/
+// Serve the build
+app.use(express.static(__dirname + "/client/build"));
+
+// All routes other than above will go to index.html
+app.get("*", (req, res) => {
+    res.sendFile(__dirname + "/client/build/index.html");
+});
 
 /*************************************************/
 // Express server listening...
