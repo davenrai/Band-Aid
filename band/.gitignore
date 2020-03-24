@@ -1,23 +1,15 @@
-.DS_Store
-node_modules/
-package-lock.json
-mongo-data/
-band/build/
-band/package-lock.json
-band/node_modules/
-
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-band/node_modules
-band/.pnp
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-band/coverage
+/coverage
 
 # production
-band/build
+/build
 
 # misc
 .DS_Store
