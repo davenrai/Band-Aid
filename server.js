@@ -25,6 +25,9 @@ app.use(bodyParser.json())
 const session = require('express-session')
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+
 /*** Session handling **************************************/
 // Create a session cookie
 app.use(session({
@@ -48,6 +51,27 @@ const sessionChecker = (req, res, next) => {
 };
 
 
+// Middleware for authentication of resources
+const authenticate = (req, res, next) => {
+	if (req.session.user) {
+		User.findById(req.session.user).then((user) => {
+			if (!user) {
+				return Promise.reject()
+			} else {
+				req.user = user
+				next()
+			}
+		}).catch((error) => {
+			res.status(401).send("Unauthorized")
+		})
+	} else {
+		res.status(401).send("Unauthorized")
+	}
+}
+
+
+
+
 /*** Webpage routes below **********************************/
 
 // static js directory
@@ -58,43 +82,13 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '/public/dashboard.html'))
 })
 
-/*********************************************************/
+// // static js directory
+// app.use("/js", express.static(__dirname + '/public/js'))
 
-/*** API Routes below ************************************/
+// static img directory
+app.use("/img", express.static(__dirname + '/public/img'))
 
-// A route to login and create a session
-app.post('/users/login', (req, res) => {
-	const email = req.body.email
-    const password = req.body.password
 
-    // Use the static method on the User model to find a user
-    // by their email and password
-	User.findByEmailPassword(email, password).then((user) => {
-	    if (!user) {
-            res.redirect('/login');
-        } else {
-            // Add the user's id to the session cookie.
-            // We can check later if this exists to ensure we are logged in.
-            req.session.user = user._id;
-            req.session.email = user.email
-            res.redirect('/dashboard');
-        }
-    }).catch((error) => {
-		res.status(400).redirect('/login');
-    })
-})
-
-// A route to logout a user
-app.get('/users/logout', (req, res) => {
-	// Remove the session
-	req.session.destroy((error) => {
-		if (error) {
-			res.status(500).send(error)
-		} else {
-			res.redirect('/')
-		}
-	})
-})
 
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app (*not* a performer).
@@ -115,70 +109,89 @@ app.post('/users', (req, res) => {
 	})
 })
 
-// Middleware for authentication of resources
-const authenticate = (req, res, next) => {
-	if (req.session.user) {
-		User.findById(req.session.user).then((user) => {
-			if (!user) {
-				return Promise.reject()
-			} else {
-				req.user = user
-				next()
-			}
-		}).catch((error) => {
-			res.status(401).send("Unauthorized")
-		})
-	} else {
-		res.status(401).send("Unauthorized")
-	}
-}
+
 
 
 /*** Webpage routes below **********************************/
-// Inject the sessionChecker middleware to any routes that require it.
 // sessionChecker will run before the route handler and check if we are
 // logged in, ensuring that we go to the dashboard if that is the case.
 
 // The various redirects will ensure a proper flow between login and dashboard
-// pages so that your users have a proper experience on the front-end.
+// pages so that users have a proper experience on the front-end.
+
 
 // route for root: should redirect to login route
 app.get('/', sessionChecker, (req, res) => {
 	res.redirect('/login')
 })
 
-// login route serves the login page
-app.get('/login', sessionChecker, (req, res) => {
-	//res.sendFile(__dirname + '/public/login.html')
-	// render the handlebars template for the login page
-	res.render('login.hbs');
-})
+
+// A route to login and create a session
+app.post("/users/login", sessionChecker, (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+
+    log(email, password);
+    // Use the static method on the User model to find a user
+    // by their email and password
+    User.findByEmailPassword(email, password)
+        .then(user => {
+            // Add the user's id to the session cookie.
+            // We can check later if this exists to ensure we are logged in.
+            req.session.user = user._id;
+            req.session.email = user.email;
+			// res.send({ currentUser: user.email });
+			res.redirect('/dashboard');
+        })
+        .catch(error => {
+			// res.status(400).send()
+			res.status(400).redirect('/login');
+        });
+});
+
 
 // dashboard route will check if the user is logged in and server
 // the dashboard page
 app.get('/dashboard', (req, res) => {
 	if (req.session.user) {
-		//res.sendFile(__dirname + '/public/dashboard.html')
-		// render the handlebars template with the email of the user
-		res.render('dashboard.hbs', {
-			email: req.session.email
-		})
+		res.sendFile(__dirname + '/public/dashboard.html')
 	} else {
 		res.redirect('/login')
 	}
 })
 
-// static js directory
-app.use("/js", express.static(__dirname + '/public/js'))
+// ****** OR this one ??????????????????????????
 
-// static img directory
-app.use("/img", express.static(__dirname + '/public/img'))
+// A route to check if a use is logged in on the session cookie
+app.get("/users/check-session", (req, res) => {
+    if (req.session.user) {
+        res.send({ currentUser: req.session.email });
+    } else {
+        res.status(401).send();
+    }
+});
+
+
+// A route to logout a user
+app.get('/users/logout', (req, res) => {
+	// Remove the session
+	req.session.destroy((error) => {
+		if (error) {
+			res.status(500).send(error)
+		} else {
+			res.redirect('/')
+		}
+	})
+})
+
+
+
 
 /*********************************************************/
-
 /*** API Routes below ************************************/
 
 /** Performer resource routes **/
+
 // a POST route to *create* a performer
 app.post('/performers', authenticate, (req, res) => {
 	// log(req.body)
@@ -199,26 +212,6 @@ app.post('/performers', authenticate, (req, res) => {
 })
 
 
-/** Performer resource routes **/
-// a POST route to *create* a performer
-// app.post('/performers', (req, res) => {
-// 	// log(req.body)
-
-// 	// Create a new performer using the Performer mongoose model
-// 	const performer = new Performer({
-// 		name: req.body.name,
-// 		year: req.body.year
-// 	})
-
-// 	// Save performer to the database
-// 	performer.save().then((result) => {
-// 		res.send(result)
-// 	}, (error) => {
-// 		res.status(400).send(error) // 400 for bad request
-// 	})
-// })
-
-
 // a GET route to get all performers
 app.get('/performers', authenticate, (req, res) => {
 	Performer.find({
@@ -230,18 +223,10 @@ app.get('/performers', authenticate, (req, res) => {
 	})
 })
 
-// a GET route to get all performers
-// app.get('/performers', (req, res) => {
-// 	Performer.find().then((performers) => {
-// 		res.send({ performers }) // can wrap in object if want to add more properties
-// 	}, (error) => {
-// 		res.status(500).send(error) // server error
-// 	})
-// })
 
 /// a GET route to get a peformer by their id.
 // id is treated as a wildcard parameter, which is why there is a colon : beside it.
-// (in this case, the database id, but you can make your own id system for your project)
+// (in this case, the database id, but we will make our own id system for our project)
 app.get('/performers/:id', authenticate, (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	// log(req.params.id)
@@ -268,34 +253,6 @@ app.get('/performers/:id', authenticate, (req, res) => {
 
 })
 
-/// a GET route to get a performer by their id.
-// id is treated as a wildcard parameter, which is why there is a colon : beside it.
-// (in this case, the database id, but you can make your own id system for your project)
-// app.get('/performers/:id', (req, res) => {
-// 	/// req.params has the wildcard parameters in the url, in this case, id.
-// 	// log(req.params.id)
-// 	const id = req.params.id
-
-// 	// Good practise: Validate id immediately.
-// 	if (!ObjectID.isValid(id)) {
-// 		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
-// 		return;  // so that we don't run the rest of the handler.
-// 	}
-
-// 	// Otherwise, findById
-// 	Performer.findById(id).then((performer) => {
-// 		if (!peformer) {
-// 			res.status(404).send()  // could not find this performer
-// 		} else {
-// 			/// sometimes we wrap returned object in another object:
-// 			//res.send({performer})   
-// 			res.send(performer)
-// 		}
-// 	}).catch((error) => {
-// 		res.status(500).send()  // server error
-// 	})
-
-// })
 
 /// a DELETE route to remove a performer by their id.
 app.delete('/performers/:id', authenticate, (req, res) => {
@@ -319,28 +276,6 @@ app.delete('/performers/:id', authenticate, (req, res) => {
 	})
 })
 
-
-/// a DELETE route to remove a performer by their id.
-// app.delete('/performer/:id', (req, res) => {
-// 	const id = req.params.id
-
-// 	// Validate id
-// 	if (!ObjectID.isValid(id)) {
-// 		res.status(404).send()
-// 		return;
-// 	}
-
-// 	// Delete a performer by their id
-// 	Performer.findByIdAndRemove(id).then((performer) => {
-// 		if (!performer) {
-// 			res.status(404).send()
-// 		} else {   
-// 			res.send(performer)
-// 		}
-// 	}).catch((error) => {
-// 		res.status(500).send() // server error, could not delete.
-// 	})
-// })
 
 // a PATCH route for changing properties of a resource.
 // (alternatively, a PUT is used more often for replacing entire resources).
@@ -369,25 +304,7 @@ app.patch('/performers/:id', authenticate, (req, res) => {
 
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
 //---------------------------------------------------------------------------
-
-
-
-
-
-
 
 
 /*************************************************/
