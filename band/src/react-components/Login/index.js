@@ -25,6 +25,13 @@ class Login extends React.Component {
                     <br />
                     <br />
                     <Button variant="contained">Login</Button>
+                    <br />
+                    <br/>
+                    <br></br>
+                    <p>Not Registered? Sign up now!</p>
+                    <Link>
+                        <Button color="secondary" variant="contained">Sign Up!</Button>
+                    </Link>
                 </div>
 
 
