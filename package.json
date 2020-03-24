@@ -1,7 +1,7 @@
 {
-    "name": "students_server",
+    "name": "Band-Aid_server",
     "version": "1.0.0",
-    "description": "",
+    "description": "CSC309 project - Winter 2020",
     "main": "server.js",
     "scripts": {
         "setup": "npm install && cd client && npm install && cd ..",
@@ -10,7 +10,7 @@
         "heroku-postbuild": "cd client && npm install && npm run build",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "team08",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",

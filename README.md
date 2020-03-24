@@ -1,6 +1,14 @@
 # React Express Auth
 
-This example demonstrates how to:
+# Team 08
+
+To start our app, please go to the index.html file. This is the main page for our application, "Band-Aid." To log in, press log in and use "user" as both the password and the username. This immediately takes you to our request timeline. Currently, you can add a request to our timeline and it will add it. You can also delete a request by saying "I'm down," which means that the request has been taken care of. Later on, we hope to show contact information so that they can contact that venue. To go to the admin view, the log in should be with username and password as "admin."
+
+At the top, there is a button that says "My Profile." This will take you to a standard profile page, from where users will be able to create their own profiles! You can use the log out button at the top to log out of our application.
+
+Next, you can sign up. You can pick a username, password, and say which email you need. Right now, you can add anything. You also have the option to pick if you are restaurant or performer or venue (restaurant/bar/convert hall). This will take you to different make profile pages, depending on if you choose to sign up as a performer or a venue. 
+
+We do the following::
 
 -   connect your React frontend to Express backend and MongoDB
 -   create user sessions using cookies
@@ -8,7 +16,6 @@ This example demonstrates how to:
 -   organize your app so that your code is maintainable
 -   make your app prettier using Material UI ✨
 
-Note: The JSON routes (`/students`) are *not* protected (no authentication required).  You can (and should!) add this using similar middleware techniques we used in lecture.
 
 ## Setup
 Start your local Mongo database.  For example, in a separate terminal window:
