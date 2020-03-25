@@ -7,6 +7,14 @@ import './styles.css'
 import logo from './static/logo_transparent.png'
 
 class Login extends React.Component {
+    constructor() {
+        // Where we initialize values
+        super();
+        this.state = {
+                username: "", 
+                password: ""
+        }
+    }
     render() {
         return (
             <div>
@@ -18,15 +26,17 @@ class Login extends React.Component {
                     <h1>Welcome to Band-Aid.</h1>
                     <p>Toronto's First Venue-to-Musician Marketplace</p>
                     <br />
-                    <span id="input">
-                        <TextField label="Username" id="userField" variant="filled"></TextField>
-                        <TextField label="Password" id="passwordField" variant="filled"></TextField>
-                    </span>
+                    <form>
+                        <span id="input">
+                            <TextField label="Username" id="userField" variant="filled" required name="username" type="username"></TextField> 
+                            <TextField label="Password" id="passwordField" variant="filled" required></TextField>
+                        </span>
+                    </form>
                     <br />
                     <br />
-                    <Button variant="contained">Login</Button>
+                    <Button type="submit" variant="contained">Login</Button>
                     <br />
-                    <br/>
+                    <br />
                     <br></br>
                     <p>Not Registered? Sign up now!</p>
                     <Link>

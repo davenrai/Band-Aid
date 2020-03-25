@@ -13,6 +13,12 @@ h1, h3 {
     margin: -50px;
 }
 
-#userField {
-    
+.input {
+    padding: 5px;
+    display: inline-block;
+    position: relative;
+  }
+
+.MuiInputBase-root {
+    margin: 2.5px;
 }
