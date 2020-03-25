@@ -27,4 +27,6 @@ const PerformerSchema = new mongoose.Schema({
     },
 })
 
+const Performer = mongoose.model('Performer', PerformerSchema);
+
 module.exports = { Performer }
