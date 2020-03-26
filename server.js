@@ -80,7 +80,7 @@ app.use("/js", express.static(path.join(__dirname, '/public/js')))
 
 // route for root
 app.get('/', (req, res) => {
-	res.sendFile(path.join(__dirname, '/public/dashboard.html'))
+	res.sendFile(path.join(__dirname, '/client/build/index.html'))
 })
 
 // // static js directory
