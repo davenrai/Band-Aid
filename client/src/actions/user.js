@@ -59,6 +59,26 @@ export const login = (loginComp, app) => {
         });
 };
 
+export const register = (registerComp, app) => {
+    const request = new Request("/users", {
+        method: "post", 
+        body: JSON.stringify(registerComp.state), 
+        headers: {
+            Accept: "application/json, text/plain, */*", 
+            "Content-Type": "application/json"
+        }
+    });
+
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .then(json => {
+            
+        })
+}
 // A function to send a GET request to logout the current user
 export const logout = (app) => {
     const url = "/users/logout";

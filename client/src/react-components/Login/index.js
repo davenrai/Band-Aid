@@ -34,8 +34,8 @@ class Login extends React.Component {
                     <br />
                     <form>
                         <span id="input">
-                            <TextField onChange={e => updateLoginForm(this, e.target)} label="Username" id="userField" variant="filled" required name="username" type="username"></TextField>
-                            <TextField onChange={e => updateLoginForm(this, e.target)} label="Password" id="passwordField" type="password" variant="filled" required></TextField>
+                            <TextField onChange={e => updateLoginForm(this, e.target)} name="username" label="Username" id="username" variant="filled" required type="username"></TextField>
+                            <TextField onChange={e => updateLoginForm(this, e.target)} name="password" label="Password" id="password" type="password" variant="filled" required></TextField>
                         </span>
                     </form>
                     <br />
