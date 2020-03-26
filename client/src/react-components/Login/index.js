@@ -29,7 +29,7 @@ class Login extends React.Component {
                 </div>
 
                 <div className="form">
-                    <h1>Welcome to Band-Aid.</h1>
+                    <h1>Welcome to Band-Aid!</h1>
                     <p>Toronto's First Venue-to-Musician Marketplace</p>
                     <br />
                     <form>
