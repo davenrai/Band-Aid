@@ -11,7 +11,7 @@ import { readCookie } from "./actions/user";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    readCookie(this); // sees if a user is logged in.
+    readCookie(this); 
   }
 
   state = {
