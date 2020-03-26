@@ -5,40 +5,56 @@ import Button from "@material-ui/core/Button";
 import Input from "./../Input";
 
 // Importing actions/required methods
-// import { updateStudentForm, addStudent } from "../../actions/student";
+import { updateUserForm, addUser } from "../../actions/user";
 
 import "./styles.css";
 
 /* Component for the SignUp Form */
 class SignUp extends React.Component {
 
-    // user form state
-    state = {
-        name: "",
-        password: ""
+    constructor() {
+        super()
+
+
     }
+
+        // user form state
+        state = {
+            name: "",
+            password: ""
+        }
 
     render() {
         const { app } = this.props;
 
-        const { name, password } = this.state;
+        const { username, password } = this.state;
 
         return (
+
+
+
             <React.Fragment>
+                        //************test */
+            <div>
+                <h3>
+                    new testing
+                </h3>
+            </div>
+
                 <Grid className="student-form" container spacing={4}>
                     {/* Inputs to add student */}
                     <Input
-                        name="name"
-                        value={name}
-                        // onChange={e => updateStudentForm(this, e.target)}
-                        label="Student Name"
+                        username="username"
+                        value={username}
+                        onChange={e => updateUserForm(this, e.target)}
+                        label="username"
                     />
 
                     <Input
-                        name="year"
-                        value={year}
-                        // onChange={e => updateStudentForm(this, e.target)}
-                        label="Year"
+                        password="password"
+                        value={password}
+                        onChange={e => updateUserForm(this, e.target)}
+                        label="password"
                     />
 
                     <Grid
@@ -53,7 +69,7 @@ class SignUp extends React.Component {
                         <Button
                             variant="contained"
                             color="primary"
-                            // onClick={() => addStudent(this, app)}
+                            onClick={() => addUser(this, app)}
                             className="student-form__submit-button"
                         >
                             Add USER
@@ -62,7 +78,7 @@ class SignUp extends React.Component {
                 </Grid>
 
                 <p className={`student-form__message--${app.state.message.type}`}>
-                    {dashboard.state.message.body}
+                    {app.state.message.body}
                 </p>
             </React.Fragment>
         );
