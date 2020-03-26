@@ -6,16 +6,22 @@ import TextField from '@material-ui/core/TextField'
 import './styles.css'
 import logo from './static/logo_transparent.png'
 
+import { updateLoginForm, login } from "../../actions/user";
+
 class Login extends React.Component {
-    constructor() {
+    constructor(props) {
         // Where we initialize values
-        super();
-        this.state = {
-                username: "", 
-                password: ""
-        }
+        super(props);
+        this.props.history.push("/login");
+    }
+    // login form state
+    state = {
+        username: "",
+        password: ""
     }
     render() {
+        const { app } = this.props
+
         return (
             <div>
                 <div className="logoContainer">
@@ -28,13 +34,13 @@ class Login extends React.Component {
                     <br />
                     <form>
                         <span id="input">
-                            <TextField label="Username" id="userField" variant="filled" required name="username" type="username"></TextField> 
-                            <TextField label="Password" id="passwordField" variant="filled" required></TextField>
+                            <TextField onChange={e => updateLoginForm(this, e.target)} label="Username" id="userField" variant="filled" required name="username" type="username"></TextField>
+                            <TextField onChange={e => updateLoginForm(this, e.target)} label="Password" id="passwordField" type="password" variant="filled" required></TextField>
                         </span>
                     </form>
                     <br />
                     <br />
-                    <Button type="submit" variant="contained">Login</Button>
+                    <Button onClick={() => login(this, app)} type="submit" variant="contained">Login</Button>
                     <br />
                     <br />
                     <br></br>
