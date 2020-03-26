@@ -12,16 +12,16 @@ import "./styles.css";
 /* Component for the SignUp Form */
 class SignUp extends React.Component {
 
-    // student form state
+    // user form state
     state = {
         name: "",
-        year: ""
+        password: ""
     }
 
     render() {
-        const { dashboard } = this.props;
+        const { app } = this.props;
 
-        const { name, year } = this.state;
+        const { name, password } = this.state;
 
         return (
             <React.Fragment>
@@ -53,7 +53,7 @@ class SignUp extends React.Component {
                         <Button
                             variant="contained"
                             color="primary"
-                            // onClick={() => addStudent(this, dashboard)}
+                            // onClick={() => addStudent(this, app)}
                             className="student-form__submit-button"
                         >
                             Add USER
@@ -61,7 +61,7 @@ class SignUp extends React.Component {
                     </Grid>
                 </Grid>
 
-                <p className={`student-form__message--${dashboard.state.message.type}`}>
+                <p className={`student-form__message--${app.state.message.type}`}>
                     {dashboard.state.message.body}
                 </p>
             </React.Fragment>
