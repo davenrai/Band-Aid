@@ -85,6 +85,14 @@ app.post("/users", (req, res) => {
     );
 });
 
+app.get("/users/check-session", (req, res) => {
+    if (req.session.user) {
+        res.send({ currentUser: req.session.email });
+    } else {
+        res.status(401).send();
+    }
+});
+
 
 /*** Webpage routes below **********************************/
 // Serve the build
