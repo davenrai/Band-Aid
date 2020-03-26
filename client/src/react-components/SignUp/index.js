@@ -18,6 +18,12 @@ class SignUp extends React.Component {
         password: ""
     }
 
+        // user form state
+        state = {
+            name: "",
+            password: ""
+        }
+
     render() {
         const { app } = this.props;
 

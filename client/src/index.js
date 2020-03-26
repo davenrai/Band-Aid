@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+//change below if you want to test a view
+import SignUp from './react-components/SignUp'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById("root"));
