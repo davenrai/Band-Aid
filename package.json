@@ -1,5 +1,5 @@
 {
-    "name": "Band-Aid_server",
+    "name": "bandaid_server",
     "version": "1.0.0",
     "description": "CSC309 project - Winter 2020",
     "main": "server.js",
