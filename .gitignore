@@ -2,24 +2,24 @@
 node_modules/
 package-lock.json
 mongo-data/
-client/build/
-client/package-lock.json
-client/node_modules/
+react_folder/client/build/
+react_folder/client/package-lock.json
+react_folder/client/node_modules/
 mongo-data/
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-client/node_modules
+react_folder/client/node_modules
 client/.pnp
 .pnp.js
 
 # testing
-client/coverage
-
+react_folder/client/coverage
+coverage/
 # production
-client/build
-
+react_folder/client/build
+build/
 # misc
 .DS_Store
 .env.local
