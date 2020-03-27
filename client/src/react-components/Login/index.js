@@ -45,9 +45,9 @@ class Login extends React.Component {
                     <br />
                     <br></br>
                     <p>Not Registered? Sign up now!</p>
-                    <Link>
-                        <Button color="secondary" variant="contained">Sign Up!</Button>
-                    </Link>
+                    <Button component={Link} to="/register" color="secondary" variant="contained">
+                        Sign Up!
+                    </Button>
                 </div>
 
 

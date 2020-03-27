@@ -6,6 +6,7 @@ import './App.css';
 import Home from './react-components/Home';
 import Login from './react-components/Login'
 import SignUp from './react-components/SignUp'
+import Dashboard from './react-components/Dashboard'
 
 import { readCookie } from "./actions/user";
 
@@ -29,12 +30,21 @@ class App extends React.Component {
               render={({ history }) => (
                 <div className="app">
                   { /* Different componenets rendered depending on if someone is logged in. */}
+                  {!currentUser ? <Login history={history} app={this} /> : <Home history={history} app={this} />}
+                </div>
+
+              )}
+            />
+            <Route
+              exact path="/register" /* any of these URLs are accepted. */
+              render={({ history }) => (
+                <div className="app">
+                  { /* Different componenets rendered depending on if someone is logged in. */}
                   {!currentUser ? <SignUp history={history} app={this} /> : <Home history={history} app={this} />}
                 </div>
 
               )}
             />
-            <Route render={() => <div>404 Not found</div>} />
           </Switch>
         </BrowserRouter>
       </div>
