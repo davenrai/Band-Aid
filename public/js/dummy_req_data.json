@@ -1,0 +1,31 @@
+[{
+    "name": "Ein-Stein Bier Halle",
+    "location": "229 College St, Toronto, ON M5T 1R4",
+    "phone": "(416) 597-8346",
+    "description": "Looking for some jazzy tunes! Weekly on Wednesdays at 8pm."
+}, {
+    "name": "El Furniture Warehouse",
+    "location": "410 Bloor St W, Toronto, ON M5S 1X5",
+    "phone": "(647) 350-7326",
+    "description": "Open until 2am - anyone available for a late night gig on March 6th?"
+}, {
+    "name": "Bahen Centre",
+    "location": "40 St George St, Toronto, ON M5S 2E4",
+    "phone": "(416) 978-2011",
+    "description": "Hosting a Computer Science Party in BA 1190 for CSC309! April 1st, 7pm."
+}, {
+    "name": "Fran's Restaurant and Bar",
+    "location": "20 College St, Toronto, ON M5G 1K2",
+    "phone": "(416) 923-9867",
+    "description": "Open 24/7 - looking for regular performers to help us out!"
+}, {
+    "name": "PAI Thai Restaurant",
+    "location": "18 Duncan St, Toronto, ON M5H 3G8",
+    "phone": "(416) 901-4724",
+    "description": "Looking for a performer for early evenings to help bring in more of a crowd!"
+}, {
+    "name": "Amsterdam BrewHouse",
+    "location": "245 Queens Quay W, Toronto, ON M5J 2K9",
+    "phone": "(416) 504-1020",
+    "description": "Restaurant situated by the harbour - looking for live performers!"
+}]

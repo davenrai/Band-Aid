@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/signup.css">
+    <title>Sign-Up</title>
+</head>
+
+<body>
+    <div id="header">
+        <img class="appLogo" src="./img/logo.png">
+    </div>
+
+    <div id="title">
+        Sign Up
+    </div>
+
+    <div class="container">
+        <form id="signup_form" action="/users" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Your username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Your password">
+            <!-- <div id ="buttonholder"> -->
+            <label for="performer">Performer</label>
+            <input type="radio" id="performer" name="usertype" value="performer"><br>
+            <label for="venue">Venue</label>
+            <input type="radio" id="venue" name="usertype" value="venue">
+            <label for="admin">Admin</label>
+            <input type="radio" id="admin" name="usertype" value="admin">
+            <!-- </div> -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+
+</html>

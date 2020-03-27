@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div id="header">
+        <img class="appLogo" src="./img/logo.png">
+    </div>
+
+    <div id='title'>
+        Login
+    </div>
+
+    <div class="container">
+        <form action="/users/login" method="post">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Your username">
+
+            <label for="password">Password</label>
+            <input type="text" id="password" name="password" placeholder="Your password">
+            <button id="login">Login</button>
+            <!-- Here, we expect a server call to ensure that the given username and password is registered-->
+        </form>
+
+    </div>
+    <script type="text/javascript" src="./js/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="./css/project.css">
+</head>
+
+<body>
+    <div id="header">
+        <img class="appLogo" src="./img/logo.png">
+        <span id="title">Admin View</span>
+        <button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button>
+    </div>
+
+    <div id="timeline">
+        <div id="newRequest">
+            <strong>Delete a User</strong>
+            <form id="requestForm">
+                <input id="venueName" type="text" placeholder="Username">
+                <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
+                <input type="submit" value="Delete User">
+            </form>
+        </div>
+    </div>
+
+    <div id="timeline">
+        <div id="newRequest">
+            <strong>Delete a Request</strong>
+            <form id="requestForm">
+                <input id="venueName" type="text" placeholder="Request ID">
+                <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
+                <input type="submit" value="Delete Request">
+            </form>
+        </div>
+    </div>
+
+    <div id="timeline">
+        <div id="newRequest">
+            <strong>Change a Password</strong>
+            <form id="requestForm">
+                <input id="venueName" type="text" placeholder="Username">
+                <input id="venueName" type="text" placeholder="New Password">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <div id="timeline">
+        <div id="newRequest">
+            <strong>Change Details of an Event</strong>
+            <form id="requestForm">
+                <input id="venueName" type="text" placeholder="Event ID">
+                <input id="venueName" type="text" placeholder="Updated Location">
+                <input id="venueName" type="text" placeholder="Updated Day">
+                <input type="submit" value="Update Event">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

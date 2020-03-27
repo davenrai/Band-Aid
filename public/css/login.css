@@ -1,0 +1,76 @@
+#title {
+    color: black;
+    font-size: xx-large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold; 
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}
+
+#header {
+	padding: 10px;
+	background-color: silver;
+}
+
+.appLogo {
+	width: 100px;
+	margin-left: 40px;
+}
+
+#login {
+    top: 500px;
+    left:1000px;
+}
+
+/* #username {
+    margin-top: 300px;
+    margin-left: 100px;
+}
+
+#password {
+    margin-top: 300px;
+    margin-left: 100px;
+
+} */
+
+input[type=text] {
+    width: 40%;
+    padding: 15px 20px;
+    margin: 8px 450px;
+    display: block;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+label {
+    margin-left:450px;
+} 
+
+.container {
+    margin-top: 150px;
+    border-radius: 5px;
+    background-color: e6ecf0;
+    padding: 20px;
+}
+
+#login {
+    width: 40%;
+    background-color: orange;
+    color: white;
+    padding: 15px 20px;
+    margin: 8px 450px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#login:hover {
+    background-color: purple;
+} 
+body {
+	background-color: #e6ecf0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+}

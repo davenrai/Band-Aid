@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Requests</title>
+    <link rel="stylesheet" type="text/css" href="./css/project.css">
+</head>
+
+<body>
+    <div id="header">
+        <img class="appLogo" src="./img/logo.png">
+        <span id="title">Request Form</span>
+        <a class="headerLink" href="index.html">Log Out</a>
+        <a class="headerLink" href="my_profile.html">My Profile</a>
+    </div>
+
+    <div id="newRequest">
+        <strong>New Request</strong>
+        <form id="requestForm" action="/requests" method="post">
+            <label for="venuename">Name of Venue</label>
+            <input type="text" id="venuename" name="venuename" placeholder="Venue"><br>
+            <label for="location">Venue Location</label>
+            <input type="text" id="location" name="location" placeholder="Address"><br>
+            <label for="phone">Venue Phone Number</label>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number"><br>
+            <label for="description">Venue Request Description</label>
+            <input type="text" id="description" name="description" placeholder="Tell Us More"><br>
+            <input type="submit" value="Submit Request - Rock ON!">
+        </form>
+    </div>
+    <script type="text/javascript" src="./js/dashboard.js"></script>
+</body>
+
+</html>
