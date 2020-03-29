@@ -171,12 +171,14 @@ app.get('/users', (req, res) => {
 
 
 // a GET route to get a specific user
-app.get('/specificuser', (req, res) => {
+app.get('/users/:username', (req, res) => {
 	
-	const username = req.body.username;
+	// const username = req.body.username;
+	const username = req.params.username
 
 	// Find user
-	User.findOne({username}).then(user => {
+	// User.findOne(username).then(user => {
+	User.findById(username).then(user => {	
 		if (!user) {
 			res.status(404).send()  // could not find this user
 		} else {
