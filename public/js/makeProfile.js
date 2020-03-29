@@ -80,7 +80,75 @@ function fetchTest() {
         }
         log(res)  // log the result in the console for development purposes,
                           //  users are not expected to see this.
+        log(JSON.parse(res))
     }).catch((error) => {
         log(error)
     })
     }
+
+    function fetchTest2() {
+        log("in fetchTest ")
+        fetch('http://localhost:5000/users/bob44')
+    
+        .then(function(res) {
+    
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                // If student was added successfully, tell the user.
+                console.log('fetch test works')
+               
+            } else {
+                // If server couldn't add the student, tell the user.
+         
+            }
+            log(res)  // log the result in the console for development purposes,
+                              //  users are not expected to see this.
+            log(res.json)
+            log(res.body)
+            
+        }).catch((error) => {
+            log(error)
+        })
+    }
+
+    function fetchTest3() {
+        fetch('http://localhost:5000/users/bob44')
+        .then(response => response.json())
+        .then(json => console.log(json))
+        }
+
+
+        function fetchTest4() {
+            log("in fetchTest ")
+            fetch('http://localhost:5000/users/bob44', {
+                method: 'PATCH',
+                body: JSON.stringify({
+                name: "fffffffffffffffffff"
+                }),
+                headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+                }
+                })
+        
+            .then(function(res) {
+        
+                // Handle response we get from the API.
+                // Usually check the error codes to see what happened.
+                if (res.status === 200) {
+                    // If student was added successfully, tell the user.
+                    console.log('fetch test works')
+                   
+                } else {
+                    // If server couldn't add the student, tell the user.
+             
+                }
+                log(res)  // log the result in the console for development purposes,
+                                  //  users are not expected to see this.
+                log(res.json)
+                log(res.body)
+                
+            }).catch((error) => {
+                log(error)
+            })
+        }
