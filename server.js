@@ -177,10 +177,11 @@ app.get('/users/:username', (req, res) => {
 	const username = req.params.username
 
 	// Find user
-	// to get by _id
+	// to get by _id uncomment one of the below lines
 	// User.findOne({ '_id': username}).then(user => {
-	// User.findById(username).then(user => {	
-	// to gey by username
+	// User.findById(username).then(user => {
+		
+	// to get by username
 	User.findOne({ 'username': username}).then(user => {	
 		if (!user) {
 			res.status(404).send()  // could not find this user
