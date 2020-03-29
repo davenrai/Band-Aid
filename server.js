@@ -181,7 +181,7 @@ app.get('/specificuser', (req, res) => {
 			res.status(404).send()  // could not find this user
 		} else {
 			/// sometimes we wrap returned object in another object:
-			//res.send({restaurant})   
+			//res.send({ user })   
 			res.send(user)
 		}
 	}).catch((error) => {
