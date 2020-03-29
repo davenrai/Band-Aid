@@ -27,7 +27,7 @@ function addProfileInfo() {
         username: "bob44",
         name: "new proper bob8833",
         // name: document.querySelector('#name').value,
-        location: document.querySelector('#location').value
+        // location: document.querySelector('#location').value
     }
     // Create our request constructor with all the parameters we need
     // const request = new Request('https://example.com', {method: 'POST', body: '{"foo": "bar"}'});
@@ -61,3 +61,26 @@ function addProfileInfo() {
     })
 }
 
+
+function fetchTest() {
+    log("in fetchTest ")
+    fetch('http://localhost:5000/users/bob44')
+
+    .then(function(res) {
+
+        // Handle response we get from the API.
+        // Usually check the error codes to see what happened.
+        if (res.status === 200) {
+            // If student was added successfully, tell the user.
+            console.log('fetch test works')
+           
+        } else {
+            // If server couldn't add the student, tell the user.
+     
+        }
+        log(res)  // log the result in the console for development purposes,
+                          //  users are not expected to see this.
+    }).catch((error) => {
+        log(error)
+    })
+    }

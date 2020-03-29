@@ -1,36 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+    <head>
+        <title>Basic Server</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-<head>
-	<meta charset="utf-8">
-	<title>Make Profile for Performers</title>
-	<link rel="stylesheet" type="text/css" href="./css/project.css">
-</head>
+    <body class="container">
+        <div class="page-header">
+            <h1>Make Your Profile</h1>
+        </div>
+        <br>
+        <div class="container row">
+            <div class="jumbotron col-sm-4 pull-center">
+                <h3>Profile info:</h3>
+                <div>
+                    <label>Name:</label>
+                    <input id="name" type="text" name="name"/>
+                </div>
+                <div>
+                    <label>Location:</label>
+                    <input id="location" type="text" name="location"/>
+                </div>
+                <div>
+                    <button onclick='addProfileInfo()' id='add'>Add your info</button>
+                </div>    
+        
+            </div>          
+        </div>
 
-<body>
-	<div id="header">
-		<img class="appLogo" src="./img/logo.png">
-		<span id="title">Make Profile for Performers</span>
-		<button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button>
-	</div>
+		<body class="container">
+			<div class="page-header">
+				<h1>fetch test header</h1>
+			</div>
+			<br>
+			<div class="container row">
+				<div class="jumbotron col-sm-4 pull-center">
+					<h3>Fetch test:</h3>
+					<div>
+						<label>Name:</label>
+						<input id="name1" type="text" name="name1"/>
+					</div>
+					<div>
+						<label>Location:</label>
+						<input id="location1" type="text" name="location1"/>
+					</div>
+					<div>
+						<button onclick='fetchTest()' id='fetchTest'>fetchTest</button>
+					</div>    
+			
+				</div>          
+			</div>
 
-	<!-- User signup name box input  -->
-	<div class="makeProfile">
-		<form id="makeProfileForm" action="/makeprofileperformer" method="patch">
-			<label for="name">Performer Full Name</label>
-			<input type="text" id="name" name="name" placeholder="Name"><br>
-			<label for="location">Performer Location</label>
-			<input type="text" id="location" name="location" placeholder="Address"><br>
-			<label for="phone">Performer Phone Number</label>
-			<input type="text" id="phone" name="phone" placeholder="Phone Number"><br>
-			<label for="genre">What genre of music do you play?</label>
-			<input type="text" id="genre" name="genre" placeholder="Genre"><br>
-			<label for="description">Favourite artist? Tell us more about yourself!</label>
-			<input type="text" id="description" name="description" placeholder="Describe Yourself"><br>
-			<input type="submit" value="Make Profile">
-		</form>
-	</div>
-
-</body>
-
+          
+    </body>
+    <script type="text/javascript" src="/js/makeProfile.js"></script>
 </html>
