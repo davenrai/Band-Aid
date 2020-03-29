@@ -177,8 +177,11 @@ app.get('/users/:username', (req, res) => {
 	const username = req.params.username
 
 	// Find user
-	// User.findOne(username).then(user => {
-	User.findById(username).then(user => {	
+	// to get by _id
+	// User.findOne({ '_id': username}).then(user => {
+	// User.findById(username).then(user => {	
+	// to gey by username
+	User.findOne({ 'username': username}).then(user => {	
 		if (!user) {
 			res.status(404).send()  // could not find this user
 		} else {
@@ -190,6 +193,7 @@ app.get('/users/:username', (req, res) => {
 		res.status(500).send()  // server error
 	})
 })
+
 
 // Update user in db with performer information from make profile
 // app.patch('/makeprofileperformer/', sessionChecker, (req, res) => {
