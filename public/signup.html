@@ -23,12 +23,26 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Your password">
             <!-- <div id ="buttonholder"> -->
-            <label for="performer">Performer</label>
+                <div class="usertypebuttons">
+                    <label class="radiobutton">
+                      <input type="radio" name="usertype" value="performer">
+                      Performer
+                    </label>
+                    <label class="radiobutton">
+                       <input type="radio" name="usertype" value="venue">
+                       Venue
+                    </label>
+                    <label class="radiobutton">
+                      <input type="radio" name="usertype" value="admin">
+                      Admin
+                    </label>
+                  </div>
+            <!-- <label for="performer">Performer</label>
             <input type="radio" id="performer" name="usertype" value="performer"><br>
             <label for="venue">Venue</label>
             <input type="radio" id="venue" name="usertype" value="venue">
             <label for="admin">Admin</label>
-            <input type="radio" id="admin" name="usertype" value="admin">
+            <input type="radio" id="admin" name="usertype" value="admin"> -->
             <!-- </div> -->
             <input type="submit" value="Submit">
         </form>
