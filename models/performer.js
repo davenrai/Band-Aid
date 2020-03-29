@@ -1,6 +1,6 @@
 /* Performer mongoose model */
 /* Vanilla */
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const BookingSchema = new mongoose.Schema({
     place: String,
@@ -27,8 +27,8 @@ const PerformerSchema = new mongoose.Schema({
 		trim: true
 	},
 	bookings: [BookingSchema]
-})
+});
 
 const Performer = mongoose.model('Performer', PerformerSchema);
 
-module.exports = { Performer }
+module.exports = { Performer };
