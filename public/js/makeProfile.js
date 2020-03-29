@@ -72,7 +72,7 @@ function fetchTest() {
         // Usually check the error codes to see what happened.
         if (res.status === 200) {
             // If student was added successfully, tell the user.
-            console.log('fetch test works')
+            console.log('fetchtest works')
            
         } else {
             // If server couldn't add the student, tell the user.
@@ -87,8 +87,8 @@ function fetchTest() {
     }
 
     function fetchTest2() {
-        log("in fetchTest ")
-        fetch('http://localhost:5000/users/bob44')
+        log("in fetchTest2 ")
+        fetch('/users')
     
         .then(function(res) {
     
@@ -96,7 +96,7 @@ function fetchTest() {
             // Usually check the error codes to see what happened.
             if (res.status === 200) {
                 // If student was added successfully, tell the user.
-                console.log('fetch test works')
+                console.log('fetchtest2 works')
                
             } else {
                 // If server couldn't add the student, tell the user.
@@ -106,6 +106,7 @@ function fetchTest() {
                               //  users are not expected to see this.
             log(res.json)
             log(res.body)
+            log(res.headers)
             
         }).catch((error) => {
             log(error)
@@ -119,36 +120,66 @@ function fetchTest() {
         }
 
 
-        function fetchTest4() {
-            log("in fetchTest ")
-            fetch('http://localhost:5000/users/bob44', {
-                method: 'PATCH',
-                body: JSON.stringify({
-                name: "fffffffffffffffffff"
-                }),
-                headers: {
-                'Content-type': 'application/json; charset=UTF-8'
-                }
-                })
-        
-            .then(function(res) {
-        
-                // Handle response we get from the API.
-                // Usually check the error codes to see what happened.
-                if (res.status === 200) {
-                    // If student was added successfully, tell the user.
-                    console.log('fetch test works')
-                   
-                } else {
-                    // If server couldn't add the student, tell the user.
-             
-                }
-                log(res)  // log the result in the console for development purposes,
-                                  //  users are not expected to see this.
-                log(res.json)
-                log(res.body)
-                
-            }).catch((error) => {
-                log(error)
+    function fetchTest4() {
+        log("in fetchTest ")
+        fetch('http://localhost:5000/users/bob44', {
+            method: 'PATCH',
+            body: JSON.stringify({
+            name: "fffffffffffffffffff"
+            }),
+            headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+            }
             })
-        }
+    
+        .then(function(res) {
+    
+            // Handle response we get from the API.
+            // Usually check the error codes to see what happened.
+            if (res.status === 200) {
+                // If student was added successfully, tell the user.
+                console.log('fetch test works')
+                
+            } else {
+                // If server couldn't add the student, tell the user.
+            
+            }
+            log(res)  // log the result in the console for development purposes,
+                                //  users are not expected to see this.
+            log(res.json)
+            log(res.body)
+            
+        }).catch((error) => {
+            log(error)
+        })
+    }
+
+
+    function fetchTest5() {
+        // the URL for the request
+        const url = '/users';
+    
+        // Since this is a GET request, simply call fetch on the URL
+        fetch(url)
+        .then((res) => { 
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+               return res.json() 
+           } else {
+                alert('Could not get users')
+           }                
+        })
+        .then((json) => {  // the resolved promise with the JSON body
+            usersList = document.querySelector('#usersList')
+            usersList.innerHTML = '';
+            log(json)
+            json.users.map((s) => {
+                li = document.createElement('li')
+                li.innerHTML = `Name: <strong>${s.username}</strong>, Year: <strong>${s.usertype}</strong>`
+                usersList.appendChild(li)
+                log(s)
+            })
+        }).catch((error) => {
+            log(error)
+        })
+    }
