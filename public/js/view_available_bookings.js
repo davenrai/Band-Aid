@@ -1,4 +1,4 @@
-/* Reservations.js */
+/* view_available_bookings.js */
 const log = console.log;
 
 const addVenueRequest = (name, location, phone, description) => {
@@ -13,7 +13,7 @@ const addVenueRequest = (name, location, phone, description) => {
 };
 
 // const requestList = document.querySelector("#requestList");
-requestList.addEventListener("click", removeRequest);
+// requestList.addEventListener("click", removeRequest);
 // document.addEventListener("DOMContentLoaded", getAllVenues);
 
 // function addNewBandRequest(e) {
