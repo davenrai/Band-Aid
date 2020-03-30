@@ -75,7 +75,6 @@ function removeRequest(e) {
 }
 
 
-
 /* AJAX fetch() calls */
 
 // A function to send a GET request to the web server,
@@ -89,24 +88,24 @@ function getVenues() {
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-           return res.json() 
+           return res.json();
        } else {
-            alert('Could not get venues')
+            alert('Could not get venues');
        }                
     })
     .then((json) => {  // the resolved promise with the JSON body
-        venuesList = document.querySelector('#venuesList')
+        venuesList = document.querySelector('#venuesList');
         venuesList.innerHTML = '';
-        log(json)
+        log(json);
         json.venues.map((v) => {
-            li = document.createElement('li')
-            li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`
-            venuesList.appendChild(li)
-            log(v)
+            li = document.createElement('li');
+            li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`;
+            venuesList.appendChild(li);
+            log(v);
         })
     }).catch((error) => {
-        log(error)
-    })
+        log(error);
+    });
 }
 
 
@@ -121,9 +120,9 @@ function getAllBookings() {
         .then((res) => { 
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
-               return res.json() 
+               return res.json();
            } else {
-                alert('Could not get bookings')
+                alert('Could not get bookings');
            }                
         })
         .then((json) => {  // the resolved promise with the JSON body
@@ -142,9 +141,9 @@ function getAllBookings() {
                 
                 // bookingsList.appendChild(li)
                 // log(b)
-                addToRequestTimeline(b)
-            })
+                addToRequestTimeline(b);
+            });
         }).catch((error) => {
-            log(error)
-        })
+            log(error);
+        });
 }

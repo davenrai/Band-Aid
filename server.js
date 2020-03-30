@@ -48,6 +48,7 @@ app.use(session({
 	}
 }));
 
+
 // Our own express middleware to check for 
 // an active user on the session cookie (indicating a logged in user.)
 const sessionChecker = (req, res, next) => {
@@ -99,7 +100,7 @@ app.use("/img", express.static(__dirname + '/public/img'));
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
 app.post('/users', sessionChecker, (req, res) => {
-	log("req is: " + req)
+	log("req is: " + req);
 	log(req.body.username);
 	// Create a new user
 	const user = new User({
@@ -111,7 +112,6 @@ app.post('/users', sessionChecker, (req, res) => {
 		location: req.body.location,
 		genre: req.body.genre,
 		description: req.body.description
-
 	});
 	// Save the user to mongo
 	user.save().then((user) => {
@@ -179,43 +179,38 @@ app.get('/users', (req, res) => {
 
 // a GET route to get a specific user
 app.get('/users/:username', (req, res) => {
-	
 	// const username = req.body.username;
-	const username = req.params.username
-
+	const username = req.params.username;
 	// Find user
 	// to get by _id uncomment one of the below lines
 	// User.findOne({ '_id': username}).then(user => {
 	// User.findById(username).then(user => {
-		
 	// to get by username
 	User.findOne({ 'username': username}).then(user => {	
 		if (!user) {
-			res.status(404).send()  // could not find this user
+			res.status(404).send();  // could not find this user
 		} else {
 			/// sometimes we wrap returned object in another object:
 			//res.send({ user })   
-			res.send(user)
+			res.send(user);
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
-})
+		res.status(500).send();  // server error
+	});
+});
 
 
 // Update user in db with performer information from make profile
 // app.patch('/makeprofileperformer/', sessionChecker, (req, res) => {
 app.patch('/makeprofileperformer', (req, res) => {	
-
 	const username = req.body.username;
-
 	log("in makeprofile username is: " + username);
-	log("in makepprofile req is: " + req.body.username)
+	log("in makepprofile req is: " + req.body.username);
 	
 	// Find user
 	User.findOne({username}).then(user => {
 		if (!user) {
-			log("!user")
+			log("!user");
 			res.status(404).send(); // Cannot find resource
 		} else {
 			user.name = req.body.name;
