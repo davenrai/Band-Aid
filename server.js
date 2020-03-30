@@ -176,6 +176,7 @@ app.get('/users', (req, res) => {
 });
 
 
+
 // a GET route to get a specific user
 app.get('/users/:username', (req, res) => {
 	
@@ -305,7 +306,8 @@ app.post('/bookings', (req, res) => {
 		venuename: req.body.venuename,
 		location: req.body.location,
 		phone: req.body.phone,
-		description: req.body.description
+		description: req.body.description,
+		applications: req.body.applications
 	});
 	// res.send(booking);
 	// res.redirect('/dashboard');
