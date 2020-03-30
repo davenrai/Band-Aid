@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="./js/dashboard.js"></script>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="./css/project.css">
+</head>
+
+<body>
+    <div id="header">
+        <img class="appLogo" src="./img/logo.png">
+        <span id="title">Request Dashboard</span>
+        <button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button>
+        <a class="headerLink" href="dashboard.html">My Dashboard</a>
+        <a class="headerLink" href="my-profile.html">My Profile</a>
+        <a class="headerLink" href="create-booking-request.html">Make Request</a>
+    </div>
+
+    <div id="timeline">
+        <div id="requestList">
+            <div class="request">
+                <p>
+                    <strong>Ein-Stein Bier Halle</strong><br>
+                    229 College St, Toronto, ON M5T 1R4<br>
+                    (416) 597-8346<br><br>
+                    Looking for some jazzy tunes! Weekly on Wednesdays at 8pm.
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+            <div class="request">
+                <p>
+                    <strong>El Furniture Warehouse</strong><br>
+                    410 Bloor St W, Toronto, ON M5S 1X5<br>
+                    (647) 350-7326<br><br>
+                    Open until 2am - anyone available for a late night gig on March 6th?
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+            <div class="request">
+                <p>
+                    <strong>Bahen Centre</strong><br>
+                    40 St George St, Toronto, ON M5S 2E4<br>
+                    (416) 978-2011<br><br>
+                    Hosting a Computer Science Party in BA 1190 for CSC309! April 1st, 7pm.
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+            <div class="request">
+                <p>
+                    <strong>Fran's Restaurant and Bar</strong><br>
+                    20 College St, Toronto, ON M5G 1K2<br>
+                    (416) 923-9867<br><br>
+                    Open 24/7 - looking for regular performers to help us out!
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+            <div class="request">
+                <p>
+                    <strong>PAI Thai Restaurant</strong><br>
+                    18 Duncan St, Toronto, ON M5H 3G8<br>
+                    (416) 901-4724<br><br>
+                    Looking for a performer for early evenings to help bring in more of a crowd!
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+            <div class="request">
+                <p>
+                    <strong>Amsterdam BrewHouse</strong><br>
+                    245 Queens Quay W, Toronto, ON M5J 2K9<br>
+                    (416) 504-1020<br><br>
+                    Restaurant situated by the harbour - looking for live performers!
+                </p>
+                <button class="fulfill">I'm down!</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div>
+        <button onclick='getAllBookings()' id='getAllBookingsButton'>Get Bookings</button>
+    </div>   
+    <div>
+        <ul id='allBookingsList'>
+            
+        </ul>
+
+    </div>  
+
+</body>
+
+
+</html>

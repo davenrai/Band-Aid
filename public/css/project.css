@@ -76,6 +76,24 @@ h1 {
 	padding: 10px;
 }
 
+.dashboardBox {
+	background-color: thistle;
+	padding: 10px;
+	margin: 5px;
+	margin-top: 200px;
+	/* display: inline-block; */
+	max-width: 20%;
+	min-width: 20%;
+	float: left;
+
+}
+
+#buttonContainer {
+    display: block;
+    margin-top: 50px;
+    margin-left: 440px
+}
+
 .request {
 	background-color: thistle;
 	padding: 10px;
@@ -177,7 +195,7 @@ ul {
 	table-layout: fixed;
   }
   
-  ul li {
+ul li {
 	display: table-cell;
 	width: auto;
 	text-align: center;
