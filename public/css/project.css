@@ -101,6 +101,9 @@ h1 {
 	display: inline-block;
 	max-width: 20%;
 	min-width: 20%;
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
 
 }
 
