@@ -309,7 +309,12 @@ app.post('/bookings', (req, res) => {
 
 	// Save the request
 	booking.save().then(booking => {
-			res.send(booking);
+		// res.send(booking);
+		if (req.session.usertype === 'admin') {
+			res.redirect('/admin'); // takes you to admin dash
+		} else {
+			res.redirect('/dashboard'); // takes you to dashboard timeline after login
+		}
 		}, (error) => {
 			res.status(400).send(error); // 400 for bad booking
 		});
