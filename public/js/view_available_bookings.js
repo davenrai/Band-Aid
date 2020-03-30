@@ -89,7 +89,7 @@ function getAllBookings() {
 //  to apply for a booking.
 function applyToBookings() {
     // the URL for the request
-    const url = '/bookings/apply';
+    const url = '/bookings/apply/:id';
 
     let data = {
         name: document.querySelector('#name').value,

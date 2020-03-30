@@ -167,9 +167,7 @@ app.post("/users/login", sessionChecker, (req, res) => {
 // a GET route to get all users
 app.get('/users', (req, res) => {
 	User.find().then((users) => {
-		res.send({
-			users
-		}); // can wrap in object if want to add more properties
+		res.send({ users }); // can wrap in object if want to add more properties
 	}, (error) => {
 		res.status(500).send(error); // server error
 	});
@@ -293,7 +291,9 @@ app.post('/venues', (req, res) => {
 });
 
 
-// new band request for venue
+
+
+// Set up a POST route to *create* a booking for a venue.
 app.post('/bookings', (req, res) => {
 	log(req.body);
 	// Create a new request
@@ -321,7 +321,7 @@ app.post('/bookings', (req, res) => {
 });
 
 
-// a GET route to get all venues
+// a GET route to get all bookings for all venues
 app.get('/bookings', (req, res) => {
 	Booking.find().then((bookings) => {
 		res.send({ bookings }); // can wrap in object if want to add more properties
@@ -329,6 +329,57 @@ app.get('/bookings', (req, res) => {
 		res.status(500).send(error); // server error
 	});
 });
+
+
+app.post('/bookings/:id', (req, res) => {
+	/// req.params has the wildcard parameters in the url, in this case, id.
+	const id = req.params.id
+
+	// Good practise: Validate id immediately.
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+	// Otherwise, findById
+	Booking.findById(id).then((booking) => {
+		if (!booking) {
+			res.status(404).send()  // could not find this restaurant
+		} else {
+			const application = {
+				performer: "test push"
+			};
+
+			booking.applications.push(application);
+
+			booking.save().then((result) => {
+				// pass the reservation that was just pushed
+				// note that mongoose provided an _id when it was pushed
+				log(result)
+				if (req.session.usertype === 'admin') {
+					res.redirect('/admin'); // takes you to admin dash
+				} else {
+					res.redirect('/dashboard'); // takes you to dashboard timeline after login
+				}
+
+			}).catch((error) => {
+				res.status(500).send()  // server error
+			})
+
+		}
+	}).catch((error) => {
+		res.status(500).send()  // server error
+	})
+
+})
+
+
+
+
+
+
+
+
 
 
 // a GET route to get all venues
@@ -341,8 +392,6 @@ app.get('/venues', (req, res) => {
 		res.status(500).send(error); // server error
 	});
 });
-
-
 
 
 // Set up a POST route to *create* a booking for a venue.
@@ -390,9 +439,6 @@ app.post('/venues/:id', (req, res) => {
 app.get('/', sessionChecker, (req, res) => {
 	res.redirect('/index');
 });
-
-
-
 
 
 // dashboard route will check if the user is logged in and server
