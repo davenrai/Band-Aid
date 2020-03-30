@@ -13,7 +13,7 @@ const addVenueRequest = (name, location, phone, description) => {
 };
 
 // const requestList = document.querySelector("#requestList");
-// requestList.addEventListener("click", removeRequest);
+requestList.addEventListener("click", removeRequest);
 // document.addEventListener("DOMContentLoaded", getAllVenues);
 
 // function addNewBandRequest(e) {
@@ -33,7 +33,7 @@ function addToRequestTimeline(request) {
     newRequest.className = "request";
     const reqText = document.createElement("p");
     const reqTitle = document.createElement("strong");
-    reqTitle.innerText = request.name;
+    reqTitle.innerText = request.venuename;
     reqText.appendChild(reqTitle);
     const lineBreak1 = document.createElement("br");
     reqText.appendChild(lineBreak1);
@@ -78,10 +78,8 @@ function removeRequest(e) {
 
 /* AJAX fetch() calls */
 
-log('Loaded front-end javascript.')
-
 // A function to send a GET request to the web server,
-//  and then loop through them and add a list element for each student.
+//  and then loop through them and add a list element for each venue.
 function getVenues() {
     // the URL for the request
     const url = '/venues';
@@ -111,6 +109,9 @@ function getVenues() {
     })
 }
 
+
+// A function to send a GET request to the web server,
+//  and then loop through them and add a list element for each booking.
 function getAllBookings() {
         // the URL for the request
         const url = '/bookings';
@@ -130,17 +131,18 @@ function getAllBookings() {
             bookingsList.innerHTML = '';
             log(json)
             json.bookings.map((b) => {
-                li = document.createElement('li')
-                li.innerHTML = `Name: <strong>${b.venuename}</strong><br>
-                ${b.location}<br>
-                ${b.phone}<br>
-                <br>
-                ${b.description}<br>
-                <br>
-                <button class="fulfill">I'm down!</button>`
+                // li = document.createElement('li')
+                // li.innerHTML = `Name: <strong>${b.venuename}</strong><br>
+                // ${b.location}<br>
+                // ${b.phone}<br>
+                // <br>
+                // ${b.description}<br>
+                // <br>
+                // <button class="fulfill">I'm down!</button>`
                 
-                bookingsList.appendChild(li)
-                log(b)
+                // bookingsList.appendChild(li)
+                // log(b)
+                addToRequestTimeline(b)
             })
         }).catch((error) => {
             log(error)
