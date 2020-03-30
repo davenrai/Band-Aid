@@ -23,14 +23,12 @@ const BookingSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 		minlength: 1
-    },
-    applications: [String]
+    }
+    // applications: [String]
 	// need to associate venue and performers who applied to it
 });
 
 
 // make a model using the Booking schema
 const Booking = mongoose.model('Booking', BookingSchema);
-module.exports = {
-    Booking
-};
+module.exports = { Booking };

@@ -297,6 +297,27 @@ app.post('/venues', (req, res) => {
 });
 
 
+// new band request for venue
+app.post('/bookings', (req, res) => {
+	log(req.body);
+	// Create a new request
+	const booking = new Booking({
+		venuename: req.body.venuename,
+		location: req.body.location,
+		phone: req.body.phone,
+		description: req.body.description
+	});
+	// res.send(booking);
+	// res.redirect('/dashboard');
+	// Save the request
+	booking.save().then(booking => {
+			res.send(booking);
+		}, (error) => {
+			res.status(400).send(error); // 400 for bad booking
+		});
+});
+
+
 // a GET route to get all venues
 app.get('/venues', (req, res) => {
 	Venue.find().then((venues) => {
@@ -358,28 +379,7 @@ app.get('/', sessionChecker, (req, res) => {
 });
 
 
-// new band request for venue
-app.post('/booking', (req, res) => {
-	log(req.body);
-	// Create a new request
-	const booking = new Booking({
-		venuename: req.body.venuename,
-		location: req.body.location,
-		phone: req.body.phone,
-		description: req.body.description
-	});
-	res.send(booking);
-	res.redirect('/dashboard');
-	// Save the request
-	booking.save().then(
-		booking => {
-			res.send(booking);
-		},
-		error => {
-			res.status(400).send(error); // 400 for bad booking
-		}
-	);
-});
+
 
 
 // dashboard route will check if the user is logged in and server
