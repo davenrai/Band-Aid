@@ -131,7 +131,14 @@ function getAllBookings() {
             log(json)
             json.bookings.map((b) => {
                 li = document.createElement('li')
-                li.innerHTML = `Name: <strong>${b.venuename}</strong>, Year: <strong>${b.location}</strong>`
+                li.innerHTML = `Name: <strong>${b.venuename}</strong><br>
+                ${b.location}<br>
+                ${b.phone}<br>
+                <br>
+                ${b.description}<br>
+                <br>
+                <button class="fulfill">I'm down!</button>`
+                
                 bookingsList.appendChild(li)
                 log(b)
             })
