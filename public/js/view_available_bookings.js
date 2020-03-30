@@ -1,31 +1,8 @@
 /* view_available_bookings.js */
 const log = console.log;
 
-const addVenueRequest = (name, location, phone, description) => {
-    const request = {
-        "name": name,
-        "location": location,
-        "phone": phone,
-        "description": description
-    };
-    let allVenues = getAllVenues();
-    //complete this function
-};
-
-// const requestList = document.querySelector("#requestList");
 // requestList.addEventListener("click", removeRequest);
 document.addEventListener("DOMContentLoaded", getAllBookings);
-
-// function addNewBandRequest(e) {
-//     e.preventDefault();
-//     const newBandRequest = {
-//         name: requestForm.venueName.value,
-//         location: requestForm.venueLoc.value,
-//         phone: requestForm.venuePhone.value,
-//         description: requestForm.reqDesc.value
-//     };
-//     addToRequestTimeline(newBandRequest);
-// }
 
 function addToRequestTimeline(request) {
     // TODO: clean up
@@ -60,8 +37,10 @@ function addToRequestTimeline(request) {
 }
 
 function fulfillRequest(e) {
-    // TODO: complete
+    log("button clicked")
+    removeRequest(e)
     return e;
+    
 }
 
 function removeRequest(e) {
@@ -77,38 +56,6 @@ function removeRequest(e) {
 
 
 /* AJAX fetch() calls */
-
-// A function to send a GET request to the web server,
-//  and then loop through them and add a list element for each venue.
-function getVenues() {
-    // the URL for the request
-    const url = '/venues';
-
-    // Since this is a GET request, simply call fetch on the URL
-    fetch(url)
-    .then((res) => { 
-        if (res.status === 200) {
-            // return a promise that resolves with the JSON body
-           return res.json() 
-       } else {
-            alert('Could not get venues')
-       }                
-    })
-    .then((json) => {  // the resolved promise with the JSON body
-        venuesList = document.querySelector('#venuesList')
-        venuesList.innerHTML = '';
-        log(json)
-        json.venues.map((v) => {
-            li = document.createElement('li')
-            li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`
-            venuesList.appendChild(li)
-            log(v)
-        })
-    }).catch((error) => {
-        log(error)
-    })
-}
-
 
 // A function to send a GET request to the web server,
 //  and then loop through them and add a list element for each booking.
@@ -131,20 +78,45 @@ function getAllBookings() {
             bookingsList.innerHTML = '';
             log(json)
             json.bookings.map((b) => {
-                // li = document.createElement('li')
-                // li.innerHTML = `Name: <strong>${b.venuename}</strong><br>
-                // ${b.location}<br>
-                // ${b.phone}<br>
-                // <br>
-                // ${b.description}<br>
-                // <br>
-                // <button class="fulfill">I'm down!</button>`
-                
-                // bookingsList.appendChild(li)
-                // log(b)
                 addToRequestTimeline(b)
             })
         }).catch((error) => {
             log(error)
         })
+}
+
+// A function to send a PATCH request to the web server,
+//  to apply for a booking.
+function applyToBookings() {
+    // the URL for the request
+    const url = '/bookings/apply';
+
+    let data = {
+        name: document.querySelector('#name').value,
+        year: document.querySelector('#year').value
+    }
+
+    const request = new Request(url, {
+        method: 'patch', 
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+           return res.json();
+       } else {
+            alert('Could not apply to booking');
+       }                
+    })
+    .then((json) => {  // the resolved promise with the JSON body
+        log(json)
+    }).catch((error) => {
+        log(error);
+    });
 }
