@@ -1,24 +1,24 @@
 /* Reservations.js */
 const log = console.log;
-const fs = require("fs");
+// const fs = require("fs");
 
-const saveVenueToJSONFile = (venues) => {
-    fs.writeFileSync("dummy_req_data.json", JSON.stringify(venues));
-};
+// const saveVenueToJSONFile = (venues) => {
+//     fs.writeFileSync("dummy_req_data.json", JSON.stringify(venues));
+// };
 
-function getAllVenues() {
-    try {
-        const venuesJSONString = fs.readFileSync("dummy_req_data.json");
-        const parsedVenues = JSON.parse(venuesJSONString);
-        for (let i = 0; i < parsedVenues.length; i++) {
-            addToRequestTimeline(parsedVenues[i]);
-        }
-        return parsedVenues;
-    } catch (e) {
-        log("error");
-        return [];
-    }
-}
+// function getAllVenues() {
+//     try {
+//         const venuesJSONString = fs.readFileSync("dummy_req_data.json");
+//         const parsedVenues = JSON.parse(venuesJSONString);
+//         for (let i = 0; i < parsedVenues.length; i++) {
+//             addToRequestTimeline(parsedVenues[i]);
+//         }
+//         return parsedVenues;
+//     } catch (e) {
+//         log("error");
+//         return [];
+//     }
+// }
 
 const addVenueRequest = (name, location, phone, description) => {
     const request = {
@@ -31,9 +31,9 @@ const addVenueRequest = (name, location, phone, description) => {
     //complete this function
 };
 
-const requestList = document.querySelector("#requestList");
-requestList.addEventListener("click", removeRequest);
-document.addEventListener("DOMContentLoaded", getAllVenues);
+// const requestList = document.querySelector("#requestList");
+// requestList.addEventListener("click", removeRequest);
+// document.addEventListener("DOMContentLoaded", getAllVenues);
 
 // function addNewBandRequest(e) {
 //     e.preventDefault();
@@ -123,9 +123,38 @@ function getVenues() {
             li = document.createElement('li')
             li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`
             venuesList.appendChild(li)
-            log(s)
+            log(v)
         })
     }).catch((error) => {
         log(error)
     })
+}
+
+function getAllBookings() {
+        // the URL for the request
+        const url = '/bookings';
+    
+        // Since this is a GET request, simply call fetch on the URL
+        fetch(url)
+        .then((res) => { 
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+               return res.json() 
+           } else {
+                alert('Could not get bookings')
+           }                
+        })
+        .then((json) => {  // the resolved promise with the JSON body
+            bookingsList = document.querySelector('#allBookingsList')
+            bookingsList.innerHTML = '';
+            log(json)
+            // json.users.map((b) => {
+            //     li = document.createElement('li')
+            //     li.innerHTML = `Name: <strong>${b.username}</strong>, Year: <strong>${b.usertype}</strong>`
+            //     bookingsList.appendChild(li)
+            //     log(b)
+            // })
+        }).catch((error) => {
+            log(error)
+        })
 }

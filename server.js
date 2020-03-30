@@ -311,12 +311,23 @@ app.post('/bookings', (req, res) => {
 	});
 	// res.send(booking);
 	// res.redirect('/dashboard');
+
 	// Save the request
 	booking.save().then(booking => {
 			res.send(booking);
 		}, (error) => {
 			res.status(400).send(error); // 400 for bad booking
 		});
+});
+
+
+// a GET route to get all venues
+app.get('/bookings', (req, res) => {
+	Booking.find().then((bookings) => {
+		res.send({ bookings }); // can wrap in object if want to add more properties
+	}, (error) => {
+		res.status(500).send(error); // server error
+	});
 });
 
 

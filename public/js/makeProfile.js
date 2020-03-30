@@ -184,7 +184,7 @@ function fetchTest() {
         })
     }
 
-
+    // currently same as fetchTest5
     function fetchTest6() {
         // the URL for the request
         const url = '/users';
