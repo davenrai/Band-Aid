@@ -1,4 +1,4 @@
-/* Reservations.js */
+/* create_booking.js */
 const log = console.log;
 
 const addVenueRequest = (name, location, phone, description) => {
