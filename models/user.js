@@ -27,27 +27,27 @@ const UserSchema = new mongoose.Schema({
 	},
 	name: {
 		type: String,
-		minlength: 1
+		minlength: 0
 	},
 	phone: {
 		type: String,
 		required: false,
-		minlength: 1
+		minlength: 0
 	},
 	location: {
 		type: String,
 		required: false,
-		minlength: 1
+		minlength: 0
 	},
 	genre: {
 		type: String,
 		required: false,
-		minlength: 1
+		minlength: 0
 	},
 	description: {
 		type: String,
 		required: false,
-		minlength: 1
+		minlength: 0
 	}
 });
 

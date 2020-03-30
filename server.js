@@ -105,7 +105,13 @@ app.post('/users', sessionChecker, (req, res) => {
 	const user = new User({
 		username: req.body.username,
 		password: req.body.password,
-		usertype: req.body.usertype
+		usertype: req.body.usertype,
+		name: req.body.name,
+		phone: req.body.phone,
+		location: req.body.location,
+		genre: req.body.genre,
+		description: req.body.description
+
 	});
 	// Save the user to mongo
 	user.save().then((user) => {
