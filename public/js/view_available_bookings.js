@@ -14,7 +14,7 @@ const addVenueRequest = (name, location, phone, description) => {
 
 // const requestList = document.querySelector("#requestList");
 // requestList.addEventListener("click", removeRequest);
-// document.addEventListener("DOMContentLoaded", getAllVenues);
+document.addEventListener("DOMContentLoaded", getAllBookings);
 
 // function addNewBandRequest(e) {
 //     e.preventDefault();
