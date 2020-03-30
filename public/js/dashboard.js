@@ -1,24 +1,5 @@
 /* Reservations.js */
 const log = console.log;
-// const fs = require("fs");
-
-// const saveVenueToJSONFile = (venues) => {
-//     fs.writeFileSync("dummy_req_data.json", JSON.stringify(venues));
-// };
-
-// function getAllVenues() {
-//     try {
-//         const venuesJSONString = fs.readFileSync("dummy_req_data.json");
-//         const parsedVenues = JSON.parse(venuesJSONString);
-//         for (let i = 0; i < parsedVenues.length; i++) {
-//             addToRequestTimeline(parsedVenues[i]);
-//         }
-//         return parsedVenues;
-//     } catch (e) {
-//         log("error");
-//         return [];
-//     }
-// }
 
 const addVenueRequest = (name, location, phone, description) => {
     const request = {
@@ -148,12 +129,12 @@ function getAllBookings() {
             bookingsList = document.querySelector('#allBookingsList')
             bookingsList.innerHTML = '';
             log(json)
-            // json.users.map((b) => {
-            //     li = document.createElement('li')
-            //     li.innerHTML = `Name: <strong>${b.username}</strong>, Year: <strong>${b.usertype}</strong>`
-            //     bookingsList.appendChild(li)
-            //     log(b)
-            // })
+            json.bookings.map((b) => {
+                li = document.createElement('li')
+                li.innerHTML = `Name: <strong>${b.venuename}</strong>, Year: <strong>${b.location}</strong>`
+                bookingsList.appendChild(li)
+                log(b)
+            })
         }).catch((error) => {
             log(error)
         })
