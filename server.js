@@ -393,6 +393,9 @@ app.post('/bookings/apply/:id', (req, res) => {
 	log("in /bookings/apply")
 	log("id is: " + id)
 	log(req.session.username)
+	log(req.session.usertype)
+
+
 
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
@@ -411,9 +414,8 @@ app.post('/bookings/apply/:id', (req, res) => {
 				// performer: req.session.username
 			};
 
-			log(req.session.username);
-			// booking.applications.push(req.session.username);
-			booking.applications.push("postman test");
+			booking.applications.push(req.session.username);
+			// booking.applications.push("postman test");
 
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
@@ -578,9 +580,9 @@ app.use(express.static(__dirname + "/public"));
 
 
 // All routes other than above will go to index.html
-// app.get("*", (req, res) => {
-// 	res.sendFile(__dirname + "/public/index.html");
-// });
+app.get("*", (req, res) => {
+	res.sendFile(__dirname + "/public/index.html");
+});
 
 
 /*************************************************/
