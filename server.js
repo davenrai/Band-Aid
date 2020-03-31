@@ -5,35 +5,27 @@ const path = require('path');
 const express = require('express');
 // starting the express server
 const app = express();
+
 // mongoose and mongo connection
-const {
-	mongoose
-} = require('./db/mongoose');
+const {	mongoose } = require('./db/mongoose');
+mongoose.set('useFindAndModify', false); // for some deprecation issues
+
 // import the mongoose models
-const {
-	Performer
-} = require('./models/performer');
-const {
-	Venue
-} = require('./models/venue');
-const {
-	User
-} = require('./models/user');
-const {
-	Booking
-} = require('./models/booking');
+const {	Performer } = require('./models/performer');
+const {	Venue } = require('./models/venue');
+const { User } = require('./models/user');
+const {	Booking } = require('./models/booking');
+
 // to validate object IDs
-const {
-	ObjectID
-} = require('mongodb');
+const {	ObjectID } = require('mongodb');
+
 // body-parser: middleware for parsing HTTP JSON body into a usable object
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+
 // express-session for managing user sessions
 const session = require('express-session');
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+app.use(bodyParser.urlencoded({	extended: true }));
 
 
 /*** Session handling **************************************/
@@ -58,6 +50,39 @@ const sessionChecker = (req, res, next) => {
 		next(); // next() moves on to the route.
 	}
 };
+
+
+// A route to login and create a session
+app.post("/users/login", sessionChecker, (req, res) => {
+	const username = req.body.username;
+	const password = req.body.password;
+	log(username, password);
+	// Use the static method on the User model to find a user
+	// by their username and password
+	User.findByUsernamePassword(username, password)
+		.then(user => {
+			// Add the user's id to the session cookie.
+			// We can check later if this exists to ensure we are logged in.
+			req.session.user = user._id;
+			req.session.username = user.username;
+			req.session.usertype = user.usertype;
+			// res.send({ currentUser: user.email });
+			if (req.session.usertype === 'admin') {
+				res.redirect('/admin'); // takes you to admin dash
+			} else if (req.session.usertype === 'performer') {
+				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+			} else if (req.session.usertype === 'venue') {
+				res.redirect('/dashboard'); // takes you to dashboard timeline after login
+			} else {
+				res.redirect('/dashboard'); // takes you to dashboard timeline after login
+			}
+		}
+	)
+	.catch(error => {
+		// res.status(400).send()
+		res.status(400).redirect('/login');
+	});
+});
 
 
 // Middleware for authentication of resources
@@ -98,7 +123,7 @@ app.use("/img", express.static(__dirname + '/public/img'));
 
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app.
-// Note both performers and venues are performers.
+// Note both performers and venues are users.
 app.post('/users', sessionChecker, (req, res) => {
 	log("req is: " + req);
 	log(req.body.username);
@@ -136,35 +161,15 @@ app.post('/users', sessionChecker, (req, res) => {
 });
 
 
-// A route to login and create a session
-app.post("/users/login", sessionChecker, (req, res) => {
-	const username = req.body.username;
-	const password = req.body.password;
-	log(username, password);
-	// Use the static method on the User model to find a user
-	// by their username and password
-	User.findByUsernamePassword(username, password)
-		.then(user => {
-			// Add the user's id to the session cookie.
-			// We can check later if this exists to ensure we are logged in.
-			req.session.user = user._id;
-			req.session.username = user.username;
-			req.session.usertype = user.usertype;
-			// res.send({ currentUser: user.email });
-			if (req.session.usertype === 'admin') {
-				res.redirect('/admin'); // takes you to admin dash
-			} else if (req.session.usertype === 'performer') {
-				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
-			} else if (req.session.usertype === 'venue') {
-				res.redirect('/dashboard'); // takes you to dashboard timeline after login
-			} else {
-				res.redirect('/dashboard'); // takes you to dashboard timeline after login
-			}
+// A route to logout a user
+app.get('/users/logout', (req, res) => {
+	// Remove the session
+	req.session.destroy((error) => {
+		if (error) {
+			res.status(500).send(error);
+		} else {
+			res.redirect('/index.html');
 		}
-	)
-	.catch(error => {
-		// res.status(400).send()
-		res.status(400).redirect('/login');
 	});
 });
 
@@ -509,17 +514,7 @@ app.get("/users/check-session", (req, res) => {
 });
 
 
-// A route to logout a user
-app.get('/users/logout', (req, res) => {
-	// Remove the session
-	req.session.destroy((error) => {
-		if (error) {
-			res.status(500).send(error);
-		} else {
-			res.redirect('/index.html');
-		}
-	});
-});
+
 
 //---------------------------------------------------------------------------
 
