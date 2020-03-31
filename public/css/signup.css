@@ -1,14 +1,11 @@
 #title {
-  color: purple;
+  color: black;
   font-size: xx-large;
-  font-style: italic;
-  left: 650px;
-  position: relative;
-  top: 50px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  font-style: oblique;
-  float: left;
+  font-weight: bold; 
+  position: absolute;
+  top: 28%;
+  left: 52%;
 }
 
 #header {
@@ -86,10 +83,19 @@ align-items: center;
   cursor: pointer;
 }
 
+label {
+  margin-left:450px;
+} 
 
+.container {
+  margin-top: 190px;
+  border-radius: 5px;
+  /* background-color: white; */
+  padding: 20px;
+}
 /* Different colour when hover over signup button */
 input[type=submit]:hover {
-  background-color: purple;
+  background-color: mediumorchid;
 } 
 
 input[type=submit] {
@@ -97,18 +103,14 @@ width: 40%;
 padding: 15px 20px;
 margin: 8px 450px;
 display: block;
-border: 1px solid lightgray;
+background-color: coral;
+border: 1px solid lightgrey;
 border-radius: 5px;
 box-sizing: border-box;
 }
 
-label {
-  margin-left:450px;
-} 
-
-.container {
-  margin-top: 100px;
-  border-radius: 5px;
-  background-color: white;
-  padding: 20px;
+body {
+	background-color: #e6ecf0;
+	margin: 0;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }

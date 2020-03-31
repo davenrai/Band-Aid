@@ -46,7 +46,7 @@ label {
 
 #login {
     width: 40%;
-    background-color: orange;
+    background-color: coral;
     color: white;
     padding: 15px 20px;
     margin: 8px 450px;
@@ -56,7 +56,7 @@ label {
 }
 
 #login:hover {
-    background-color: purple;
+    background-color: mediumorchid;
 } 
 body {
 	background-color: #e6ecf0;
