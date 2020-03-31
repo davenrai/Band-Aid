@@ -133,15 +133,15 @@ h1 {
 
 .profilePic {
 
-	width: 300px;
+	width: 380px;
 	height: 380px;
 	padding-left: 100px;
 	margin-left: 450px;
+	margin-top: 2px;
 }
 
 #profileInfo {
 	padding: 10px;
-
 	min-height: 300px;
 	margin-left: 550px;
 	margin-top: 20px;
@@ -209,3 +209,4 @@ ul li {
 	max-width: 20%;
 	min-width: 20%;
   }
+  
