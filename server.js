@@ -123,7 +123,7 @@ app.use("/img", express.static(__dirname + '/public/img'));
 
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app.
-// Note both performers and venues are users.
+// Note both performers and venues are performers.
 app.post('/users', sessionChecker, (req, res) => {
 	log("req is: " + req);
 	log(req.body.username);
@@ -360,7 +360,9 @@ app.post('/bookings/:id', (req, res) => {
 				performer: "test push"
 			};
 
-			booking.applications.push(application);
+			// booking.applications.push(application);
+			// applications is an array of strings
+			booking.applications.push("postman test 2");
 
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
@@ -370,6 +372,58 @@ app.post('/bookings/:id', (req, res) => {
 					res.redirect('/admin'); // takes you to admin dash
 				} else {
 					res.redirect('/dashboard'); // takes you to dashboard timeline after login
+				}
+
+			}).catch((error) => {
+				res.status(500).send()  // server error
+			})
+
+		}
+	}).catch((error) => {
+		res.status(500).send()  // server error
+	})
+
+})
+
+
+app.post('/bookings/apply/:id', (req, res) => {
+	/// req.params has the wildcard parameters in the url, in this case, id.
+	const id = req.params.id
+	// const id = "4"
+	log("in /bookings/apply")
+	log("id is: " + id)
+	log(req.session.username)
+
+	// Good practise: Validate id immediately.
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		return;  // so that we don't run the rest of the handler.
+	}
+
+	log("Booking.findById(id)" + Booking.findById(id))
+	// Otherwise, findById
+	Booking.findById(id).then((booking) => {
+		if (!booking) {
+			res.status(404).send()  // could not find this restaurant
+		} else {
+			const application = {
+				performer: "test push"
+				// performer: req.session.username
+			};
+
+			log(req.session.username);
+			// booking.applications.push(req.session.username);
+			booking.applications.push("postman test");
+
+			booking.save().then((result) => {
+				// pass the reservation that was just pushed
+				// note that mongoose provided an _id when it was pushed
+				log(result)
+				if (req.session.usertype === 'admin') {
+					// res.redirect('/admin'); // takes you to admin dash
+				} else {
+					res.send({"this test": "success"})
+					// res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
 				}
 
 			}).catch((error) => {
@@ -524,9 +578,9 @@ app.use(express.static(__dirname + "/public"));
 
 
 // All routes other than above will go to index.html
-app.get("*", (req, res) => {
-	res.sendFile(__dirname + "/public/index.html");
-});
+// app.get("*", (req, res) => {
+// 	res.sendFile(__dirname + "/public/index.html");
+// });
 
 
 /*************************************************/

@@ -38,6 +38,7 @@ function addToRequestTimeline(request) {
 
 function fulfillRequest(e) {
     log("button clicked")
+    applyToBookings(e)
     removeRequest(e)
     return e;
     
@@ -87,17 +88,13 @@ function getAllBookings() {
 
 // A function to send a PATCH request to the web server,
 //  to apply for a booking.
-function applyToBookings() {
+function applyToBookings(e) {
     // the URL for the request
-    const url = '/bookings/apply/:id';
-
-    let data = {
-        name: document.querySelector('#name').value,
-        year: document.querySelector('#year').value
-    }
+    const url = '/bookings/apply/5e8176dba5e3f74cc0a303a4';
+    let data = {}
 
     const request = new Request(url, {
-        method: 'patch', 
+        method: 'POST', 
         body: JSON.stringify(data),
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -105,17 +102,17 @@ function applyToBookings() {
         },
     });
 
-    fetch(url)
+    log("about to fetch")
+    fetch(url, request)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-           return res.json();
+            log("result is 200")
+            log(res.body)
+            log(res)
        } else {
             alert('Could not apply to booking');
        }                
-    })
-    .then((json) => {  // the resolved promise with the JSON body
-        log(json)
     }).catch((error) => {
         log(error);
     });
