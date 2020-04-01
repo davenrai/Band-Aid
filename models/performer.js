@@ -26,7 +26,7 @@ const PerformerSchema = new mongoose.Schema({
 		minlength: 1,
 		trim: true
 	},
-	bookings: [BookingSchema]
+	bookings: [String]
 });
 
 const Performer = mongoose.model('Performer', PerformerSchema);
