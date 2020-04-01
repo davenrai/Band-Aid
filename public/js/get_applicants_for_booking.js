@@ -27,7 +27,24 @@ log('Loaded front-end javascript.')
             json.bookings.map((b) => {
                 for (let i = 0; i < b.applications.length; i++) {
                     li = document.createElement('li')
-                    li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
+
+                    const divVenueName = document.createElement("span");
+                    //this also works
+                    const divVenueName = document.createElement("div");
+                    // how to createTextNode using ${} notation
+                    divVenueName.innerHTML = `Venue Name: <strong>${b.venuename}</strong>`;
+                    li.appendChild(divVenueName);
+                    const divPerformerName = document.createElement("span");
+                    divPerformerName.innerHTML = `Venue Name: <strong>${b.applications[i]}</strong>`;
+                    li.appendChild(divPerformerName);                  
+
+                    // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
+                    const chooseApplicantButton = document.createElement("button");
+                    chooseApplicantButton.className = "fulfill";
+                    const buttonText = document.createTextNode("I choose you!");
+                    chooseApplicantButton.appendChild(buttonText);
+                    chooseApplicantButton.addEventListener("click", chooseApplicant);
+                    li.appendChild(chooseApplicantButton);
                     performersList.appendChild(li)
                     log(b)
                 }
@@ -48,12 +65,13 @@ log('Loaded front-end javascript.')
 
     function addBookingtoPerformer(e) {
     
-        const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText
-        log("parent elemnt is: " + e.target.parentElement)
-        log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText)
+        const performerName = e.target.parentElement.childNodes[1].innerText
+        log("parent element is: " + e.target.parentElement)
+        log("parent element.childNodes[0] is: " + e.target.parentElement.childNodes[2].innerText)
+        log(performerName)
         
         // the URL for the request
-        const url = '/bookings/applyByVenue/' + venuename;
+        const url = '/bookings/applyByVenue/' + performername;
         let data = {}
     
         const request = new Request(url, {
