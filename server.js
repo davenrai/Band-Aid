@@ -72,9 +72,9 @@ app.post("/users/login", sessionChecker, (req, res) => {
 			} else if (req.session.usertype === 'performer') {
 				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
 			} else if (req.session.usertype === 'venue') {
-				res.redirect('/dashboard'); // takes you to dashboard timeline after login
+				res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 			} else {
-				res.redirect('/dashboard'); // takes you to dashboard timeline after login
+				res.redirect('/index'); // takes you to dashboard timeline after login
 			}
 		}
 	)
@@ -322,8 +322,10 @@ app.post('/bookings', (req, res) => {
 		// res.send(booking);
 		if (req.session.usertype === 'admin') {
 			res.redirect('/admin'); // takes you to admin dash
-		} else {
-			res.redirect('/dashboard'); // takes you to dashboard timeline after login
+		} else if (req.session.usertype === 'performer') {
+			res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+		} else if (req.session.usertype === 'venue') {
+			res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 		}
 		}, (error) => {
 			res.status(400).send(error); // 400 for bad booking
@@ -370,8 +372,10 @@ app.post('/bookings/:id', (req, res) => {
 				log(result)
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
-				} else {
-					res.redirect('/dashboard'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'performer') {
+					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'venue') {
+					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 				}
 
 			}).catch((error) => {
@@ -422,10 +426,11 @@ app.post('/bookings/apply/:id', (req, res) => {
 				// note that mongoose provided an _id when it was pushed
 				log(result)
 				if (req.session.usertype === 'admin') {
-					// res.redirect('/admin'); // takes you to admin dash
-				} else {
-					res.send({"this test": "success"})
-					// res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+					res.redirect('/admin'); // takes you to admin dash
+				} else if (req.session.usertype === 'performer') {
+					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'venue') {
+					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 				}
 
 			}).catch((error) => {
@@ -512,6 +517,8 @@ app.get('/', sessionChecker, (req, res) => {
 app.get('/dashboard', (req, res) => {
 	if (req.session.usertype === 'performer') {
 		res.sendFile(__dirname + '/public/dashboard-performer.html'); // takes you to dashboard-performer after login
+	} else if (req.session.usertype === 'venue') {
+		res.sendFile(__dirname + '/public/dashboard-venue.html'); // takes you to dashboard after login
 	} else if (req.session.usertype) {
 		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
 	} else {
