@@ -451,14 +451,15 @@ app.post('/bookings/apply/:id', (req, res) => {
 })
 
 
-
+// for view_available_bookings.js
+// for performer to their username to a booking
 app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	// const id = Booking.findOne({venuename: 1});
 	const venuename = req.params.venuename
 	// log("venuename works? " + id)
 	// const id = "4"
-	log("in /bookings/apply")
+	log("in /bookings/applyByVenue/:venuename")
 	// log("id is: " + id)
 	log(req.session.username)
 	log(req.session.usertype)
@@ -509,8 +510,63 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 })
 
 
+// for get_applicants_for_booking.js
+// for venue to choose a performer for a booking
+app.post('/users/choosePerformer/:venuename', (req, res) => {
+	/// req.params has the wildcard parameters in the url, in this case, id.
+	// const id = Booking.findOne({venuename: 1});
+	const venuename = req.params.venuename
+	// log("venuename works? " + id)
+	// const id = "4"
+	log("in /users/choosePerformer/:venuename")
+	// log("id is: " + id)
+	log(req.session.username)
+	log(req.session.usertype)
 
 
+
+	// Good practise: Validate id immediately.
+	// if (!ObjectID.isValid(id)) {
+	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+	// 	return;  // so that we don't run the rest of the handler.
+	// }
+
+	// log("Booking.findById(id)" + Booking.findById(id))
+	// Otherwise, findById
+	User.findOne({username: performername}).then((user) => {
+		if (!user) {
+			res.status(404).send()  // could not find this restaurant
+		} else {
+			const application = {
+				user: "test push"
+				// performer: req.session.username
+			};
+
+			booking.applications.push(req.session.username);
+			// booking.applications.push("postman test");
+
+			booking.save().then((result) => {
+				// pass the reservation that was just pushed
+				// note that mongoose provided an _id when it was pushed
+				log(result)
+				if (req.session.usertype === 'admin') {
+					res.redirect('/admin'); // takes you to admin dash
+				} else if (req.session.usertype === 'performer') {
+					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'venue') {
+					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+				}
+
+			}).catch((error) => {
+				res.status(500).send()  // server error
+			})
+
+		}
+	}).catch((error) => {
+		res.status(500).send()  // server error
+	})
+
+})
 
 
 // a GET route to get all venues
