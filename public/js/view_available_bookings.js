@@ -124,6 +124,9 @@ function applyToBookingsVenue(e) {
 
 
 
+
+
+
 //UNUSED CODE BELOW - SHOULD STILL WORK
 
 // A function to send a PATCH request to the web server,
