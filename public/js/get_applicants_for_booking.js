@@ -68,23 +68,37 @@ log('Loaded front-end javascript.')
         const venueName = e.target.parentElement.childNodes[0].innerText
         const performerName = e.target.parentElement.childNodes[1].innerText
         log("parent element is: " + e.target.parentElement)
-        log("parent element.childNodes[0] is: " + e.target.parentElement.childNodes[2].innerText)
-        log(venueName)
-        log(performer)
+        // log("parent element.childNodes[0] is: " + e.target.parentElement.childNodes[2].innerText)
+        log("venueName is: " + venueName)
+        log("performerName is: " + performerName)
         
+        let testperformerName = "bob555"
+
         // the URL for the request
-        const url = '/users/choosePerformer/' + venuename;
-        let data = {}
-    
+        // const url = '/users/choosePerformer/' + performerName;
+        // FOR TESTING - have to create list different - 4 spans ???
+        const url = '/users/choosePerformer/' + testperformerName;
+        
+        const testdata = 'does this work?'
+
+        // const data = {
+        //     booking: testdata
+        // }
+        const data = { booking: 'example' };
+        log("data object is: " + data)
+        log("data.booking field is: " + data.booking)
+
         const request = new Request(url, {
             method: 'POST', 
             body: JSON.stringify(data),
+            // body: {	"booking": "from js fetch" },
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
             },
         });
-    
+        
+        // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
         log("about to fetch")
         fetch(url, request)
         .then((res) => { 

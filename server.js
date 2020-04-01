@@ -515,18 +515,15 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 
 // for get_applicants_for_booking.js
 // for venue to choose a performer for a booking
-app.post('/users/choosePerformer/:venuename', (req, res) => {
+app.post('/users/choosePerformer/:performername', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	// const id = Booking.findOne({venuename: 1});
-	const venuename = req.params.venuename
-	// log("venuename works? " + id)
-	// const id = "4"
-	log("in /users/choosePerformer/:venuename")
-	// log("id is: " + id)
-	log(req.session.username)
-	log(req.session.usertype)
 
-
+	const performername = req.params.performername
+	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
+	log(performername)
+	log("in /users/choosePerformer/:performername")
+	// log(req.session.username)
+	// log(req.session.usertype)
 
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
@@ -534,24 +531,28 @@ app.post('/users/choosePerformer/:venuename', (req, res) => {
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
 
-	// log("Booking.findById(id)" + Booking.findById(id))
 	// Otherwise, findById
-	User.findOne({username: performername}).then((user) => {
+	User.findOne({ 'username': performername}).then(user => {	
+	// User.findOne({username: performername}).then((user) => {
 		if (!user) {
+			log("in if stmt /users/choosePerformer/:performername")
 			res.status(404).send()  // could not find this restaurant
 		} else {
 			const application = {
-				user: "test push"
+				booking: "test push"
 				// performer: req.session.username
 			};
 
-			booking.applications.push(req.session.username);
-			// booking.applications.push("postman test");
+			log("req.body is: " + req.body)
+			log("req.body.booking is: " + req.body.booking)
+			// user.selectedFor.push(req.body.booking);
+			user.selectedFor.push("fetch test");
 
-			booking.save().then((result) => {
+			user.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
 				log(result)
+				res.send({ user })
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
