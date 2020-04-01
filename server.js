@@ -68,10 +68,13 @@ app.post("/users/login", sessionChecker, (req, res) => {
 			req.session.usertype = user.usertype;
 			// res.send({ currentUser: user.email });
 			if (req.session.usertype === 'admin') {
+				log("admin logged in")
 				res.redirect('/admin'); // takes you to admin dash
 			} else if (req.session.usertype === 'performer') {
+				log("performer logged in")
 				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
 			} else if (req.session.usertype === 'venue') {
+				log("venue logged in")
 				res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 			} else {
 				res.redirect('/index'); // takes you to dashboard timeline after login
@@ -586,6 +589,17 @@ app.get('/dashboard', (req, res) => {
 app.get('/dashboard-performer', (req, res) => {
 	if (req.session.usertype === 'performer') {
 		res.sendFile(__dirname + '/public/dashboard-performer.html'); // takes you to dashboard-performer after login
+	} else if (req.session.usertype) {
+		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
+	} else {
+		res.redirect('/login');
+	}
+});
+
+
+app.get('/dashboard-venue', (req, res) => {
+	if (req.session.usertype === 'venue') {
+		res.sendFile(__dirname + '/public/dashboard-venue.html'); // takes you to dashboard-performer after login
 	} else if (req.session.usertype) {
 		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
 	} else {
