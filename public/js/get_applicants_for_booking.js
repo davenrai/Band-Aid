@@ -25,8 +25,8 @@ log('Loaded front-end javascript.')
             performersList.innerHTML = '';
             log(json)
             json.bookings.map((b) => {
-                li = document.createElement('li')
                 for (let i = 0; i < b.applications.length; i++) {
+                    li = document.createElement('li')
                     li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
                     performersList.appendChild(li)
                     log(b)
