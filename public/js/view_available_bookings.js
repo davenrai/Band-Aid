@@ -130,6 +130,8 @@ function applyToBookingsVenue(e) {
 //  to apply for a booking.
 function applyToBookings(e) {
     // the URL for the request
+
+    //NOTE HARDCODED OBJECT ID !!!
     const url = '/bookings/apply/5e8176dba5e3f74cc0a303a4';
     let data = {}
 
