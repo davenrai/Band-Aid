@@ -36,3 +36,47 @@ log('Loaded front-end javascript.')
             log(error)
         })
     }
+
+    function chooseApplicant(e) {
+        log("button clicked")
+        addBookingtoPerformer(e)
+        // removeRequest(e)
+        return e;
+        
+    }
+
+
+    function addBookingtoPerformer(e) {
+    
+        const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText
+        log("parent elemnt is: " + e.target.parentElement)
+        log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText)
+        
+        // the URL for the request
+        const url = '/bookings/applyByVenue/' + venuename;
+        let data = {}
+    
+        const request = new Request(url, {
+            method: 'POST', 
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+        });
+    
+        log("about to fetch")
+        fetch(url, request)
+        .then((res) => { 
+            if (res.status === 200) {
+                // return a promise that resolves with the JSON body
+                log("result is 200")
+                log(res.body)
+                log(res)
+           } else {
+                alert('Could not apply to booking');
+           }                
+        }).catch((error) => {
+            log(error);
+        });
+    }
