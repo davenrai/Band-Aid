@@ -38,7 +38,7 @@ function addToRequestTimeline(request) {
 
 function fulfillRequest(e) {
     log("button clicked")
-    applyToBookings(e)
+    applyToBookingsVenue(e)
     removeRequest(e)
     return e;
     
@@ -91,6 +91,37 @@ function getAllBookings() {
 function applyToBookings(e) {
     // the URL for the request
     const url = '/bookings/apply/5e8176dba5e3f74cc0a303a4';
+    let data = {}
+
+    const request = new Request(url, {
+        method: 'POST', 
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+
+    log("about to fetch")
+    fetch(url, request)
+    .then((res) => { 
+        if (res.status === 200) {
+            // return a promise that resolves with the JSON body
+            log("result is 200")
+            log(res.body)
+            log(res)
+       } else {
+            alert('Could not apply to booking');
+       }                
+    }).catch((error) => {
+        log(error);
+    });
+}
+
+
+function applyToBookingsVenue(e) {
+    // the URL for the request
+    const url = '/bookings/applyByVenue/apple';
     let data = {}
 
     const request = new Request(url, {
