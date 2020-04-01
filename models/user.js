@@ -48,7 +48,8 @@ const UserSchema = new mongoose.Schema({
 		type: String,
 		required: false,
 		minlength: 0
-	}
+	},
+	selectedFor: [String]
 });
 
 // An example of Mongoose middleware.
