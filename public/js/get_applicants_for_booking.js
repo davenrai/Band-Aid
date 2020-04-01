@@ -30,7 +30,7 @@ log('Loaded front-end javascript.')
 
                     const divVenueName = document.createElement("span");
                     //this also works
-                    const divVenueName = document.createElement("div");
+                    // const divVenueName = document.createElement("div");
                     // how to createTextNode using ${} notation
                     divVenueName.innerHTML = `Venue Name: <strong>${b.venuename}</strong>`;
                     li.appendChild(divVenueName);
@@ -65,13 +65,15 @@ log('Loaded front-end javascript.')
 
     function addBookingtoPerformer(e) {
     
+        const venueName = e.target.parentElement.childNodes[0].innerText
         const performerName = e.target.parentElement.childNodes[1].innerText
         log("parent element is: " + e.target.parentElement)
         log("parent element.childNodes[0] is: " + e.target.parentElement.childNodes[2].innerText)
-        log(performerName)
+        log(venueName)
+        log(performer)
         
         // the URL for the request
-        const url = '/bookings/applyByVenue/' + performername;
+        const url = '/users/choosePerformer/' + venuename;
         let data = {}
     
         const request = new Request(url, {
@@ -92,7 +94,7 @@ log('Loaded front-end javascript.')
                 log(res.body)
                 log(res)
            } else {
-                alert('Could not apply to booking');
+                alert('Could not apply to a (performer) user');
            }                
         }).catch((error) => {
             log(error);
