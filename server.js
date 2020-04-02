@@ -137,10 +137,10 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 		usertype: req.body.usertype,
 		// name: req.body.name,
 		name: "",
-		phone: req.body.phone,
-		location: req.body.location,
-		genre: req.body.genre,
-		description: req.body.description,
+		phone: "",
+		location: "",
+		genre: "",
+		description: "",
 		selectedFor: []
 
 	});
