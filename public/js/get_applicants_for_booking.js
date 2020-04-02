@@ -72,15 +72,14 @@ log('Loaded front-end javascript.')
         log("venueName is: " + venueName)
         log("performerName is: " + performerName)
         
-        let testperformerName = "bob555"
+        const testperformerName = "bob555"
 
         // the URL for the request
         // const url = '/users/choosePerformer/' + performerName;
         // FOR TESTING - have to create list different - 4 spans ???
         const url = '/users/choosePerformer/' + testperformerName;
         
-        const testdata = 'does this work?'
-
+   
         // const data = {
         //     booking: testdata
         // }
@@ -100,7 +99,8 @@ log('Loaded front-end javascript.')
         
         // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
         log("about to fetch")
-        fetch(url, request)
+        // fetch(url, request)
+        fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         .then((res) => { 
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body

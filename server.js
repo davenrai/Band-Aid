@@ -520,6 +520,7 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 
 	const performername = req.params.performername
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
+	log(req.body)
 	log(performername)
 	log("in /users/choosePerformer/:performername")
 	// log(req.session.username)
@@ -545,8 +546,8 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 
 			log("req.body is: " + req.body)
 			log("req.body.booking is: " + req.body.booking)
-			// user.selectedFor.push(req.body.booking);
-			user.selectedFor.push("fetch test");
+			user.selectedFor.push(req.body.booking);
+			// user.selectedFor.push("fetch test");
 
 			user.save().then((result) => {
 				// pass the reservation that was just pushed
