@@ -216,13 +216,14 @@ app.get('/users/:username', (req, res) => {
 
 // Update user in db with performer information from make profile
 // app.patch('/makeprofileperformer/', sessionChecker, (req, res) => {
-app.patch('/makeprofileperformer', (req, res) => {	
-	const username = req.body.username;
+app.patch('/makeprofileperformer2', (req, res) => {	
+	// const username = req.body.username;
+	const username = "bob239"
 	log("in makeprofile username is: " + username);
-	log("in makepprofile req is: " + req.body.username);
+	log("in makeprofile req is: " + req.body.username);
 	
 	// Find user
-	User.findOne({username}).then(user => {
+	User.findOne({ 'username': username}).then(user => {	
 		if (!user) {
 			log("!user");
 			res.status(404).send(); // Cannot find resource
@@ -234,7 +235,15 @@ app.patch('/makeprofileperformer', (req, res) => {
 			user.description = req.body.description;
 			// Save the user to mongo
 			user.save().then(user => {
-				res.send(user);
+				log(result)
+				res.send({ user })
+				if (req.session.usertype === 'admin') {
+					res.redirect('/admin'); // takes you to admin dash
+				} else if (req.session.usertype === 'performer') {
+					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'venue') {
+					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+				}
 			}, error => {
 				res.status(400).send(error); // Bad request
 			});
@@ -244,6 +253,61 @@ app.patch('/makeprofileperformer', (req, res) => {
 	});
 });
 
+
+// for make_profile.js
+// for performer to update their profile info
+app.patch('/makeprofileperformer', (req, res) => {
+	/// req.params has the wildcard parameters in the url, in this case, id.
+
+	const username = "bob239"
+	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
+	log(req.body)  // this will show object contents
+	log("req.body is: " + req.body) // this weill show [Object object]
+	log("in /makeprofileperformer")
+	log(req.session.username)
+	log(req.session.usertype)
+
+	// Good practise: Validate id immediately.
+	// if (!ObjectID.isValid(id)) {
+	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+	// 	return;  // so that we don't run the rest of the handler.
+	// }
+
+	// Otherwise, findById
+	User.findOne({ 'username': username}).then(user => {	
+		if (!user) {
+			log("in if stmt /users/choosePerformer/:performername")
+			res.status(404).send()  // could not find this username
+		} else {
+			user.name = req.body.name;
+			user.location = req.body.location;
+			user.phone = req.body.phone;
+			user.genre = req.body.genre;
+			user.description = req.body.description;
+
+			user.save().then((result) => {
+				// pass the reservation that was just pushed
+				// note that mongoose provided an _id when it was pushed
+				log(result)
+				res.send({ user })
+				if (req.session.usertype === 'admin') {
+					res.redirect('/admin'); // takes you to admin dash
+				} else if (req.session.usertype === 'performer') {
+					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				} else if (req.session.usertype === 'venue') {
+					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+				}
+
+			}).catch((error) => {
+				res.status(500).send()  // server error
+			})
+
+		}
+	}).catch((error) => {
+		res.status(500).send()  // server error
+	})
+
+})
 
 // Update user in db with venue information from make profile
 app.post('/makeprofilevenue/:username', (req, res) => {
@@ -539,12 +603,6 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 			log("in if stmt /users/choosePerformer/:performername")
 			res.status(404).send()  // could not find this restaurant
 		} else {
-			const application = {
-				booking: "test push"
-				// performer: req.session.username
-			};
-
-
 			log("req.body.booking is: " + req.body.booking)
 			user.selectedFor.push(req.body.booking);
 
@@ -571,6 +629,9 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	})
 
 })
+
+
+
 
 
 // a GET route to get all venues
