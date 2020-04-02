@@ -36,7 +36,7 @@ function getApplicants() {
                 divVenueName.innerHTML = `${b.venuename}`;
                 li.appendChild(divVenueName);
                 const applicantTitle = document.createElement("strong");
-                applicantTitle.innerText = 'Venue Name: ';
+                applicantTitle.innerText = 'Performer Name: ';
                 li.appendChild(applicantTitle);
                 const divPerformerName = document.createElement("span");
                 divPerformerName.innerHTML = `${b.applications[i]}`;
@@ -44,7 +44,7 @@ function getApplicants() {
 
                 // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
                 const chooseApplicantButton = document.createElement("button");
-                chooseApplicantButton.className = "fulfill";
+                chooseApplicantButton.className = "choose";
                 const buttonText = document.createTextNode("I choose you!");
                 chooseApplicantButton.appendChild(buttonText);
                 chooseApplicantButton.addEventListener("click", chooseApplicant);
@@ -61,8 +61,19 @@ function getApplicants() {
 function chooseApplicant(e) {
     log("button clicked")
     addBookingtoPerformer(e)
-    // removeRequest(e)
+    removeRequest(e)
     return e;
+}
+
+
+function removeRequest(e) {
+    e.preventDefault();
+    if (e.target.classList.contains("choose")) {
+        console.log("remove");
+        const requestToRemove = e.target.parentElement;
+        console.log(requestToRemove);
+        performersList.removeChild(requestToRemove);
+    }
 }
 
 
