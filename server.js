@@ -520,11 +520,12 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 
 	const performername = req.params.performername
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
-	log(req.body)
+	log(req.body)  // this will show object contents
+	log("req.body is: " + req.body) // this weill show [Object object]
 	log(performername)
 	log("in /users/choosePerformer/:performername")
-	// log(req.session.username)
-	// log(req.session.usertype)
+	log(req.session.username)
+	log(req.session.usertype)
 
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
@@ -534,7 +535,6 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 
 	// Otherwise, findById
 	User.findOne({ 'username': performername}).then(user => {	
-	// User.findOne({username: performername}).then((user) => {
 		if (!user) {
 			log("in if stmt /users/choosePerformer/:performername")
 			res.status(404).send()  // could not find this restaurant
@@ -544,10 +544,9 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 				// performer: req.session.username
 			};
 
-			log("req.body is: " + req.body)
+
 			log("req.body.booking is: " + req.body.booking)
 			user.selectedFor.push(req.body.booking);
-			// user.selectedFor.push("fetch test");
 
 			user.save().then((result) => {
 				// pass the reservation that was just pushed

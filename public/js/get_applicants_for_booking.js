@@ -27,15 +27,20 @@ log('Loaded front-end javascript.')
             json.bookings.map((b) => {
                 for (let i = 0; i < b.applications.length; i++) {
                     li = document.createElement('li')
-
+                    const venueTitle = document.createElement("strong");
+                    venueTitle.innerText = 'Venue Name: ';
+                     li.appendChild(venueTitle);
                     const divVenueName = document.createElement("span");
                     //this also works
                     // const divVenueName = document.createElement("div");
                     // how to createTextNode using ${} notation
-                    divVenueName.innerHTML = `Venue Name: <strong>${b.venuename}</strong>`;
+                    divVenueName.innerHTML = `${b.venuename}`;
                     li.appendChild(divVenueName);
+                    const applicantTitle = document.createElement("strong");
+                    applicantTitle.innerText = 'Venue Name: ';
+                    li.appendChild(applicantTitle);
                     const divPerformerName = document.createElement("span");
-                    divPerformerName.innerHTML = `Venue Name: <strong>${b.applications[i]}</strong>`;
+                    divPerformerName.innerHTML = `${b.applications[i]}`;
                     li.appendChild(divPerformerName);                  
 
                     // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
@@ -65,32 +70,27 @@ log('Loaded front-end javascript.')
 
     function addBookingtoPerformer(e) {
     
-        const venueName = e.target.parentElement.childNodes[0].innerText
-        const performerName = e.target.parentElement.childNodes[1].innerText
+        //parentElement of button is the list item li
+        const venueName = e.target.parentElement.childNodes[1].innerText
+        const performerName = e.target.parentElement.childNodes[3].innerText
         log("parent element is: " + e.target.parentElement)
-        // log("parent element.childNodes[0] is: " + e.target.parentElement.childNodes[2].innerText)
         log("venueName is: " + venueName)
         log("performerName is: " + performerName)
         
-        const testperformerName = "bob555"
-
         // the URL for the request
-        // const url = '/users/choosePerformer/' + performerName;
-        // FOR TESTING - have to create list different - 4 spans ???
-        const url = '/users/choosePerformer/' + testperformerName;
+        const url = '/users/choosePerformer/' + performerName;
         
    
-        // const data = {
-        //     booking: testdata
-        // }
-        const data = { booking: 'example' };
+        const data = {
+            booking: venueName
+        }
+ 
         log("data object is: " + data)
         log("data.booking field is: " + data.booking)
 
         const request = new Request(url, {
             method: 'POST', 
             body: JSON.stringify(data),
-            // body: {	"booking": "from js fetch" },
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ log('Loaded front-end javascript.')
         
         // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
         log("about to fetch")
-        // fetch(url, request)
+        // fetch(url, request)  // DO NOT use this
         fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         .then((res) => { 
             if (res.status === 200) {
