@@ -127,7 +127,7 @@ app.use("/img", express.static(__dirname + '/public/img'));
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
-app.post('/users', sessionChecker, (req, res) => {
+app.post('/users/signup', sessionChecker, (req, res) => {
 	log("req is: " + req);
 	log(req.body.username);
 	// Create a new user
