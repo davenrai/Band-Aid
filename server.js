@@ -193,15 +193,14 @@ app.get('/users/:username', (req, res) => {
 	// User.findOne({ '_id': username}).then(user => {
 	// User.findById(username).then(user => {
 	// to get by username
-	User.findOne({ 'username': username}).then(user => {	
+	User.findOne({ 'username': username }).then(user => {	
 		if (!user) {
 			res.status(404).send();  // could not find this user
 		} else {
-			/// sometimes we wrap returned object in another object:
 			res.send(user);
 		}
 	}).catch((error) => {
-		res.status(500).send();  // server error
+		res.status(500).send(error);  // server error
 	});
 });
 
