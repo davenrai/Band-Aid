@@ -67,13 +67,13 @@ app.post("/users/login", sessionChecker, (req, res) => {
 			req.session.usertype = user.usertype;
 			// res.send({ currentUser: user.email });
 			if (req.session.usertype === 'admin') {
-				log("admin logged in");
+				log("Admin logged in");
 				res.redirect('/admin'); // takes you to admin dash
 			} else if (req.session.usertype === 'performer') {
-				log("performer logged in");
+				log("Performer logged in");
 				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
 			} else if (req.session.usertype === 'venue') {
-				log("venue logged in");
+				log("Venue logged in");
 				res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 			} else {
 				res.redirect('/index'); // takes you to dashboard timeline after login
