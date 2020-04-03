@@ -330,7 +330,7 @@ app.post('/bookings/:id', (req, res) => {
 	// Otherwise, findById
 	Booking.findById(id).then((booking) => {
 		if (!booking) {
-			res.status(404).send(); // could not find this restaurant
+			res.status(404).send(); // could not find this booking
 		} else {
 			const application = {
 				performer: "test push"
@@ -367,18 +367,16 @@ app.post('/bookings/apply/:id', (req, res) => {
 	log("id is: " + id);
 	log(req.session.username);
 	log(req.session.usertype);
-
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send(); // if invalid id, definitely can't find resource, 404.
 		return; // so that we don't run the rest of the handler.
 	}
-
 	log("Booking.findById(id)" + Booking.findById(id));
 	// Otherwise, findById
 	Booking.findById(id).then((booking) => {
 		if (!booking) {
-			res.status(404).send(); // could not find this restaurant
+			res.status(404).send(); // could not find this booking
 		} else {
 			const application = {
 				performer: "test push"
@@ -425,9 +423,9 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
-	Booking.findOne({venuename: venuename}).then((booking) => {
+	Booking.findOne({ venuename: venuename }).then((booking) => {
 		if (!booking) {
-			res.status(404).send(); // could not find this restaurant
+			res.status(404).send(); // could not find this venue
 		} else {
 			booking.applications.push(req.session.username);
 			// booking.applications.push("postman test");
