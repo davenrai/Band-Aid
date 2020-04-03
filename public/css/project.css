@@ -57,6 +57,10 @@ h1 {
 
 /*** Timeline styles below ***/
 
+#logoutButton{
+	text-align: right;
+}
+
 #newRequest {
 
 	background-color: peachpuff;

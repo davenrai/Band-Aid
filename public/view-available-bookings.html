@@ -3,67 +3,63 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>View-Bookings</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="./css/project.css">
+  <meta charset="utf-8">
+  <title>View-Bookings</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/project.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Bandaid</a>
-        <img src="./img/logo.png" width="100" height="100" class="d-inline-block align-top" alt="">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link disabled" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li>
-              <button type="button" class="btn btn-link" onclick='window.location = "/dashboard"' id='dashboardbutton'>My dashbord</button>
-          </li>            
-            <li class="nav-item">
-                <a class="nav-link" href="create-booking-request.html">Make request</a>
-              </li>
-              <li>
-                <button onclick='window.location = "/users/logout"' id='logoutbutton'>Logout</button>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#" style="color:white">Bookings</a>
+    <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-
-
-    <div id="header">
-        <span id="title">These venues are looking for performers!</span>
-        <!-- <button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button> -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <button type="button" class="btn btn-primary" onclick='window.location = "/dashboard"' id='dashboardbutton'>
+            My Dashboard
+          </button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="create-booking-request.html" style="color:white">Make Request</a>
+        </li>
+        <li>
+          <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutbutton'>Logout</button>
+        </li>
+      </ul>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+  </nav>
 
-    <!-- // NEED TO LEAVE THIS IN !!!!!!!!!!!!!!!!!!!!!! -->
-    <div id="timeline">
-        <div id="requestList">
-        </div>
+
+
+  <div id="header">
+    <span id="title">These venues are looking for performers!</span>
+    <!-- <button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button> -->
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <!-- // NEED TO LEAVE THIS IN !!!!!!!!!!!!!!!!!!!!!! -->
+  <div id="timeline">
+    <div id="requestList">
     </div>
-    <!-- DO NOT REMOVE ABOVE -->
+  </div>
+  <!-- DO NOT REMOVE ABOVE -->
 
-    <div>
-        <ul id='allBookingsList'>
-            
-        </ul>
-    </div>  
+  <div>
+    <ul id='allBookingsList'>
+
+    </ul>
+  </div>
 
 </body>
 
