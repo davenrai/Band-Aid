@@ -68,13 +68,13 @@ app.post("/users/login", sessionChecker, (req, res) => {
 			req.session.usertype = user.usertype;
 			// res.send({ currentUser: user.email });
 			if (req.session.usertype === 'admin') {
-				log("admin logged in")
+				log("admin logged in");
 				res.redirect('/admin'); // takes you to admin dash
 			} else if (req.session.usertype === 'performer') {
-				log("performer logged in")
+				log("performer logged in");
 				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
 			} else if (req.session.usertype === 'venue') {
-				log("venue logged in")
+				log("venue logged in");
 				res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 			} else {
 				res.redirect('/index'); // takes you to dashboard timeline after login
@@ -186,7 +186,6 @@ app.get('/users', (req, res) => {
 });
 
 
-
 // a GET route to get a specific user
 app.get('/users/:username', (req, res) => {
 	// const username = req.body.username;
@@ -213,38 +212,34 @@ app.get('/users/:username', (req, res) => {
 // for performer to update their profile info
 app.patch('/makeprofileperformer', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-
-	const username = "bob239"
+	const username = "bob239";
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
-	log(req.body)  // this will show object contents
-	log("req.body is: " + req.body) // this will show [Object object]
-	log("in /makeprofileperformer")
-	log(req.session.username)
-	log(req.session.usertype)
-
+	log(req.body); // this will show object contents
+	log("req.body is: " + req.body); // this will show [Object object]
+	log("in /makeprofileperformer");
+	log(req.session.username);
+	log(req.session.usertype);
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
-
 	// Otherwise, findById
 	User.findOne({ 'username': username}).then(user => {	
 		if (!user) {
-			log("in if stmt /users/choosePerformer/:performername")
-			res.status(404).send()  // could not find this username
+			log("in if stmt /users/choosePerformer/:performername");
+			res.status(404).send(); // could not find this username
 		} else {
 			user.name = req.body.name;
 			user.location = req.body.location;
 			user.phone = req.body.phone;
 			user.genre = req.body.genre;
 			user.description = req.body.description;
-
 			user.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result)
-				res.send({ user })
+				log(result);
+				res.send({ user });
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -252,16 +247,16 @@ app.patch('/makeprofileperformer', (req, res) => {
 				} else if (req.session.usertype === 'venue') {
 					res.redirect('/dashboard-venue');
 				}
-
 			}).catch((error) => {
-				res.status(500).send()  // server error
-			})
+				res.status(500).send(); // server error
+			});
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
+		res.status(500).send(); // server error
+	});
 
-})
+});
+
 
 // Update user in db with venue information from make profile
 app.post('/makeprofilevenue/:username', (req, res) => {
@@ -290,7 +285,6 @@ app.post('/makeprofilevenue/:username', (req, res) => {
 });
 
 
-
 app.post('/venue', (req, res) => {
 	log(req.body);
 	// Create a new venue
@@ -305,7 +299,6 @@ app.post('/venue', (req, res) => {
 		res.status(400).send(error); // 400 for bad request
 	});
 });
-
 
 
 // Set up a POST route to *create* a venue.
@@ -328,7 +321,6 @@ app.post('/venues', (req, res) => {
 });
 
 
-
 // Set up a POST route to *create* a booking for a venue.
 app.post('/bookings', (req, res) => {
 	log(req.body);
@@ -340,7 +332,6 @@ app.post('/bookings', (req, res) => {
 		description: req.body.description,
 		applications: req.body.applications
 	});
-
 	// Save the request
 	booking.save().then(booking => {
 		// res.send(booking);
@@ -357,7 +348,6 @@ app.post('/bookings', (req, res) => {
 });
 
 
-
 // a GET route to get all bookings for all venues
 app.get('/bookings', (req, res) => {
 	Booking.find().then((bookings) => {
@@ -368,34 +358,29 @@ app.get('/bookings', (req, res) => {
 });
 
 
-
 app.post('/bookings/:id', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	const id = req.params.id
-
+	const id = req.params.id;
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
-		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
+		res.status(404).send(); // if invalid id, definitely can't find resource, 404.
 		return;  // so that we don't run the rest of the handler.
 	}
-
 	// Otherwise, findById
 	Booking.findById(id).then((booking) => {
 		if (!booking) {
-			res.status(404).send()  // could not find this restaurant
+			res.status(404).send(); // could not find this restaurant
 		} else {
 			const application = {
 				performer: "test push"
 			};
-
 			// booking.applications.push(application);
 			// applications is an array of strings
 			booking.applications.push("postman test 2");
-
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result)
+				log(result);
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -403,39 +388,37 @@ app.post('/bookings/:id', (req, res) => {
 				} else if (req.session.usertype === 'venue') {
 					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
 				}
-
 			}).catch((error) => {
-				res.status(500).send()  // server error
-			})
+				res.status(500).send(); // server error
+			});
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
-
-})
+		res.status(500).send(); // server error
+	});
+});
 
 
 
 app.post('/bookings/apply/:id', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	const id = req.params.id
+	const id = req.params.id;
 	// const id = "4"
-	log("in /bookings/apply")
-	log("id is: " + id)
-	log(req.session.username)
-	log(req.session.usertype)
+	log("in /bookings/apply");
+	log("id is: " + id);
+	log(req.session.username);
+	log(req.session.usertype);
 
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
-		res.status(404).send()  // if invalid id, definitely can't find resource, 404.
-		return;  // so that we don't run the rest of the handler.
+		res.status(404).send(); // if invalid id, definitely can't find resource, 404.
+		return; // so that we don't run the rest of the handler.
 	}
 
-	log("Booking.findById(id)" + Booking.findById(id))
+	log("Booking.findById(id)" + Booking.findById(id));
 	// Otherwise, findById
 	Booking.findById(id).then((booking) => {
 		if (!booking) {
-			res.status(404).send()  // could not find this restaurant
+			res.status(404).send(); // could not find this restaurant
 		} else {
 			const application = {
 				performer: "test push"
@@ -446,7 +429,7 @@ app.post('/bookings/apply/:id', (req, res) => {
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result)
+				log(result);
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -459,14 +442,13 @@ app.post('/bookings/apply/:id', (req, res) => {
 				}
 
 			}).catch((error) => {
-				res.status(500).send()  // server error
-			})
+				res.status(500).send(); // server error
+			});
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
-
-})
+		res.status(500).send(); // server error
+	});
+});
 
 
 
@@ -474,30 +456,25 @@ app.post('/bookings/apply/:id', (req, res) => {
 // for performer to their username to a booking
 app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	const venuename = req.params.venuename
-	log("in /bookings/applyByVenue/:venuename")
-	log(req.session.username)
-	log(req.session.usertype)
-
-
-
+	const venuename = req.params.venuename;
+	log("in /bookings/applyByVenue/:venuename");
+	log(req.session.username);
+	log(req.session.usertype);
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
-
 	Booking.findOne({venuename: venuename}).then((booking) => {
 		if (!booking) {
-			res.status(404).send()  // could not find this restaurant
+			res.status(404).send(); // could not find this restaurant
 		} else {
 			booking.applications.push(req.session.username);
 			// booking.applications.push("postman test");
-
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result)
+				log(result);
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -505,16 +482,14 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 				} else if (req.session.usertype === 'venue') {
 					res.redirect('/dashboard-venue');
 				}
-
 			}).catch((error) => {
-				res.status(500).send()  // server error
-			})
+				res.status(500).send(); // server error
+			});
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
-
-})
+		res.status(500).send(); // server error
+	});
+});
 
 
 // for get_applicants_for_booking.js
@@ -522,35 +497,32 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 app.post('/users/choosePerformer/:performername', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 
-	const performername = req.params.performername
+	const performername = req.params.performername;
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
-	log(req.body)  // this will show object contents
-	log("req.body is: " + req.body) // this weill show [Object object]
-	log(performername)
-	log("in /users/choosePerformer/:performername")
-	log(req.session.username)
-	log(req.session.usertype)
-
+	log(req.body); // this will show object contents
+	log("req.body is: " + req.body); // this weill show [Object object]
+	log(performername);
+	log("in /users/choosePerformer/:performername");
+	log(req.session.username);
+	log(req.session.usertype);
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
-
 	// Otherwise, findById
 	User.findOne({ 'username': performername}).then(user => {	
 		if (!user) {
-			log("in if stmt /users/choosePerformer/:performername")
-			res.status(404).send()  // could not find this performer
+			log("in if stmt /users/choosePerformer/:performername");
+			res.status(404).send(); // could not find this performer
 		} else {
-			log("req.body.booking is: " + req.body.booking)
+			log("req.body.booking is: " + req.body.booking);
 			user.selectedFor.push(req.body.booking);
-
 			user.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result)
-				res.send({ user })
+				log(result);
+				res.send({ user });
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -558,18 +530,14 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 				} else if (req.session.usertype === 'venue') {
 					res.redirect('/dashboard-venue');
 				}
-
 			}).catch((error) => {
-				res.status(500).send()  // server error
-			})
+				res.status(500).send(); // server error
+			});
 		}
 	}).catch((error) => {
-		res.status(500).send()  // server error
-	})
-
-})
-
-
+		res.status(500).send(); // server error
+	});
+});
 
 
 // a GET route to get all venues
@@ -696,7 +664,6 @@ app.get('/admin', (req, res) => {
 });
 
 
-
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
 	if (req.session.user) {
@@ -707,7 +674,6 @@ app.get("/users/check-session", (req, res) => {
 		res.status(401).send();
 	}
 });
-
 
 
 
