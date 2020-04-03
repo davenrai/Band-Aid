@@ -9,6 +9,11 @@ const BookingSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1
 	},
+	bookingDate: {
+		type: String,
+		required: true,
+		minlength: 1
+	},	
 	location: {
 		type: String,
 		required: true,
