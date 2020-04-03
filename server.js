@@ -3,6 +3,7 @@
 const log = console.log;
 const path = require('path');
 const express = require('express');
+
 // starting the express server
 const app = express();
 
@@ -139,7 +140,6 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 		genre: "",
 		description: "",
 		selectedFor: []
-
 	});
 	// Save the user to mongo
 	user.save().then((user) => {
@@ -294,7 +294,7 @@ app.post('/bookings', (req, res) => {
 		location: req.body.location,
 		phone: req.body.phone,
 		description: req.body.description,
-		applications: req.body.applications
+		applications: []
 	});
 	// Save the request
 	booking.save().then(booking => {
@@ -589,7 +589,6 @@ app.get("/users/check-session", (req, res) => {
 		res.status(401).send();
 	}
 });
-
 
 
 //*****************************************************************************
