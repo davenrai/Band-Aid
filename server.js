@@ -205,11 +205,33 @@ app.get('/users/:username', (req, res) => {
 });
 
 
+
+// a GET route to get a specific user
+app.get('/users/user_by_req', (req, res) => {
+	// const username = req.body.username;
+	const username = req.params.username;
+	// Find user
+	// to get by _id uncomment one of the below lines
+	// User.findOne({ '_id': username}).then(user => {
+	// User.findById(username).then(user => {
+	// to get by username
+	User.findOne({ 'username': username }).then(user => {	
+		if (!user) {
+			res.status(404).send();  // could not find this user
+		} else {
+			res.send(user);
+		}
+	}).catch((error) => {
+		res.status(500).send(error);  // server error
+	});
+});
+
+
 // for make_profile.js
 // for performer to update their profile info
 app.patch('/makeprofileperformer', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	const username = "bob239";
+	const username = req.session.username;
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
 	log(req.body); // this will show object contents
 	log("req.body is: " + req.body); // this will show [Object object]
@@ -236,7 +258,7 @@ app.patch('/makeprofileperformer', (req, res) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
 				log(result);
-				res.send({ user });
+				// res.send({ user });
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {

@@ -6,7 +6,7 @@ log('Loaded front-end javascript.');
 // A function to send a GET aaplicants for have applied for a booking.
 function getSelectedFor() {
     // the URL for the request
-    const url = '/bookings';
+    const url = '/users/user_by_req';
 
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
