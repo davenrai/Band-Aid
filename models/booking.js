@@ -24,7 +24,7 @@ const BookingSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1
 	},
-	applications: [String] // array of usernames
+	applications: [String] // array of performer usernames
 });
 
 
