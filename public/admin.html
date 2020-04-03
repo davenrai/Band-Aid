@@ -23,12 +23,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
                 </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="dashboard-performer.html">My dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="create-booking-request.html">Make request</a>
-                  </li> -->
                 <li>
                     <button class="btn btn-danger" onclick='window.location = "/users/logout"'
                         id='logoutbutton'>Logout</button>
@@ -38,37 +32,35 @@
     </nav>
 
     <div id="timeline">
-        <div class="adminForm" id="deleteUser">
+        <div class="adminForm">
             <strong>Delete a User</strong>
-            <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Username"><br>
-                <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
+            <form id="deleteUser" action="/users" method="delete">
+                <input id="username" type="text" placeholder="Username">
                 <input type="submit" value="Delete User">
             </form>
         </div>
-        <div class="adminForm" id="deleteRequest">
-            <strong>Delete a Request</strong>
-            <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Request ID"><br>
-                <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
-                <input type="submit" value="Delete Request">
+        <div class="adminForm">
+            <strong>Delete a Booking</strong>
+            <form id="deleteBooking" action="/bookings" method="delete">
+                <input id="venueName" type="text" placeholder="Venue Name">
+                <input type="submit" value="Delete Booking">
             </form>
         </div>
-        <div class="adminForm" id="changePassword">
+        <div class="adminForm">
             <strong>Change a Password</strong>
-            <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Username">
-                <input id="venueName" type="text" placeholder="New Password">
+            <form id="changePassword" action="/users" method="post">
+                <input id="username" type="text" placeholder="Username">
+                <input id="password" type="text" placeholder="New Password">
                 <input type="submit" value="Submit">
             </form>
         </div>
-        <div class="adminForm" id="changeBooking">
+        <div class="adminForm">
             <strong>Change Details of an Booking</strong>
-            <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Event ID">
-                <input id="venueName" type="text" placeholder="Updated Location">
-                <input id="venueName" type="text" placeholder="Updated Day">
-                <input type="submit" value="Update Event">
+            <form id="changeBooking" action="/bookings" method="post">
+                <input id="venuename" type="text" placeholder="Venue Name">
+                <input id="bookingDate" type="text" placeholder="Updated Date">
+                <input id="description" type="text" placeholder="Updated Description">
+                <input type="submit" value="Update Booking">
             </form>
         </div>
     </div>

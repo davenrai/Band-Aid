@@ -155,7 +155,7 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			req.session.user = user._id;
 			req.session.username = user.username;
 			req.session.usertype = user.usertype;
-			log(req.session.usertype)
+			log(req.session.usertype);
 			if (req.session.usertype === 'performer') {
 				res.redirect('/makeprofileperformer');
 			} else if (req.session.usertype === 'venue') {
@@ -243,38 +243,37 @@ app.get('/users/user_by_req', (req, res) => {
 // for performer to update their profile info
 app.patch('/makeprofileperformer', (req, res) => {
 	// get the updated name and year only from the request body.
-	const id = req.session.user
-	const { name, phone, location, genre, description } = req.body
-	const body = { id, name, phone, location, genre, description }
+	const id = req.session.user;
+	const { name, phone, location, genre, description } = req.body;
+	const body = { id, name, phone, location, genre, description };
 
 	if (!ObjectID.isValid(id)) {
-		res.status(404).send()
+		res.status(404).send();
 		return;
 	}
 
-	// Update the student by their id.
+	// Update the performer by their id.
 	User.findById(id).then((user) => {
 		if (!user) {
-			res.status(404).send()
+			res.status(404).send();
 		} else {   
-			user.name = body.name
-			user.phone = body.phone
-			user.location = body.location
-			user.genre = body.genre
-			user.description = description
+			user.name = body.name;
+			user.phone = body.phone;
+			user.location = body.location;
+			user.genre = body.genre;
+			user.description = description;
 			
 			user.save().then((result) => {
-				res.send(user)
+				res.send(user);
 			}).catch((error) => {
-				res.status(500).send()
-			})
+				res.status(500).send();
+			});
 			res.send(user);
-			log(user)
+			log(user);
 		}
 	}).catch((error) => {
-		res.status(400).send() // bad request for changing the student.
-	})
-
+		res.status(400).send(); // bad request for changing the student.
+	});
 });
 
 
