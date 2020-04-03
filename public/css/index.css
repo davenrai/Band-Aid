@@ -1,3 +1,10 @@
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 #title {
     color: purple;
     font-size: xx-large;
@@ -9,15 +16,14 @@
 }
 
 #intro {
-    margin-top:100px;
-    margin-left: 350px;
-    color:orange;
+    color:black;
+    text-align: center;
 }
 
-#buttonContainer {
-    display: block;
-    margin-top: 50px;
-    margin-left: 460px
+#loginButtons{
+    display:inline-block;
+    top: 35vh;
+    margin: auto;
 }
 
 #logoContainer {
@@ -31,26 +37,10 @@
     left: 500px;
 }
 
-#musicnoteleft {
-    top: 200px;
-    left: 570px;
-    float:left;
-}
 
-#musicnoteright {
-    top: 200px;
-    left: 570px;
-}
-
-#leftnoteimage {
+#noteImage {
+    margin-top: 100px;
     height: 300px;
-    bottom: 300px;
-}
-
-#rightnoteimage {
-    height: 300px;
-    top: 800px;
-    left: 500px;
 }
 
 #loginButton {
@@ -80,5 +70,5 @@
 }
 
 body {
-    background-color: #e6ecf0;
+    background-color: #F9F9F8;
 }

@@ -37,9 +37,9 @@ function addToRequestTimeline(request) {
 }
 
 function fulfillRequest(e) {
-    log("button clicked")
-    applyToBookingsVenue(e)
-    removeRequest(e)
+    log("button clicked");
+    applyToBookingsVenue(e);
+    removeRequest(e);
     return e;
     
 }
@@ -69,33 +69,33 @@ function getAllBookings() {
         .then((res) => { 
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
-               return res.json() 
+               return res.json() ;
            } else {
-                alert('Could not get bookings')
+                alert('Could not get bookings');
            }                
         })
         .then((json) => {  // the resolved promise with the JSON body
-            bookingsList = document.querySelector('#allBookingsList')
+            bookingsList = document.querySelector('#allBookingsList');
             bookingsList.innerHTML = '';
-            log(json)
+            log(json);
             json.bookings.map((b) => {
-                addToRequestTimeline(b)
-            })
+                addToRequestTimeline(b);
+            });
         }).catch((error) => {
-            log(error)
-        })
+            log(error);
+        });
 }
 
 
 function applyToBookingsVenue(e) {
     
-    const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText
-    log("parent elemnt is: " + e.target.parentElement)
-    log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText)
+    const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText;
+    log("parent elemnt is: " + e.target.parentElement);
+    log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText);
     
     // the URL for the request
     const url = '/bookings/applyByVenue/' + venuename;
-    let data = {}
+    let data = {};
 
     const request = new Request(url, {
         method: 'POST', 
@@ -106,14 +106,14 @@ function applyToBookingsVenue(e) {
         },
     });
 
-    log("about to fetch")
+    log("about to fetch");
     fetch(url, request)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-            log("result is 200")
-            log(res.body)
-            log(res)
+            log("result is 200");
+            log(res.body);
+            log(res);
        } else {
             alert('Could not apply to booking');
        }                
@@ -121,10 +121,6 @@ function applyToBookingsVenue(e) {
         log(error);
     });
 }
-
-
-
-
 
 
 //UNUSED CODE BELOW - SHOULD STILL WORK
@@ -136,7 +132,7 @@ function applyToBookings(e) {
 
     //NOTE HARDCODED OBJECT ID !!!
     const url = '/bookings/apply/5e8176dba5e3f74cc0a303a4';
-    let data = {}
+    let data = {};
 
     const request = new Request(url, {
         method: 'POST', 
@@ -147,14 +143,14 @@ function applyToBookings(e) {
         },
     });
 
-    log("about to fetch")
+    log("about to fetch");
     fetch(url, request)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-            log("result is 200")
-            log(res.body)
-            log(res)
+            log("result is 200");
+            log(res.body);
+            log(res);
        } else {
             alert('Could not apply to booking');
        }                

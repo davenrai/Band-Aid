@@ -24,8 +24,7 @@ const BookingSchema = new mongoose.Schema({
 		required: true,
 		minlength: 1
 	},
-	applications: [String]
-	// need to associate venue and performers who applied to it
+	applications: [String] // array of performer usernames
 });
 
 
