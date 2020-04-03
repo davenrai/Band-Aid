@@ -27,19 +27,24 @@ function getApplicants() {
                 li = document.createElement('li');
                 const venueTitle = document.createElement("strong");
                 venueTitle.innerText = 'Venue Name: ';
-                    li.appendChild(venueTitle);
+                li.appendChild(venueTitle);
                 const divVenueName = document.createElement("span");
                 //this also works
                 // const divVenueName = document.createElement("div");
                 // how to createTextNode using ${} notation
                 divVenueName.innerHTML = `${b.venuename}`;
                 li.appendChild(divVenueName);
+                // use &nbsp (non-breaking line space)  ???
+                const lineSpace1 = document.createTextNode("---");
+                li.appendChild(lineSpace1);
                 const applicantTitle = document.createElement("strong");
                 applicantTitle.innerText = 'Performer Name: ';
                 li.appendChild(applicantTitle);
                 const divPerformerName = document.createElement("span");
                 divPerformerName.innerHTML = `${b.applications[i]}`;
-                li.appendChild(divPerformerName);                  
+                li.appendChild(divPerformerName);
+                const lineSpace2 = document.createTextNode("---");
+                li.appendChild(lineSpace2);              
 
                 // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
                 const chooseApplicantButton = document.createElement("button");
