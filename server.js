@@ -44,7 +44,18 @@ app.use(session({
 // an active user on the session cookie (indicating a logged in user.)
 const sessionChecker = (req, res, next) => {
 	if (req.session.user) {
-		res.redirect('/dashboard'); // redirect to dashboard if logged in.
+		if(req.session.usertype === 'performer'){
+			res.redirect('/dashboard-performer')
+		}
+		else if(req.session.usertype === 'venue'){
+			res.redirect('/dashboard-venue')
+		}
+		else if(req.session.usertype === 'admin'){
+			res.redirect('/admin')
+		}
+		else{
+			res.redirect('./index.html');
+		} // redirect to dashboard if logged in.
 	} else {
 		next(); // next() moves on to the route.
 	}
@@ -55,7 +66,7 @@ const sessionChecker = (req, res, next) => {
 app.post("/users/login", sessionChecker, (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
-	log(username, password);
+	log('user logged in is: ' + username);
 	// Use the static method on the User model to find a user
 	// by their username and password
 	User.findByUsernamePassword(username, password)
@@ -124,8 +135,8 @@ app.use("/img", express.static(__dirname + '/public/img'));
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
 app.post('/users/signup', sessionChecker, (req, res) => {
-	log("req is: " + req);
-	log(req.body.username);
+	// log("req is: " + req);
+	log('Logged in:'+ req.body.username);
 	// Create a new user
 	const user = new User({
 		username: req.body.username,
@@ -144,6 +155,7 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			req.session.user = user._id;
 			req.session.username = user.username;
 			req.session.usertype = user.usertype;
+			log(req.session.usertype)
 			if (req.session.usertype === 'performer') {
 				res.redirect('/makeprofileperformer');
 			} else if (req.session.usertype === 'venue') {
@@ -208,49 +220,38 @@ app.get('/users/:username', (req, res) => {
 // for make_profile.js
 // for performer to update their profile info
 app.patch('/makeprofileperformer', (req, res) => {
-	/// req.params has the wildcard parameters in the url, in this case, id.
-	const username = "bob239";
-	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
-	log(req.body); // this will show object contents
-	log("req.body is: " + req.body); // this will show [Object object]
-	log("in /makeprofileperformer");
-	log(req.session.username);
-	log(req.session.usertype);
-	// Good practise: Validate id immediately.
-	// if (!ObjectID.isValid(id)) {
-	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
-	// 	return;  // so that we don't run the rest of the handler.
-	// }
-	// Otherwise, findById
-	User.findOne({ 'username': username}).then(user => {	
+	// get the updated name and year only from the request body.
+	const id = req.session.user
+	const { name, phone, location, genre, description } = req.body
+	const body = { id, name, phone, location, genre, description }
+
+	if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+	}
+
+	// Update the student by their id.
+	User.findById(id).then((user) => {
 		if (!user) {
-			log("in if stmt /users/choosePerformer/:performername");
-			res.status(404).send(); // could not find this username
-		} else {
-			user.name = req.body.name;
-			user.location = req.body.location;
-			user.phone = req.body.phone;
-			user.genre = req.body.genre;
-			user.description = req.body.description;
+			res.status(404).send()
+		} else {   
+			user.name = body.name
+			user.phone = body.phone
+			user.location = body.location
+			user.genre = body.genre
+			user.description = description
+			
 			user.save().then((result) => {
-				// pass the reservation that was just pushed
-				// note that mongoose provided an _id when it was pushed
-				log(result);
-				res.send({ user });
-				if (req.session.usertype === 'admin') {
-					res.redirect('/admin'); // takes you to admin dash
-				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer');
-				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue');
-				}
+				res.send(user)
 			}).catch((error) => {
-				res.status(500).send(); // server error
-			});
+				res.status(500).send()
+			})
+			res.send(user);
+			log(user)
 		}
 	}).catch((error) => {
-		res.status(500).send(); // server error
-	});
+		res.status(400).send() // bad request for changing the student.
+	})
 
 });
 
@@ -547,7 +548,8 @@ app.get('/dashboard-venue', (req, res) => {
 });
 
 
-app.get('/makeprofileperformer/*', (req, res) => {
+app.get('/makeprofileperformer/', (req, res) => {
+	log("Loaded Make Profile for Performer.")
 	if (req.session.user) {
 		res.sendFile(__dirname + '/public/makeprofileperformer.html');
 	} else {

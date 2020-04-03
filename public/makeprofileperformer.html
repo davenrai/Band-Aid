@@ -61,113 +61,92 @@
 
   <br>
 
+  <form class="well form-horizontal" action="/dashboard-venue" method="get" id="contact_form">
 
+    <legend>
+      <h2 style="text-align: center;"><b>Additional profile info</b></h2>
+    </legend><br>
 
+    <!-- Text input-->
 
-  <div class="container">
-
-    <form class="well form-horizontal" action=" " method="post" id="contact_form">
-      <fieldset>
-
-        <!-- Form Name -->
-        <legend>
-          <center>
-            <h2><b>Additional profile info</b></h2>
-          </center>
-        </legend><br>
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">Name</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-user"></span>
-              <input name="name" placeholder="Name" class="form-control" type="text">
-            </div>
-          </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Name</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-user"></span>
+          <input id='name' name="name" placeholder="Name" class="form-control" type="text">
         </div>
+      </div>
+    </div>
 
-        <!-- Text input-->
+    <!-- Text input-->
 
-        <div class="form-group">
-          <label class="col-md-4 control-label">Phone</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-user"></span>
-              <input name="phone" placeholder="416- or 905- " class="form-control" type="text">
-            </div>
-          </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Phone</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-user"></span>
+          <input name="phone" id='phone' placeholder="416- or 905- " class="form-control" type="text">
         </div>
+      </div>
+    </div>
 
 
 
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label">email</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-envelope"></span>
-              <input name="email" placeholder="email address" class="form-control" type="text">
-            </div>
-          </div>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label">email</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-envelope"></span>
+          <input name="email" id='email' placeholder="email address" class="form-control" type="text">
         </div>
+      </div>
+    </div>
 
 
-        <!-- Text input-->
+    <!-- Text input-->
 
-        <div class="form-group">
-          <label class="col-md-4 control-label">Location</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-user"></span>
-              <input name="location" placeholder="Toronto" class="form-control" type="text">
-            </div>
-          </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Location</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-user"></span>
+          <input name="location" id='location' placeholder="Toronto" class="form-control" type="text">
         </div>
+      </div>
+    </div>
 
 
-        <!-- Text input-->
+    <!-- Text input-->
 
-        <div class="form-group">
-          <label class="col-md-4 control-label">Genre</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-user"></span>
-              <input name="genre" placeholder="Jazz/Rock/Technopop" class="form-control" type="text">
-            </div>
-          </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Genre</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-user"></span>
+          <input name="genre" id='genre' placeholder="Jazz/Rock/Technopop" class="form-control" type="text">
         </div>
+      </div>
+    </div>
 
-        <!-- Text input-->
+    <!-- Text input-->
 
-        <div class="form-group">
-          <label class="col-md-4 control-label">Description</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="glyphicon glyphicon-user"></span>
-              <input name="description" placeholder="Description" class="form-control" type="text">
-            </div>
-          </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label">Description</label>
+      <div class="col-md-4 inputGroupContainer">
+        <div class="input-group">
+          <span class="glyphicon glyphicon-user"></span>
+          <input name="description" id='description' placeholder="Description" class="form-control" type="text">
         </div>
-
-
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label"></label>
-          <div class="col-md-4"><br>
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button onclick='updateProfileInfo()'
-              class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSUBMIT <span
-                class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-          </div>
-        </div>
-
-      </fieldset>
-    </form>
+      </div>
+    </div>
+    <button onclick='updateProfileInfo()'
+      class="btn btn-warning">SUBMIT</button>
+  </form>
   </div>
-  </div><!-- /.container -->
 
-  <script type="text/javascript" src="/js/make_profile.js"></script>
+  <script type="text/javascript" src="./js/make_profile.js"></script>
 
 </body>
 

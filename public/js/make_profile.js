@@ -4,22 +4,17 @@ const log = console.log;
 log('Loaded front-end javascript.');
 
 function updateProfileInfo() {
-    //parentElement of button is the list item li
-    // const venueName = e.target.parentElement.childNodes[1].innerText
-    // const performerName = e.target.parentElement.childNodes[3].innerText
-    // log("parent element is: " + e.target.parentElement)
-    // log("venueName is: " + venueName)
-    // log("performerName is: " + performerName)
-    
     // the URL for the request
     const url = '/makeprofileperformer';
-    const myname = "fred";
-    const data = {
-        name: myname
-    };
+    let data = {
+        name: document.querySelector('#name').value,
+        phone: document.querySelector('#phone').value,
+        email: document.querySelector('#email').value,
+        location: document.querySelector('#location').value,
+        genre: document.querySelector('#genre').value,
+        description: document.querySelector('#description').value
+    }
 
-    log("data object is: " + data);
-    log("data.booking field is: " + data.booking);
 
     const request = new Request(url, {
         method: 'PATCH', 
@@ -29,21 +24,21 @@ function updateProfileInfo() {
             'Content-Type': 'application/json'
         },
     });
-    
-    // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
-    log("about to fetch");
-    // fetch(url, request)  // DO NOT use this
-    fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    .then((res) => { 
+    fetch(request)
+    .then(function(res) {
+
+        // Handle response we get from the API.
         if (res.status === 200) {
-            // return a promise that resolves with the JSON body
-            log("result is 200");
-            // log(res.body)
-            // log(res)
+            // If student was added successfully, tell the user.
+            console.log('UPDATED')
         } else {
-            alert('Could not apply to a (performer) user');
-        }                
+            // If server couldn't add the student, tell the user.
+            // Here we are adding a generic message, but you could be more specific in your app.
+            console.log('didnt work')
+        }
+        log(res)  // log the result in the console for development purposes,
+                          //  users are not expected to see this.
     }).catch((error) => {
-        log(error);
-    });
+        log(error)
+    })
 }
