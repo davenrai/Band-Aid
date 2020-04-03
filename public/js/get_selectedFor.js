@@ -29,9 +29,6 @@ function getSelectedFor() {
                 venueTitle.innerText = 'Venue Name: ';
                 li.appendChild(venueTitle);
                 const divVenueName = document.createElement("span");
-                //this also works
-                // const divVenueName = document.createElement("div");
-                // how to createTextNode using ${} notation
                 divVenueName.innerHTML = `${b.venuename}`;
                 li.appendChild(divVenueName);
                 // use &nbsp (non-breaking line space)  ???
@@ -63,7 +60,7 @@ function getSelectedFor() {
                 chooseApplicantButton.appendChild(buttonText);
                 chooseApplicantButton.addEventListener("click", chooseApplicant);
                 li.appendChild(chooseApplicantButton);
-                performersList.appendChild(li);
+                selectedForList.appendChild(li);
                 log(b);
             }
         });
