@@ -285,42 +285,6 @@ app.post('/makeprofilevenue/:username', (req, res) => {
 });
 
 
-app.post('/venue', (req, res) => {
-	log(req.body);
-	// Create a new venue
-	const venue = new Venue({
-		username: req.body.username,
-		password: req.body.password
-	});
-	// Save the venue
-	venue.save().then((venue) => {
-		res.send(venue);
-	}, (error) => {
-		res.status(400).send(error); // 400 for bad request
-	});
-});
-
-
-// Set up a POST route to *create* a venue.
-app.post('/venues', (req, res) => {
-	log(req.body);
-	// Create a new venue
-	const venue = new Venue({
-		name: req.body.name,
-		location: req.body.location,
-		phone: req.body.phone,
-		description: req.body.description,
-		bookings: req.body.bookings
-	});
-	// Save the venue
-	venue.save().then((venue) => {
-		res.send(venue);
-	}, (error) => {
-		res.status(400).send(error); // 400 for bad request
-	});
-});
-
-
 // Set up a POST route to *create* a booking for a venue.
 app.post('/bookings', (req, res) => {
 	log(req.body);
@@ -396,7 +360,6 @@ app.post('/bookings/:id', (req, res) => {
 		res.status(500).send(); // server error
 	});
 });
-
 
 
 app.post('/bookings/apply/:id', (req, res) => {
@@ -538,54 +501,6 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 		res.status(500).send(); // server error
 	});
 });
-
-
-// a GET route to get all venues
-app.get('/venues', (req, res) => {
-	Venue.find().then((venues) => {
-		res.send({
-			venues
-		}); // can wrap in object if want to add more properties
-	}, (error) => {
-		res.status(500).send(error); // server error
-	});
-});
-
-
-// Set up a POST route to *create* a booking for a venue.
-app.post('/venues/:id', (req, res) => {
-	/// req.params has the wildcard parameters in the url, in this case, id.
-	// log(req.params.id)
-	const id = req.params.id;
-	// Good practise: Validate id immediately.
-	if (!ObjectID.isValid(id)) {
-		res.status(404).send(); // if invalid id, definitely can't find resource, 404.
-		return; // so that we don't run the rest of the handler.
-	}
-	// Otherwise, findById
-	Venue.findById(id).then((venue) => {
-		if (!venue) {
-			res.status(404).send(); // could not find this venue
-		} else {
-			const booking = {
-				place: req.body.place,
-				date: req.body.date
-			};
-			venue.bookings.push(booking);
-			venue.save().then((result) => {
-				res.send({
-					venue,
-					booking
-				});
-			}).catch((error) => {
-				res.status(500).send(); // server error
-			});
-		}
-	}).catch((error) => {
-		res.status(500).send(); // server error
-	});
-});
-
 
 
 // ****************************************************************************

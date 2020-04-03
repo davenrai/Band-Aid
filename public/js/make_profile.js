@@ -1,8 +1,7 @@
 /* AJAX fetch() calls */
 
-const log = console.log
-
-log('Loaded front-end javascript.')
+const log = console.log;
+log('Loaded front-end javascript.');
 
 function updateProfileInfo() {
     //parentElement of button is the list item li
@@ -14,13 +13,13 @@ function updateProfileInfo() {
     
     // the URL for the request
     const url = '/makeprofileperformer';
-    const myname = "fred"
+    const myname = "fred";
     const data = {
         name: myname
-    }
+    };
 
-    log("data object is: " + data)
-    log("data.booking field is: " + data.booking)
+    log("data object is: " + data);
+    log("data.booking field is: " + data.booking);
 
     const request = new Request(url, {
         method: 'PATCH', 
@@ -32,13 +31,13 @@ function updateProfileInfo() {
     });
     
     // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
-    log("about to fetch")
+    log("about to fetch");
     // fetch(url, request)  // DO NOT use this
     fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-            log("result is 200")
+            log("result is 200");
             // log(res.body)
             // log(res)
         } else {
