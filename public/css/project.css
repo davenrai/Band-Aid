@@ -62,12 +62,19 @@ h1 {
 }
 
 #newRequest {
-
 	background-color: peachpuff;
 	margin: 10px;
 	padding: 10px;
 	display: inline-block;
 	margin-top: 130px;
+}
+
+.adminForm {
+	background-color: peachpuff;
+	margin: 10px;
+	padding: 10px;
+	margin-top: 10px;
+	display: block;
 }
 
 #requestList {

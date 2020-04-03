@@ -5,26 +5,23 @@
     <meta charset="utf-8">
     <title>Admin</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous">
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/project.css">
 </head>
 
 
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            
-            <a style="color:white"class="navbar-brand" href="#">Admin Dashboard</a>
-            <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
-    
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <a style="color:white" class="navbar-brand" href="#">Admin Dashboard</a>
+        <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="dashboard-performer.html">My dashboard</a>
@@ -33,37 +30,31 @@
                     <a class="nav-link" href="create-booking-request.html">Make request</a>
                   </li> -->
                 <li>
-                    <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutbutton'>Logout</button>
+                    <button class="btn btn-danger" onclick='window.location = "/users/logout"'
+                        id='logoutbutton'>Logout</button>
                 </li>
-              </ul>
-            </div>
-    
-          </nav>
+            </ul>
+        </div>
+    </nav>
 
     <div id="timeline">
-        <div id="newRequest">
+        <div class="adminForm" id="deleteUser">
             <strong>Delete a User</strong>
             <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Username">
+                <input id="venueName" type="text" placeholder="Username"><br>
                 <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
                 <input type="submit" value="Delete User">
             </form>
         </div>
-    </div>
-
-    <div id="timeline">
-        <div id="newRequest">
+        <div class="adminForm" id="deleteRequest">
             <strong>Delete a Request</strong>
             <form id="requestForm">
-                <input id="venueName" type="text" placeholder="Request ID">
+                <input id="venueName" type="text" placeholder="Request ID"><br>
                 <textarea id="reqDesc" rows="2" cols="80">Reason for Deletion?</textarea><br>
                 <input type="submit" value="Delete Request">
             </form>
         </div>
-    </div>
-
-    <div id="timeline">
-        <div id="newRequest">
+        <div class="adminForm" id="changePassword">
             <strong>Change a Password</strong>
             <form id="requestForm">
                 <input id="venueName" type="text" placeholder="Username">
@@ -71,11 +62,8 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-    </div>
-
-    <div id="timeline">
-        <div id="newRequest">
-            <strong>Change Details of an Event</strong>
+        <div class="adminForm" id="changeBooking">
+            <strong>Change Details of an Booking</strong>
             <form id="requestForm">
                 <input id="venueName" type="text" placeholder="Event ID">
                 <input id="venueName" type="text" placeholder="Updated Location">
