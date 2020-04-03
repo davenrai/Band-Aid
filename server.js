@@ -12,8 +12,6 @@ const {	mongoose } = require('./db/mongoose');
 mongoose.set('useFindAndModify', false); // for some deprecation issues
 
 // import the mongoose models
-const {	Performer } = require('./models/performer');
-const {	Venue } = require('./models/venue');
 const { User } = require('./models/user');
 const {	Booking } = require('./models/booking');
 
