@@ -47,14 +47,25 @@ function getApplicants() {
                 const lineSpace2 = document.createTextNode("---");
                 li.appendChild(lineSpace2);
                 
+                const locationTitle = document.createElement("strong");
+                locationTitle.innerText = 'Location: ';
+                li.appendChild(locationTitle);
+                const divLocation = document.createElement("span");
+                divLocation.innerHTML = `${b.location}`;
+                li.appendChild(divLocation);
+                const lineSpace3 = document.createTextNode("---");
+                li.appendChild(lineSpace3); 
+                
+                
+                
                 const applicantTitle = document.createElement("strong");
                 applicantTitle.innerText = 'Performer Name: ';
                 li.appendChild(applicantTitle);
                 const divPerformerName = document.createElement("span");
                 divPerformerName.innerHTML = `${b.applications[i]}`;
                 li.appendChild(divPerformerName);
-                const lineSpace3 = document.createTextNode("---");
-                li.appendChild(lineSpace3);            
+                const lineSpace4 = document.createTextNode("---");
+                li.appendChild(lineSpace4);            
 
                 // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
                 const chooseApplicantButton = document.createElement("button");
@@ -94,7 +105,7 @@ function removeRequest(e) {
 function addBookingtoPerformer(e) {
     //parentElement of button is the list item li
     const venueName = e.target.parentElement.childNodes[1].innerText;
-    const performerName = e.target.parentElement.childNodes[7].innerText;
+    const performerName = e.target.parentElement.childNodes[10].innerText;
     log("parent element is: " + e.target.parentElement);
     log("venueName is: " + venueName);
     log("performerName is: " + performerName);
