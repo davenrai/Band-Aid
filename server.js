@@ -117,9 +117,6 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-// // static js directory
-// app.use("/js", express.static(__dirname + '/public/js'))
-
 // static img directory
 app.use("/img", express.static(__dirname + '/public/img'));
 
@@ -158,7 +155,6 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			} else {
 				res.redirect('/login');
 			}
-			// res.sendFile(__dirname + '/public/dashboard.html');
 		},
 		(error) => {
 			res.status(400).send(error); // 400 for bad request
@@ -205,51 +201,10 @@ app.get('/users/:username', (req, res) => {
 			res.status(404).send();  // could not find this user
 		} else {
 			/// sometimes we wrap returned object in another object:
-			//res.send({ user })   
 			res.send(user);
 		}
 	}).catch((error) => {
 		res.status(500).send();  // server error
-	});
-});
-
-
-// Update user in db with performer information from make profile
-// app.patch('/makeprofileperformer/', sessionChecker, (req, res) => {
-app.patch('/makeprofileperformer2', (req, res) => {	
-	// const username = req.body.username;
-	const username = "bob239"
-	log("in makeprofile username is: " + username);
-	log("in makeprofile req is: " + req.body.username);
-	
-	// Find user
-	User.findOne({ 'username': username}).then(user => {	
-		if (!user) {
-			log("!user");
-			res.status(404).send(); // Cannot find resource
-		} else {
-			user.name = req.body.name;
-			user.location = req.body.location;
-			user.phone = req.body.phone;
-			user.genre = req.body.genre;
-			user.description = req.body.description;
-			// Save the user to mongo
-			user.save().then(user => {
-				log(result)
-				res.send({ user })
-				if (req.session.usertype === 'admin') {
-					res.redirect('/admin'); // takes you to admin dash
-				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
-				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
-				}
-			}, error => {
-				res.status(400).send(error); // Bad request
-			});
-		}
-	}).catch(error => {
-		res.status(400).send(error); // Bad request for updating user
 	});
 });
 
@@ -262,7 +217,7 @@ app.patch('/makeprofileperformer', (req, res) => {
 	const username = "bob239"
 	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
 	log(req.body)  // this will show object contents
-	log("req.body is: " + req.body) // this weill show [Object object]
+	log("req.body is: " + req.body) // this will show [Object object]
 	log("in /makeprofileperformer")
 	log(req.session.username)
 	log(req.session.usertype)
@@ -293,15 +248,14 @@ app.patch('/makeprofileperformer', (req, res) => {
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-performer');
 				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-venue');
 				}
 
 			}).catch((error) => {
 				res.status(500).send()  // server error
 			})
-
 		}
 	}).catch((error) => {
 		res.status(500).send()  // server error
@@ -336,6 +290,7 @@ app.post('/makeprofilevenue/:username', (req, res) => {
 });
 
 
+
 app.post('/venue', (req, res) => {
 	log(req.body);
 	// Create a new venue
@@ -350,6 +305,8 @@ app.post('/venue', (req, res) => {
 		res.status(400).send(error); // 400 for bad request
 	});
 });
+
+
 
 // Set up a POST route to *create* a venue.
 app.post('/venues', (req, res) => {
@@ -372,7 +329,6 @@ app.post('/venues', (req, res) => {
 
 
 
-
 // Set up a POST route to *create* a booking for a venue.
 app.post('/bookings', (req, res) => {
 	log(req.body);
@@ -384,8 +340,6 @@ app.post('/bookings', (req, res) => {
 		description: req.body.description,
 		applications: req.body.applications
 	});
-	// res.send(booking);
-	// res.redirect('/dashboard');
 
 	// Save the request
 	booking.save().then(booking => {
@@ -393,14 +347,15 @@ app.post('/bookings', (req, res) => {
 		if (req.session.usertype === 'admin') {
 			res.redirect('/admin'); // takes you to admin dash
 		} else if (req.session.usertype === 'performer') {
-			res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+			res.redirect('/dashboard-performer');
 		} else if (req.session.usertype === 'venue') {
-			res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+			res.redirect('/dashboard-venue');
 		}
 		}, (error) => {
 			res.status(400).send(error); // 400 for bad booking
 		});
 });
+
 
 
 // a GET route to get all bookings for all venues
@@ -411,6 +366,7 @@ app.get('/bookings', (req, res) => {
 		res.status(500).send(error); // server error
 	});
 });
+
 
 
 app.post('/bookings/:id', (req, res) => {
@@ -451,13 +407,13 @@ app.post('/bookings/:id', (req, res) => {
 			}).catch((error) => {
 				res.status(500).send()  // server error
 			})
-
 		}
 	}).catch((error) => {
 		res.status(500).send()  // server error
 	})
 
 })
+
 
 
 app.post('/bookings/apply/:id', (req, res) => {
@@ -468,8 +424,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 	log("id is: " + id)
 	log(req.session.username)
 	log(req.session.usertype)
-
-
 
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
@@ -489,8 +443,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 			};
 
 			booking.applications.push(req.session.username);
-			// booking.applications.push("postman test");
-
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
@@ -498,9 +450,9 @@ app.post('/bookings/apply/:id', (req, res) => {
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-performer');
 				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-venue');
 				// Should never get here
 				} else {
 					res.redirect('/index');
@@ -509,7 +461,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 			}).catch((error) => {
 				res.status(500).send()  // server error
 			})
-
 		}
 	}).catch((error) => {
 		res.status(500).send()  // server error
@@ -518,16 +469,13 @@ app.post('/bookings/apply/:id', (req, res) => {
 })
 
 
+
 // for view_available_bookings.js
 // for performer to their username to a booking
 app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
-	// const id = Booking.findOne({venuename: 1});
 	const venuename = req.params.venuename
-	// log("venuename works? " + id)
-	// const id = "4"
 	log("in /bookings/applyByVenue/:venuename")
-	// log("id is: " + id)
 	log(req.session.username)
 	log(req.session.usertype)
 
@@ -539,17 +487,10 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
 
-	// log("Booking.findById(id)" + Booking.findById(id))
-	// Otherwise, findById
 	Booking.findOne({venuename: venuename}).then((booking) => {
 		if (!booking) {
 			res.status(404).send()  // could not find this restaurant
 		} else {
-			const application = {
-				performer: "test push"
-				// performer: req.session.username
-			};
-
 			booking.applications.push(req.session.username);
 			// booking.applications.push("postman test");
 
@@ -560,15 +501,14 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-performer');
 				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-venue');
 				}
 
 			}).catch((error) => {
 				res.status(500).send()  // server error
 			})
-
 		}
 	}).catch((error) => {
 		res.status(500).send()  // server error
@@ -601,7 +541,7 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	User.findOne({ 'username': performername}).then(user => {	
 		if (!user) {
 			log("in if stmt /users/choosePerformer/:performername")
-			res.status(404).send()  // could not find this restaurant
+			res.status(404).send()  // could not find this performer
 		} else {
 			log("req.body.booking is: " + req.body.booking)
 			user.selectedFor.push(req.body.booking);
@@ -614,22 +554,20 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-performer');
 				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+					res.redirect('/dashboard-venue');
 				}
 
 			}).catch((error) => {
 				res.status(500).send()  // server error
 			})
-
 		}
 	}).catch((error) => {
 		res.status(500).send()  // server error
 	})
 
 })
-
 
 
 
@@ -681,6 +619,8 @@ app.post('/venues/:id', (req, res) => {
 });
 
 
+
+// ****************************************************************************
 // sessionChecker will run before the route handler and check if we are
 // logged in, ensuring that we go to the dashboard if that is the case.
 
@@ -697,11 +637,11 @@ app.get('/', sessionChecker, (req, res) => {
 // the dashboard page
 app.get('/dashboard', (req, res) => {
 	if (req.session.usertype === 'performer') {
-		res.sendFile(__dirname + '/public/dashboard-performer.html'); // takes you to dashboard-performer after login
+		res.sendFile(__dirname + '/public/dashboard-performer.html');
 	} else if (req.session.usertype === 'venue') {
-		res.sendFile(__dirname + '/public/dashboard-venue.html'); // takes you to dashboard after login
+		res.sendFile(__dirname + '/public/dashboard-venue.html');
 	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
+		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -709,9 +649,9 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/dashboard-performer', (req, res) => {
 	if (req.session.usertype === 'performer') {
-		res.sendFile(__dirname + '/public/dashboard-performer.html'); // takes you to dashboard-performer after login
+		res.sendFile(__dirname + '/public/dashboard-performer.html');
 	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
+		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -720,9 +660,9 @@ app.get('/dashboard-performer', (req, res) => {
 
 app.get('/dashboard-venue', (req, res) => {
 	if (req.session.usertype === 'venue') {
-		res.sendFile(__dirname + '/public/dashboard-venue.html'); // takes you to dashboard-performer after login
+		res.sendFile(__dirname + '/public/dashboard-venue.html');
 	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html'); // takes you to dashboard after login
+		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -756,7 +696,7 @@ app.get('/admin', (req, res) => {
 });
 
 
-// ****** OR this one ??????????????????????????
+
 // A route to check if a use is logged in on the session cookie
 app.get("/users/check-session", (req, res) => {
 	if (req.session.user) {
@@ -771,7 +711,7 @@ app.get("/users/check-session", (req, res) => {
 
 
 
-//---------------------------------------------------------------------------
+//*****************************************************************************
 
 /*** Webpage routes below **********************************/
 // Serve the build
