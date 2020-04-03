@@ -145,9 +145,9 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			req.session.username = user.username;
 			req.session.usertype = user.usertype;
 			if (req.session.usertype === 'performer') {
-				res.redirect(`/makeprofileperformer/${user.username}`);
+				res.redirect('/makeprofileperformer');
 			} else if (req.session.usertype === 'venue') {
-				res.redirect(`/makeprofilevenue/${user.username}`);
+				res.redirect('/makeprofilevenue');
 			} else if (req.session.usertype === 'admin') {
 				res.redirect('/admin');
 			} else {
