@@ -19,7 +19,7 @@ function getSelectedFor() {
         }                
     })
     .then((json) => {  // the resolved promise with the JSON body
-        performersList = document.querySelector('#performersList');
+        performersList = document.querySelector('#selectedForList');
         performersList.innerHTML = '';
         log(json);
         json.bookings.map((b) => {
