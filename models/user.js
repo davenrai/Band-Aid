@@ -49,7 +49,7 @@ const UserSchema = new mongoose.Schema({
 		required: false,
 		minlength: 0
 	},
-	selectedFor: [String]
+	selectedFor: [String] // array of venue usernames
 });
 
 // An example of Mongoose middleware.

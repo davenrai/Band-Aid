@@ -1,8 +1,7 @@
 /* AJAX fetch() calls */
 
-const log = console.log
-
-log('Loaded front-end javascript.')
+const log = console.log;
+log('Loaded front-end javascript.');
 
 // A function to send a GET aaplicants for have applied for a booking.
 function getApplicants() {
@@ -14,18 +13,18 @@ function getApplicants() {
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-            return res.json() 
+            return res.json();
         } else {
-            alert('Could not get users')
+            alert('Could not get users');
         }                
     })
     .then((json) => {  // the resolved promise with the JSON body
-        performersList = document.querySelector('#performersList')
+        performersList = document.querySelector('#performersList');
         performersList.innerHTML = '';
-        log(json)
+        log(json);
         json.bookings.map((b) => {
             for (let i = 0; i < b.applications.length; i++) {
-                li = document.createElement('li')
+                li = document.createElement('li');
                 const venueTitle = document.createElement("strong");
                 venueTitle.innerText = 'Venue Name: ';
                     li.appendChild(venueTitle);
@@ -49,19 +48,19 @@ function getApplicants() {
                 chooseApplicantButton.appendChild(buttonText);
                 chooseApplicantButton.addEventListener("click", chooseApplicant);
                 li.appendChild(chooseApplicantButton);
-                performersList.appendChild(li)
-                log(b)
+                performersList.appendChild(li);
+                log(b);
             }
-        })
+        });
     }).catch((error) => {
-        log(error)
-    })
+        log(error);
+    });
 }
 
 function chooseApplicant(e) {
-    log("button clicked")
-    addBookingtoPerformer(e)
-    removeRequest(e)
+    log("button clicked");
+    addBookingtoPerformer(e);
+    removeRequest(e);
     return e;
 }
 
@@ -79,20 +78,20 @@ function removeRequest(e) {
 
 function addBookingtoPerformer(e) {
     //parentElement of button is the list item li
-    const venueName = e.target.parentElement.childNodes[1].innerText
-    const performerName = e.target.parentElement.childNodes[3].innerText
-    log("parent element is: " + e.target.parentElement)
-    log("venueName is: " + venueName)
-    log("performerName is: " + performerName)
+    const venueName = e.target.parentElement.childNodes[1].innerText;
+    const performerName = e.target.parentElement.childNodes[3].innerText;
+    log("parent element is: " + e.target.parentElement);
+    log("venueName is: " + venueName);
+    log("performerName is: " + performerName);
     
     // the URL for the request
     const url = '/users/choosePerformer/' + performerName;
     const data = {
         booking: venueName
-    }
+    };
 
-    log("data object is: " + data)
-    log("data.booking field is: " + data.booking)
+    log("data object is: " + data);
+    log("data.booking field is: " + data.booking);
 
     const request = new Request(url, {
         method: 'POST', 
@@ -104,15 +103,15 @@ function addBookingtoPerformer(e) {
     });
     
     // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
-    log("about to fetch")
+    log("about to fetch");
     // fetch(url, request)  // DO NOT use this
     fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-            log("result is 200")
-            log(res.body)
-            log(res)
+            log("result is 200");
+            log(res.body);
+            log(res);
         } else {
             alert('Could not apply to a (performer) user');
         }                
