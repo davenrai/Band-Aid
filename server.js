@@ -242,7 +242,6 @@ app.get('/users/user_by_req', (req, res) => {
 // for make_profile.js
 // for performer to update their profile info
 app.patch('/makeprofileperformer', (req, res) => {
-<<<<<<< HEAD
 	// get the updated name and year only from the request body.
 	const id = req.session.user
 	const { name, phone, location, genre, description } = req.body
@@ -255,23 +254,6 @@ app.patch('/makeprofileperformer', (req, res) => {
 
 	// Update the student by their id.
 	User.findById(id).then((user) => {
-=======
-	/// req.params has the wildcard parameters in the url, in this case, id.
-	const username = req.session.username;
-	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
-	log(req.body); // this will show object contents
-	log("req.body is: " + req.body); // this will show [Object object]
-	log("in /makeprofileperformer");
-	log(req.session.username);
-	log(req.session.usertype);
-	// Good practise: Validate id immediately.
-	// if (!ObjectID.isValid(id)) {
-	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
-	// 	return;  // so that we don't run the rest of the handler.
-	// }
-	// Otherwise, findById
-	User.findOne({ 'username': username}).then(user => {	
->>>>>>> b4526da1b75b78a95234dcc8c38a07d52be708b4
 		if (!user) {
 			res.status(404).send()
 		} else {   
@@ -282,21 +264,7 @@ app.patch('/makeprofileperformer', (req, res) => {
 			user.description = description
 			
 			user.save().then((result) => {
-<<<<<<< HEAD
 				res.send(user)
-=======
-				// pass the reservation that was just pushed
-				// note that mongoose provided an _id when it was pushed
-				log(result);
-				// res.send({ user });
-				if (req.session.usertype === 'admin') {
-					res.redirect('/admin'); // takes you to admin dash
-				} else if (req.session.usertype === 'performer') {
-					res.redirect('/dashboard-performer');
-				} else if (req.session.usertype === 'venue') {
-					res.redirect('/dashboard-venue');
-				}
->>>>>>> b4526da1b75b78a95234dcc8c38a07d52be708b4
 			}).catch((error) => {
 				res.status(500).send()
 			})
