@@ -37,14 +37,24 @@ function getApplicants() {
                 // use &nbsp (non-breaking line space)  ???
                 const lineSpace1 = document.createTextNode("---");
                 li.appendChild(lineSpace1);
+                
+                const dateTitle = document.createElement("strong");
+                dateTitle.innerText = 'Date: ';
+                li.appendChild(dateTitle);
+                const divBookingDate = document.createElement("span");
+                divBookingDate.innerHTML = `${b.bookingDate}`;
+                li.appendChild(divBookingDate);
+                const lineSpace2 = document.createTextNode("---");
+                li.appendChild(lineSpace2);
+                
                 const applicantTitle = document.createElement("strong");
                 applicantTitle.innerText = 'Performer Name: ';
                 li.appendChild(applicantTitle);
                 const divPerformerName = document.createElement("span");
                 divPerformerName.innerHTML = `${b.applications[i]}`;
                 li.appendChild(divPerformerName);
-                const lineSpace2 = document.createTextNode("---");
-                li.appendChild(lineSpace2);              
+                const lineSpace3 = document.createTextNode("---");
+                li.appendChild(lineSpace3);            
 
                 // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
                 const chooseApplicantButton = document.createElement("button");
@@ -84,7 +94,7 @@ function removeRequest(e) {
 function addBookingtoPerformer(e) {
     //parentElement of button is the list item li
     const venueName = e.target.parentElement.childNodes[1].innerText;
-    const performerName = e.target.parentElement.childNodes[3].innerText;
+    const performerName = e.target.parentElement.childNodes[7].innerText;
     log("parent element is: " + e.target.parentElement);
     log("venueName is: " + venueName);
     log("performerName is: " + performerName);

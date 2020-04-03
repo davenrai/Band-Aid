@@ -289,6 +289,7 @@ app.post('/bookings', (req, res) => {
 	const booking = new Booking({
 		venuename: req.body.venuename,
 		location: req.body.location,
+		bookingDate: req.body.bookingDate,
 		phone: req.body.phone,
 		description: req.body.description,
 		applications: []

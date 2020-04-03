@@ -5,14 +5,14 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // a Mongoose Schema allows us to add additional functionality.
-const BookingSchema = new mongoose.Schema({
-    venuename: String,
-	bookingDate: String,
-	location, String,
-	phone, String,
-	description: String,
+// const BookingSchema = new mongoose.Schema({
+//     venuename: String,
+// 	bookingDate: String,
+// 	location, String,
+// 	phone, String,
+// 	description: String,
 
-});
+// });
 
 const UserSchema = new mongoose.Schema({
 	username: {
