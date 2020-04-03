@@ -23,43 +23,27 @@ function getSelectedFor() {
         performersList.innerHTML = '';
         log(json);
         json.bookings.map((b) => {
-            for (let i = 0; i < b.applications.length; i++) {
+            for (let i = 0; i < b.selectedFor.length; i++) {
                 li = document.createElement('li');
                 const venueTitle = document.createElement("strong");
                 venueTitle.innerText = 'Venue Name: ';
                 li.appendChild(venueTitle);
                 const divVenueName = document.createElement("span");
-                divVenueName.innerHTML = `${b.venuename}`;
+                divVenueName.innerHTML = `${selectedFor[i]}`;
                 li.appendChild(divVenueName);
-                // use &nbsp (non-breaking line space)  ???
-                const lineSpace1 = document.createTextNode("---");
-                li.appendChild(lineSpace1);
-                
-                const dateTitle = document.createElement("strong");
-                dateTitle.innerText = 'Date: ';
-                li.appendChild(dateTitle);
-                const divBookingDate = document.createElement("span");
-                divBookingDate.innerHTML = `${b.bookingDate}`;
-                li.appendChild(divBookingDate);
-                const lineSpace2 = document.createTextNode("---");
-                li.appendChild(lineSpace2);
-                
-                const applicantTitle = document.createElement("strong");
-                applicantTitle.innerText = 'Performer Name: ';
-                li.appendChild(applicantTitle);
-                const divPerformerName = document.createElement("span");
-                divPerformerName.innerHTML = `${b.applications[i]}`;
-                li.appendChild(divPerformerName);
-                const lineSpace3 = document.createTextNode("---");
-                li.appendChild(lineSpace3);            
 
-                // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
-                const chooseApplicantButton = document.createElement("button");
-                chooseApplicantButton.className = "choose";
-                const buttonText = document.createTextNode("I choose you!");
-                chooseApplicantButton.appendChild(buttonText);
-                chooseApplicantButton.addEventListener("click", chooseApplicant);
-                li.appendChild(chooseApplicantButton);
+
+                // *** will use code below once selectedFor array holds the date
+                // // use &nbsp (non-breaking line space)  ???
+                // const lineSpace1 = document.createTextNode("---");
+                // li.appendChild(lineSpace1);
+                // const dateTitle = document.createElement("strong");
+                // dateTitle.innerText = 'Date: ';
+                // li.appendChild(dateTitle);
+                // const divBookingDate = document.createElement("span");
+                // divBookingDate.innerHTML = `${b.bookingDate}`;
+                // li.appendChild(divBookingDate);
+                
                 selectedForList.appendChild(li);
                 log(b);
             }
