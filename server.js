@@ -217,6 +217,22 @@ app.get('/users/:username', (req, res) => {
 });
 
 
+// a DELETE route to delete a specific user
+app.delete('/users', (req, res) => {
+	const username = req.body.username;
+	// Find user
+	User.findOneAndDelete({ 'username': username }).then(user => {	
+		if (!user) {
+			res.status(404).send();  // could not find this user
+		} else {
+			res.send(user);
+		}
+	}).catch((error) => {
+		res.status(500).send(error);  // server error, could not delete
+	});
+});
+
+
 
 // a GET route to get a specific user using req.session.username
 app.get('/selectedFor', (req, res) => {
@@ -339,6 +355,22 @@ app.get('/bookings', (req, res) => {
 		res.send({ bookings }); // can wrap in object if want to add more properties
 	}, (error) => {
 		res.status(500).send(error); // server error
+	});
+});
+
+
+// a DELETE route to delete a specific booking
+app.delete('/bookings', (req, res) => {
+	const venuename = req.body.venuename;
+	// Find booking
+	User.findOneAndDelete({ 'venuename': venuename }).then(booking => {	
+		if (!booking) {
+			res.status(404).send();  // could not find this booking
+		} else {
+			res.send(booking);
+		}
+	}).catch((error) => {
+		res.status(500).send(error);  // server error, could not delete
 	});
 });
 

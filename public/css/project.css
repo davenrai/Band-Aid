@@ -2,6 +2,11 @@
 
 
 /*** Completed body style below ***/
+
+
+#bodyLogin {
+	background-image: url(backgroundImage.jpeg)
+}
 body {
 	background-color: #F9F9F8;
 	margin: 0;
