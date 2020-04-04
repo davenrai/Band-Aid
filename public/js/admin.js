@@ -1,5 +1,4 @@
 /* AJAX calls */
-
 const log = console.log;
 
 // function updatePassword() {
@@ -22,10 +21,10 @@ const log = console.log;
 //         // Handle response we get from the API.
 //         if (res.status === 200) {
 //             // If password was changed successfully, tell the admin.
-//             console.log('UPDATED');
+//             log('UPDATED');
 //         } else {
 //             // If password couldn't be changed, tell the admin.
-//             console.log('didnt work');
+//             log('didnt work');
 //         }
 //     }).catch((error) => {
 //         log(error);
@@ -41,7 +40,7 @@ function updateBooking() {
         description: document.querySelector('#description').value,
     };
     const request = new Request(url, {
-        method: 'PATCH', 
+        method: 'PATCH',
         body: JSON.stringify(data),
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -49,28 +48,29 @@ function updateBooking() {
         },
     });
     fetch(request)
-    .then(function(res) {
-        // Handle response we get from the API.
-        if (res.status === 200) {
-            // If password was changed successfully, tell the admin.
-            console.log('UPDATED');
-        } else {
-            // If password couldn't be changed, tell the admin.
-            console.log('didnt work');
-        }
-    }).catch((error) => {
-        log(error);
-    });
+        .then(function (res) {
+            // Handle response we get from the API.
+            if (res.status === 200) {
+                // If password was changed successfully, tell the admin.
+                log('UPDATED');
+            } else {
+                // If password couldn't be changed, tell the admin.
+                log('didnt work');
+            }
+        }).catch((error) => {
+            log(error);
+        });
 }
+
 
 function deleteUser() {
     // the URL for the request
     const url = '/users';
     let data = {
         username: document.querySelector('#username').value
-    }
+    };
     const request = new Request(url, {
-        method: 'DELETE', 
+        method: 'DELETE',
         body: JSON.stringify(data),
         headers: {
             'Accept': 'application/json, text/plain, */*',
@@ -78,22 +78,46 @@ function deleteUser() {
         },
     });
     fetch(request)
-    .then(function(res) {
-
-        // Handle response we get from the API.
-        if (res.status === 200) {
-            // If student was added successfully, tell the user.
-            console.log('UPDATED')
-        } else {
-            // If server couldn't add the student, tell the user.
-            // Here we are adding a generic message, but you could be more specific in your app.
-            console.log('error')
-        }
-        log(res)  // log the result in the console for development purposes,
-                          //  users are not expected to see this.
-    }).catch((error) => {
-        log(error)
-    })
-    
+        .then(function (res) {
+            // Handle response we get from the API.
+            if (res.status === 200) {
+                // If user was deleted successfully, tell the admin.
+                log('user deleted');
+            } else {
+                // If server couldn't delete the user, tell the admin.
+                log('user delete error');
+            }
+        }).catch((error) => {
+            log(error);
+        });
 }
 
+
+function deleteBooking() {
+    // the URL for the request
+    const url = '/bookings';
+    let data = {
+        venuename: document.querySelector('#venuename').value
+    };
+    const request = new Request(url, {
+        method: 'DELETE',
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+    fetch(request)
+        .then(function (res) {
+            // Handle response we get from the API.
+            if (res.status === 200) {
+                // If booking was deleted successfully, tell the admin.
+                log('booking deleted');
+            } else {
+                // If server couldn't delete the booking, tell the admin.
+                log('booking delete error');
+            }
+        }).catch((error) => {
+            log(error);
+        });
+}
