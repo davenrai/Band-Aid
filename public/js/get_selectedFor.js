@@ -35,14 +35,23 @@ function getSelectedFor() {
 
                 // *** will use code below once selectedFor array holds the date
                 // // use &nbsp (non-breaking line space)  ???
-                // const lineSpace1 = document.createTextNode("---");
-                // li.appendChild(lineSpace1);
-                // const dateTitle = document.createElement("strong");
-                // dateTitle.innerText = 'Date: ';
-                // li.appendChild(dateTitle);
-                // const divBookingDate = document.createElement("span");
-                // divBookingDate.innerHTML = `${b.bookingDate}`;
-                // li.appendChild(divBookingDate);
+                const lineSpace1 = document.createTextNode("---");
+                li.appendChild(lineSpace1);
+                const dateTitle = document.createElement("strong");
+                dateTitle.innerText = 'Date: ';
+                li.appendChild(dateTitle);
+                const divBookingDate = document.createElement("span");
+                divBookingDate.innerHTML = `${b.bookingDate}`;
+                li.appendChild(divBookingDate);
+
+                const lineSpace2 = document.createTextNode("---");
+                li.appendChild(lineSpace2);
+                const locationTitle = document.createElement("strong");
+                locationTitle.innerText = 'Location: ';
+                li.appendChild(dateTitle);
+                const divLocation = document.createElement("span");
+                divLocation.innerHTML = `${b.location}`;
+                li.appendChild(divBookingDate);
                 
                 selectedForList.appendChild(li);
                 log(b);
