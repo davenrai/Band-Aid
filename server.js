@@ -240,7 +240,6 @@ app.delete('/users', (req, res) => {
 });
 
 
-
 // a GET route to get a specific user using req.session.username
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
@@ -370,7 +369,7 @@ app.get('/bookings', (req, res) => {
 app.delete('/bookings', (req, res) => {
 	const venuename = req.body.venuename;
 	// Find booking
-	User.findOneAndDelete({ 'venuename': venuename }).then(booking => {	
+	Booking.findOneAndDelete({ 'venuename': venuename }).then(booking => {	
 		if (!booking) {
 			res.status(404).send(); // could not find this booking
 		} else {
@@ -389,7 +388,7 @@ app.patch('/bookings', (req, res) => {
 	const bookingDate = req.body.bookingDate;
 	const description = req.body.description;
 	// Update the booking by their id, venuename.
-	User.findOne({ 'venuename': venuename }).then(booking => {
+	Booking.findOne({ 'venuename': venuename }).then(booking => {
 		if (!booking) {
 			res.status(404).send(); // could not find this booking
 		} else {  
@@ -516,7 +515,7 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	// 	return;  // so that we don't run the rest of the handler.
 	// }
 	// Otherwise, findById
-	User.findOne({ 'username': performername}).then(user => {	
+	User.findOne({ 'username': performername }).then(user => {	
 		if (!user) {
 			log("in if stmt /users/choosePerformer/:performername");
 			res.status(404).send(); // could not find this performer

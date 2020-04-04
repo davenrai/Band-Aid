@@ -31,37 +31,6 @@ const log = console.log;
 //     });
 //}
 
-function updateBooking() {
-    // the URL for the request
-    const url = '/admin';
-    let data = {
-        venuename: document.querySelector('#venuename').value,
-        bookingDate: document.querySelector('#bookingDate').value,
-        description: document.querySelector('#description').value,
-    };
-    const request = new Request(url, {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-    });
-    fetch(request)
-        .then(function (res) {
-            // Handle response we get from the API.
-            if (res.status === 200) {
-                // If booking was updated successfully, tell the admin.
-                log('updated booking');
-            } else {
-                // If booking couldn't be updated, tell the admin.
-                log('update booking error');
-            }
-        }).catch((error) => {
-            log(error);
-        });
-}
-
 
 function deleteUser() {
     // the URL for the request
@@ -116,6 +85,40 @@ function deleteBooking() {
             } else {
                 // If server couldn't delete the booking, tell the admin.
                 log('booking delete error');
+            }
+        }).catch((error) => {
+            log(error);
+        });
+}
+
+
+function updateBooking() {
+    // the URL for the request
+    const url = '/bookings';
+    let data = {
+        venuename: document.querySelector('#bookingId').value,
+        bookingDate: document.querySelector('#bookingDate').value,
+        description: document.querySelector('#description').value,
+    };
+    log('data');
+    log(data);
+    const request = new Request(url, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+    fetch(request)
+        .then(function (res) {
+            // Handle response we get from the API.
+            if (res.status === 200) {
+                // If booking was updated successfully, tell the admin.
+                log('updated booking');
+            } else {
+                // If booking couldn't be updated, tell the admin.
+                log('update booking error');
             }
         }).catch((error) => {
             log(error);

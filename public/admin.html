@@ -43,17 +43,16 @@
             <strong>Delete a Booking</strong>
             <form id="deleteBooking">
                 <input id="venuename" type="text" placeholder="Venue Name">
-                <input type="submit" value="Delete Booking" onclick="deleteBooking()">
+                <input type="submit" onclick="deleteBooking()" value="Delete Booking">
             </form>
         </div>
-
         <div class="adminForm">
             <strong>Change Details of an Booking</strong>
-            <form id="changeBooking" action="/bookings" method="post">
-                <input id="venuename" type="text" placeholder="Venue Name">
+            <form id="changeBooking">
+                <input id="bookingId" type="text" placeholder="Venue Name">
                 <input id="bookingDate" type="text" placeholder="Updated Date">
                 <input id="description" type="text" placeholder="Updated Description">
-                <input type="submit" value="Update Booking" >
+                <input type="submit" onclick="updateBooking()" value="Update Booking">
             </form>
         </div>
     </div>
