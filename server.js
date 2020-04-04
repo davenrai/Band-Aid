@@ -218,7 +218,7 @@ app.get('/users/:username', (req, res) => {
 
 
 
-// a GET route to get a specific user
+// a GET route to get a specific user using req.session.username
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
 	const username = req.session.username;
