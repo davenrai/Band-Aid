@@ -3,6 +3,8 @@
 const log = console.log;
 log('Loaded front-end javascript.');
 
+document.addEventListener("DOMContentLoaded", getSelectedFor);
+
 // A function to send a GET aaplicants for have applied for a booking.
 function getSelectedFor() {
     // the URL for the request
