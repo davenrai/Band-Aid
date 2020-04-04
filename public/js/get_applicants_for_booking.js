@@ -102,16 +102,21 @@ function removeRequest(e) {
 
 function addBookingtoPerformer(e) {
     //parentElement of button is the list item li
-    const venueName = e.target.parentElement.childNodes[1].innerText;
+    const venuename = e.target.parentElement.childNodes[1].innerText;
+    const bookingDate = e.target.parentElement.childNodes[4].innerText;
+    const location = e.target.parentElement.childNodes[7].innerText;
     const performerName = e.target.parentElement.childNodes[10].innerText;
     log("parent element is: " + e.target.parentElement);
-    log("venueName is: " + venueName);
+    log("venueName is: " + venuename);
     log("performerName is: " + performerName);
     
     // the URL for the request
     const url = '/users/choosePerformer/' + performerName;
     const data = {
-        venuename: venueName
+        venuename: venuename,
+        bookingDate: bookingDate,
+        location: location
+
     };
 
     log("data object is: " + data);
@@ -126,7 +131,6 @@ function addBookingtoPerformer(e) {
         },
     });
     
-    // log("in get_applicants_for_booking.js request.body.booking is :" + request.body.booking)
     log("about to fetch");
     // fetch(url, request)  // DO NOT use this
     fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
