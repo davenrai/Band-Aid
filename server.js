@@ -245,6 +245,28 @@ app.delete('/users', (req, res) => {
 });
 
 
+// for make_profile.js, user to change password
+app.patch('/users/pw', (req, res) => {
+	// get the new password from the request body.
+	const username = req.body.username;
+	const password = req.body.password;
+	// Update the user's password
+	User.findOne({ 'username': username }).then(user => {
+		if (!user) {
+			res.status(404).send(); // could not find this user
+		} else {  
+			user.password = password;
+			user.save().then(user => {
+				res.send(user);
+			}).catch(error => {
+				res.status(500).send(error);
+			});
+		}
+	}).catch((error) => {
+		res.status(400).send(error); // bad request for changing the user's password
+	});
+});
+
 
 // for get_selectedFor.js
 // a GET route to get a specific user using req.session.username
