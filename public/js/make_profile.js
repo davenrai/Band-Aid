@@ -1,7 +1,5 @@
 /* AJAX fetch() calls */
 
-const log = console.log;
-
 function updateProfileInfo() {
     // the URL for the request
     const url = '/makeprofileperformer';

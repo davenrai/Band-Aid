@@ -80,6 +80,12 @@ app.post("/users/login", sessionChecker, (req, res) => {
 			req.session.user = user._id;
 			req.session.username = user.username;
 			req.session.usertype = user.usertype;
+			req.session.name = user.name;
+			req.session.phone = user.phone;
+			req.session.location = user.location;
+			req.session.genre = user.genre;
+			req.session.descripton = user.description;
+			req.session.selectedFor = user.selectedFor;
 			// res.send({ currentUser: user.email });
 			if (req.session.usertype === 'admin') {
 				log("Admin logged in");
@@ -546,6 +552,20 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	});
 });
 
+app.get('/profile', (req, res) => {
+	// get the updated name and year only from the request body.
+	const username = req.session.username;
+	User.findOne({ 'username': username }).then(user => {	
+		if (!user) {
+			res.status(404).send();  // could not find this user
+		} else {
+			log('sending user')
+			res.send(user);
+		}
+	}).catch((error) => {
+		res.status(500).send(error);  // server error
+	});
+});
 
 // ****************************************************************************
 // sessionChecker will run before the route handler and check if we are

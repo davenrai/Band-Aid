@@ -13,7 +13,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
-        <a class="navbar-brand" style="color:white">My Profile</a>
+    <a class="navbar-brand" style="color:white">My Profile</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -24,8 +24,10 @@
         <li class="nav-item active">
           <a class="nav-link" href="./" style="color:white">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a style="color:white" class="nav-link" href="dashboard-performer.html">My Dashboard</a>
+        <li>
+          <button type="button" class="btn btn-primary" onclick='window.location = "/dashboard"' id='dashboardbutton'>
+            My Dashboard
+          </button>
         </li>
         <li class="nav-item">
           <!-- BLANK -->
@@ -39,18 +41,17 @@
   </nav>
 
 
-  <h1> <u>Band Profile</u></h1>
+  <h1> <u>My Profile</u></h1>
+  <!-- Create profile from performer here -->
+  <button onclick='getProfileInfo()'>Get Profile</button>
+  <div>
+    <ul id='performerList'>
+        
+    </ul>
 
-  <img id=profilePic src="./img/profilepic.png">
-  <iframe id="spotify" src="https://open.spotify.com/embed/album/31qVWUdRrlb8thMvts0yYL" width="300" height="380"
-    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>  
 
-  <div id="profileInfo">
-    <b>Name:</b> Tame Impala<br> 
-    <b>Members:</b> Kevin Parker, Jay Watson, Cam Avery, Dominic Simper, Julien Barbagallo<br>
-    <b>Genre:</b> Psychedelic rock, Psychedelic pop, Neo-psychedelia<br>
-    <b>Location:</b> Perth, Australia
-  </div>
 </body>
+<script type="text/javascript" src="./js/my_profile.js"></script>
 
 </html>
