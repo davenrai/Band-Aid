@@ -5,7 +5,6 @@ const log = console.log;
 document.addEventListener("DOMContentLoaded", getAllBookings);
 
 function addToRequestTimeline(request) {
-    // TODO: clean up
     const newRequest = document.createElement("div");
     newRequest.className = "request";
     const reqText = document.createElement("p");

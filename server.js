@@ -221,7 +221,7 @@ app.get('/users/:username', (req, res) => {
 // a GET route to get a specific user
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
-	const username = req.body.username;
+	const username = req.session.username;
 	log("in /users/selectedFor " + username)
 	// Find user
 	// to get by _id uncomment one of the below lines
