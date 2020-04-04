@@ -3,6 +3,8 @@
 const log = console.log;
 log('Loaded front-end javascript.');
 
+document.addEventListener("DOMContentLoaded", getApplicants);
+
 // A function to send a GET aaplicants for have applied for a booking.
 function getApplicants() {
     // the URL for the request
