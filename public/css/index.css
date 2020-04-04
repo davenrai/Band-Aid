@@ -18,11 +18,12 @@
 #intro {
     color:black;
     text-align: center;
+    top: 20vh;
 }
 
 #loginButtons{
     display:inline-block;
-    top: 35vh;
+    top: 40vh;
     margin: auto;
 }
 
@@ -77,17 +78,3 @@ body {
     
 }
 
-#musicnote1 {
-    width: 200px;
-    height: 200px;
-}
-
-#musicnote2 {
-    width: 200px;
-    height: 200px;
-}
-
-#musicnotes {
-    margin-top: 5%;
-    margin-left: 36%;
-}

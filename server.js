@@ -141,6 +141,7 @@ app.get('/', (req, res) => {
 app.use("/img", express.static(__dirname + '/public/img'));
 
 
+
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
@@ -185,6 +186,7 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 });
 
 
+
 // A route to logout a user
 app.get('/users/logout', (req, res) => {
 	// Remove the session
@@ -198,6 +200,7 @@ app.get('/users/logout', (req, res) => {
 });
 
 
+
 // a GET route to get all users
 app.get('/users', (req, res) => {
 	User.find().then((users) => {
@@ -206,6 +209,7 @@ app.get('/users', (req, res) => {
 		res.status(500).send(error); // server error
 	});
 });
+
 
 
 // a GET route to get a specific user
@@ -229,6 +233,7 @@ app.get('/users/:username', (req, res) => {
 });
 
 
+
 // a DELETE route to delete a specific user
 app.delete('/users', (req, res) => {
 	const username = req.body.username;
@@ -246,6 +251,30 @@ app.delete('/users', (req, res) => {
 });
 
 
+// for make_profile.js, user to change password
+app.patch('/users/pw', (req, res) => {
+	// get the new password from the request body.
+	const username = req.body.username;
+	const password = req.body.password;
+	// Update the user's password
+	User.findOne({ 'username': username }).then(user => {
+		if (!user) {
+			res.status(404).send(); // could not find this user
+		} else {  
+			user.password = password;
+			user.save().then(user => {
+				res.send(user);
+			}).catch(error => {
+				res.status(500).send(error);
+			});
+		}
+	}).catch((error) => {
+		res.status(400).send(error); // bad request for changing the user's password
+	});
+});
+
+
+// for get_selectedFor.js
 // a GET route to get a specific user using req.session.username
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
@@ -415,7 +444,6 @@ app.patch('/bookings', (req, res) => {
 app.post('/bookings/apply/:id', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	const id = req.params.id;
-	// const id = "4"
 	log("in /bookings/apply");
 	log("id is: " + id);
 	log(req.session.username);
@@ -431,11 +459,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 		if (!booking) {
 			res.status(404).send(); // could not find this booking
 		} else {
-			const application = {
-				performer: "test push"
-				// performer: req.session.username
-			};
-
 			booking.applications.push(req.session.username);
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
@@ -508,13 +531,9 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 
 	const performername = req.params.performername;
-	log("in /users/choosePerformer/:performername  req.body.booking is: " + req.body.booking);
 	log(req.body); // this will show object contents
 	log("req.body is: " + req.body); // this weill show [Object object]
-	log(performername);
-	log("in /users/choosePerformer/:performername");
-	log(req.session.username);
-	log(req.session.usertype);
+
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
@@ -589,6 +608,7 @@ app.get('/dashboard', (req, res) => {
 		res.sendFile(__dirname + '/public/dashboard-venue.html');
 	} 
 });
+
 
 app.get('/dashboard-performer', (req, res) => {
 	if (req.session.usertype === 'performer') {
