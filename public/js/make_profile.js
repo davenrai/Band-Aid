@@ -10,9 +10,7 @@ function updateProfileInfo() {
         location: document.querySelector('#location').value,
         genre: document.querySelector('#genre').value,
         description: document.querySelector('#description').value
-    }
-
-
+    };
     const request = new Request(url, {
         method: 'PATCH', 
         body: JSON.stringify(data),
@@ -23,21 +21,20 @@ function updateProfileInfo() {
     });
     fetch(request)
     .then(function(res) {
-
         // Handle response we get from the API.
         if (res.status === 200) {
             // If student was added successfully, tell the user.
-            log('UPDATED')
+            log('UPDATED');
         } else {
             // If server couldn't add the student, tell the user.
             // Here we are adding a generic message, but you could be more specific in your app.
-            log('didnt work')
+            log('didnt work');
         }
-        log(res)  // log the result in the console for development purposes,
+        log(res); // log the result in the console for development purposes,
                           //  users are not expected to see this.
     }).catch((error) => {
-        log(error)
-    })
+        log(error);
+    });
 }
 
 
@@ -45,7 +42,6 @@ function updatePassword() {
     // the URL for the request
     const url = '/users/pw';
     let data = {
-        username: document.querySelector('#username').value,
         password: document.querySelector('#password').value,
     };
     const request = new Request(url, {
