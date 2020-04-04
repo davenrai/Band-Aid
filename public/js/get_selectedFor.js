@@ -48,10 +48,10 @@ function getSelectedFor() {
                 li.appendChild(lineSpace2);
                 const locationTitle = document.createElement("strong");
                 locationTitle.innerText = 'Location: ';
-                li.appendChild(dateTitle);
+                li.appendChild(locationTitle);
                 const divLocation = document.createElement("span");
                 divLocation.innerHTML = `${b.location}`;
-                li.appendChild(divBookingDate);
+                li.appendChild(divLocation);
                 
                 selectedForList.appendChild(li);
                 log(b);
