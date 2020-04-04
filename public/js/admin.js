@@ -94,4 +94,6 @@ function deleteUser() {
     }).catch((error) => {
         log(error)
     })
+    
 }
+
