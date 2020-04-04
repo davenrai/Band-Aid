@@ -89,7 +89,6 @@ function getAllBookings() {
         });
 }
 
-
 function applyToBookingsVenue(e) {
 
     const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText;
