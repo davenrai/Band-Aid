@@ -23,8 +23,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 // middleware for delete in html forms
-const methodOverride = require('method-override');
-app.use(methodOverride('_method'));
+// const methodOverride = require('method-override');
+// app.use(methodOverride('_method'));
 
 // express-session for managing user sessions
 const session = require('express-session');
