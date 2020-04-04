@@ -299,12 +299,10 @@ app.patch('/makeprofileperformer', (req, res) => {
 	const id = req.session.user;
 	const { name, phone, location, genre, description } = req.body;
 	const body = { id, name, phone, location, genre, description };
-
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send();
 		return;
 	}
-
 	// Update the performer by their id.
 	User.findById(id).then((user) => {
 		if (!user) {
@@ -315,7 +313,6 @@ app.patch('/makeprofileperformer', (req, res) => {
 			user.location = body.location;
 			user.genre = body.genre;
 			user.description = description;
-			
 			user.save().then((result) => {
 				res.send(user);
 			}).catch((error) => {

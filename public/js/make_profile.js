@@ -6,7 +6,6 @@ function updateProfileInfo() {
     let data = {
         name: document.querySelector('#name').value,
         phone: document.querySelector('#phone').value,
-        email: document.querySelector('#email').value,
         location: document.querySelector('#location').value,
         genre: document.querySelector('#genre').value,
         description: document.querySelector('#description').value
