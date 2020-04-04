@@ -41,9 +41,9 @@
         </div>
         <div class="adminForm">
             <strong>Delete a Booking</strong>
-            <form id="deleteBooking" action="/bookings" method="delete">
+            <form id="deleteBooking">
                 <input id="venuename" type="text" placeholder="Venue Name">
-                <input type="submit" value="Delete Booking">
+                <input type="submit" value="Delete Booking" onclick="deleteBooking()">
             </form>
         </div>
 
@@ -53,7 +53,7 @@
                 <input id="venuename" type="text" placeholder="Venue Name">
                 <input id="bookingDate" type="text" placeholder="Updated Date">
                 <input id="description" type="text" placeholder="Updated Description">
-                <input type="submit" value="Update Booking">
+                <input type="submit" value="Update Booking" >
             </form>
         </div>
     </div>
