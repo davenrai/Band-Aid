@@ -409,7 +409,6 @@ app.patch('/bookings', (req, res) => {
 app.post('/bookings/apply/:id', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	const id = req.params.id;
-	// const id = "4"
 	log("in /bookings/apply");
 	log("id is: " + id);
 	log(req.session.username);
@@ -425,11 +424,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 		if (!booking) {
 			res.status(404).send(); // could not find this booking
 		} else {
-			const application = {
-				performer: "test push"
-				// performer: req.session.username
-			};
-
 			booking.applications.push(req.session.username);
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
