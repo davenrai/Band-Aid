@@ -498,7 +498,10 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 			res.status(404).send(); // could not find this performer
 		} else {
 			log("req.body.booking is: " + req.body.booking);
-			user.selectedFor.push(req.body.booking);
+			log("req.body.venuename is: " + req.body.venueame);
+			user.selectedFor.push(req.body);
+			// below code saves an object to 
+			user.selectedFor.push(req.body.venueName);
 			user.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed

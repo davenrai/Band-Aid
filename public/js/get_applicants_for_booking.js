@@ -56,8 +56,6 @@ function getApplicants() {
                 const lineSpace3 = document.createTextNode("---");
                 li.appendChild(lineSpace3); 
                 
-                
-                
                 const applicantTitle = document.createElement("strong");
                 applicantTitle.innerText = 'Performer Name: ';
                 li.appendChild(applicantTitle);
@@ -113,7 +111,7 @@ function addBookingtoPerformer(e) {
     // the URL for the request
     const url = '/users/choosePerformer/' + performerName;
     const data = {
-        booking: venueName
+        venuename: venueName
     };
 
     log("data object is: " + data);

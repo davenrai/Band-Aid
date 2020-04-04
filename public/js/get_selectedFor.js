@@ -29,7 +29,7 @@ function getSelectedFor() {
                 venueTitle.innerText = 'Venue Name: ';
                 li.appendChild(venueTitle);
                 const divVenueName = document.createElement("span");
-                divVenueName.innerHTML = `${selectedFor[i]}`;
+                divVenueName.innerHTML = `${selectedFor[i].venuename}`;
                 li.appendChild(divVenueName);
 
 
