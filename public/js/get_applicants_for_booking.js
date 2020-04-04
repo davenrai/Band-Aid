@@ -83,6 +83,7 @@ function chooseApplicant(e) {
 }
 
 
+
 function removeRequest(e) {
     e.preventDefault();
     if (e.target.classList.contains("choose")) {
