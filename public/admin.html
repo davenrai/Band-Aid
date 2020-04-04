@@ -34,26 +34,23 @@
     <div id="timeline">
         <div class="adminForm">
             <strong>Delete a User</strong>
-            <form id="deleteUser">
-                <input id="username" type="text" placeholder="Username">
-                <input type="submit" onclick="deleteUser()" value="Delete User">
-            </form>
+            <input id="username" type="text" placeholder="Username">
+            <button onclick="deleteUser()">Delete User</button>
+            <p id='messageDeleteUser'></p>  
         </div>
         <div class="adminForm">
             <strong>Delete a Booking</strong>
-            <form id="deleteBooking">
-                <input id="venuename" type="text" placeholder="Venue Name">
-                <input type="submit" onclick="deleteBooking()" value="Delete Booking">
-            </form>
+            <input id="venuename" type="text" placeholder="Venue Name">
+            <button onclick="deleteBooking()">Delete Booking</button>
+            <p id='messageDeleteBooking'></p>  
         </div>
         <div class="adminForm">
-            <strong>Change Details of an Booking</strong>
-            <form id="changeBooking">
-                <input id="bookingId" type="text" placeholder="Venue Name">
-                <input id="bookingDate" type="text" placeholder="Updated Date">
-                <input id="description" type="text" placeholder="Updated Description">
-                <input type="submit" onclick="updateBooking()" value="Update Booking">
-            </form>
+            <strong>Update Details of an Booking</strong>
+            <input id="bookingId" type="text" placeholder="Venue Name">
+            <input id="bookingDate" type="text" placeholder="Updated Date">
+            <input id="description" type="text" placeholder="Updated Description">
+            <button onclick="updateBooking()">Update Booking</button>
+            <p id='messageUpdateBooking'></p>  
         </div>
     </div>
     <script type="text/javascript" src="./js/admin.js"></script>
