@@ -1,43 +1,9 @@
 /* create profile with make profile */
 const log = console.log;
 
-// requestList.addEventListener("click", removeRequest);
 document.addEventListener("DOMContentLoaded", getName);
 
 function addToProfileInfo(booking) {
-    // const newBooking = document.createElement("div");
-    // newBooking.className = "booking";
-    // const bookingText = document.createElement("p");
-    // const bookingTitle = document.createElement("strong");
-    // bookingTitle.innerText = booking.venuename;
-    // bookingText.appendChild(bookingTitle);
-    // const lineBreak1 = document.createElement("br");
-    // bookingText.appendChild(lineBreak1);
-    // const bookingLoc = document.createTextNode(booking.location);
-    // bookingText.appendChild(bookingLoc);
-    // const lineBreak2 = document.createElement("br");
-    // bookingText.appendChild(lineBreak2);
-    // const bookingPhone = document.createTextNode(booking.phone);
-    // bookingText.appendChild(bookingPhone);
-    // const lineBreak3 = document.createElement("br");
-    // bookingText.appendChild(lineBreak3);
-    // const bookingDate = document.createTextNode(booking.bookingDate);
-    // bookingText.appendChild(bookingDate);
-    // const lineBreak4 = document.createElement("br");
-    // bookingText.appendChild(lineBreak4);
-    // const lineBreak5 = document.createElement("br");
-    // bookingText.appendChild(lineBreak5);
-    // const bookingDesc = document.createTextNode(booking.description);
-    // bookingText.appendChild(bookingDesc);
-    // newBooking.appendChild(bookingText);
-    // const fulfillButton = document.createElement("button");
-    // fulfillButton.className = "fulfill";
-    // const buttonText = document.createTextNode("I'm down!");
-    // fulfillButton.appendChild(buttonText);
-    // fulfillButton.addEventListener("click", fulfillRequest);
-    // newBooking.appendChild(fulfillButton);
-    // requestList.appendChild(newBooking);
-
 }
 
 function getPerformerName() {
