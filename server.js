@@ -221,8 +221,8 @@ app.get('/users/:username', (req, res) => {
 // a GET route to get a specific user
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
-	// const username = req.username;
-	const username = "bob114"
+	const username = req.username;
+	// const username = "bob114"
 	log("in /users/selectedFor " + username)
 	// Find user
 	// to get by _id uncomment one of the below lines
@@ -231,7 +231,7 @@ app.get('/selectedFor', (req, res) => {
 	// to get by username
 	User.findOne({ 'username': username }).then(user => {	
 		if (!user) {
-			res.status(494).send();  // could not find this user
+			res.status(404).send();  // could not find this user
 		} else {
 			res.send(user);
 		}
