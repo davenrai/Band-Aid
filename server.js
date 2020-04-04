@@ -163,11 +163,13 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			if (req.session.usertype === 'performer') {
 				res.redirect('/makeprofileperformer');
 			} else if (req.session.usertype === 'venue') {
+				log('redirecting to make profile for ' + req.session.user + req.session.usertype);
 				res.redirect('/makeprofilevenue');
 			} else if (req.session.usertype === 'admin') {
 				res.redirect('/admin');
-			} else {
-				res.redirect('/login');
+			} 
+			else{
+				res.redirect('/')
 			}
 		},
 		(error) => {
@@ -582,8 +584,6 @@ app.get('/dashboard', (req, res) => {
 		res.sendFile(__dirname + '/public/dashboard-performer.html');
 	} else if (req.session.usertype === 'venue') {
 		res.sendFile(__dirname + '/public/dashboard-venue.html');
-	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -592,8 +592,6 @@ app.get('/dashboard', (req, res) => {
 app.get('/dashboard-performer', (req, res) => {
 	if (req.session.usertype === 'performer') {
 		res.sendFile(__dirname + '/public/dashboard-performer.html');
-	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -603,8 +601,6 @@ app.get('/dashboard-performer', (req, res) => {
 app.get('/dashboard-venue', (req, res) => {
 	if (req.session.usertype === 'venue') {
 		res.sendFile(__dirname + '/public/dashboard-venue.html');
-	} else if (req.session.usertype) {
-		res.sendFile(__dirname + '/public/dashboard.html');
 	} else {
 		res.redirect('/login');
 	}
@@ -621,7 +617,7 @@ app.get('/makeprofileperformer/', (req, res) => {
 });
 
 
-app.get('/makeprofilevenue/*', (req, res) => {
+app.get('/makeprofilevenue', (req, res) => {
 	if (req.session.user) {
 		res.sendFile(__dirname + '/public/makeprofilevenue.html');
 	} else {
