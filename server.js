@@ -219,9 +219,11 @@ app.get('/users/:username', (req, res) => {
 
 
 // a GET route to get a specific user
-app.get('/users/user_by_req', (req, res) => {
+app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
-	const username = req.params.username;
+	// const username = req.username;
+	const username = "bob114"
+	log("in /users/selectedFor " + username)
 	// Find user
 	// to get by _id uncomment one of the below lines
 	// User.findOne({ '_id': username}).then(user => {
@@ -229,7 +231,7 @@ app.get('/users/user_by_req', (req, res) => {
 	// to get by username
 	User.findOne({ 'username': username }).then(user => {	
 		if (!user) {
-			res.status(404).send();  // could not find this user
+			res.status(494).send();  // could not find this user
 		} else {
 			res.send(user);
 		}
@@ -498,7 +500,7 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 			res.status(404).send(); // could not find this performer
 		} else {
 			log("req.body.booking is: " + req.body.booking);
-			log("req.body.venuename is: " + req.body.venueame);
+			log("req.body.venuename is: " + req.body.venuename);
 			user.selectedFor.push(req.body);
 			// below code saves an object to 
 			// user.selectedFor.push(req.body.venueName);

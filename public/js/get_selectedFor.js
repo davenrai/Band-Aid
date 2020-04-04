@@ -6,7 +6,7 @@ log('Loaded front-end javascript.');
 // A function to send a GET aaplicants for have applied for a booking.
 function getSelectedFor() {
     // the URL for the request
-    const url = '/users/user_by_req';
+    const url = '/selectedFor';
 
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
@@ -22,14 +22,14 @@ function getSelectedFor() {
         performersList = document.querySelector('#selectedForList');
         performersList.innerHTML = '';
         log(json);
-        json.bookings.map((b) => {
-            for (let i = 0; i < b.selectedFor.length; i++) {
+        log(json.selectedFor)
+        json.selectedFor.map((b) => {
                 li = document.createElement('li');
                 const venueTitle = document.createElement("strong");
                 venueTitle.innerText = 'Venue Name: ';
                 li.appendChild(venueTitle);
                 const divVenueName = document.createElement("span");
-                divVenueName.innerHTML = `${selectedFor[i].venuename}`;
+                divVenueName.innerHTML = `${b.venuename}`;
                 li.appendChild(divVenueName);
 
 
@@ -46,7 +46,6 @@ function getSelectedFor() {
                 
                 selectedForList.appendChild(li);
                 log(b);
-            }
         });
     }).catch((error) => {
         log(error);
