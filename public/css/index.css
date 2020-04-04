@@ -18,11 +18,12 @@
 #intro {
     color:black;
     text-align: center;
+    top: 20vh;
 }
 
 #loginButtons{
     display:inline-block;
-    top: 35vh;
+    top: 40vh;
     margin: auto;
 }
 
