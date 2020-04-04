@@ -38,7 +38,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	cookie: {
-		expires: 60000,
+		expires: 100000,
 		httpOnly: true
 	}
 }));
@@ -567,9 +567,7 @@ app.get('/dashboard', (req, res) => {
 		res.sendFile(__dirname + '/public/dashboard-performer.html');
 	} else if (req.session.usertype === 'venue') {
 		res.sendFile(__dirname + '/public/dashboard-venue.html');
-	} else {
-		res.redirect('/login');
-	}
+	} 
 });
 
 app.get('/dashboard-performer', (req, res) => {
