@@ -29,11 +29,11 @@ function updateProfileInfo() {
         // Handle response we get from the API.
         if (res.status === 200) {
             // If student was added successfully, tell the user.
-            console.log('UPDATED')
+            log('UPDATED')
         } else {
             // If server couldn't add the student, tell the user.
             // Here we are adding a generic message, but you could be more specific in your app.
-            console.log('didnt work')
+            log('didnt work')
         }
         log(res)  // log the result in the console for development purposes,
                           //  users are not expected to see this.
