@@ -1,5 +1,5 @@
 #newRequest {
-	background-color: peachpuff;
+	background-color: darkslategrey;
 	margin: 10px;
 	padding: 10px;
 	display: inline-block;
@@ -10,7 +10,7 @@
 }
 
 .request {
-	background-color: thistle;
+	background-color: darkslategray;
 	padding: 10px;
 	display: inline-block;
 	max-width: 20%;

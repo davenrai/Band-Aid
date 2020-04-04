@@ -1,7 +1,6 @@
 /* AJAX fetch() calls */
 
 const log = console.log;
-log('Loaded front-end javascript.');
 
 function updateProfileInfo() {
     // the URL for the request

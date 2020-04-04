@@ -22,6 +22,10 @@ const {	ObjectID } = require('mongodb');
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+// middleware for delete in html forms
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 // express-session for managing user sessions
 const session = require('express-session');
 app.use(bodyParser.urlencoded({	extended: true }));
@@ -220,6 +224,7 @@ app.get('/users/:username', (req, res) => {
 // a DELETE route to delete a specific user
 app.delete('/users', (req, res) => {
 	const username = req.body.username;
+	log(username)
 	// Find user
 	User.findOneAndDelete({ 'username': username }).then(user => {	
 		if (!user) {

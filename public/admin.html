@@ -34,9 +34,9 @@
     <div id="timeline">
         <div class="adminForm">
             <strong>Delete a User</strong>
-            <form id="deleteUser" action="/users" method="delete">
+            <form id="deleteUser">
                 <input id="username" type="text" placeholder="Username">
-                <input type="submit" value="Delete User">
+                <input type="submit" onclick="deleteUser()" value="Delete User">
             </form>
         </div>
         <div class="adminForm">
