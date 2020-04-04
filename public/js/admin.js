@@ -51,11 +51,11 @@ function updateBooking() {
         .then(function (res) {
             // Handle response we get from the API.
             if (res.status === 200) {
-                // If password was changed successfully, tell the admin.
-                log('UPDATED');
+                // If booking was updated successfully, tell the admin.
+                log('updated booking');
             } else {
-                // If password couldn't be changed, tell the admin.
-                log('didnt work');
+                // If booking couldn't be updated, tell the admin.
+                log('update booking error');
             }
         }).catch((error) => {
             log(error);

@@ -372,7 +372,7 @@ app.delete('/bookings', (req, res) => {
 	// Find booking
 	User.findOneAndDelete({ 'venuename': venuename }).then(booking => {	
 		if (!booking) {
-			res.status(404).send();  // could not find this booking
+			res.status(404).send(); // could not find this booking
 		} else {
 			res.send(booking);
 		}
@@ -381,6 +381,30 @@ app.delete('/bookings', (req, res) => {
 	});
 });
 
+
+// for admin.js, admin to update booking info
+app.patch('/bookings', (req, res) => {
+	// get the updated date and description only from the request body.
+	const venuename = req.body.venuename;
+	const bookingDate = req.body.bookingDate;
+	const description = req.body.description;
+	// Update the booking by their id, venuename.
+	User.findOne({ 'venuename': venuename }).then(booking => {
+		if (!booking) {
+			res.status(404).send(); // could not find this booking
+		} else {  
+			booking.bookingDate = bookingDate;
+			booking.description = description; 
+			booking.save().then(booking => {
+				res.send(booking);
+			}).catch(error => {
+				res.status(500).send(error);
+			});
+		}
+	}).catch((error) => {
+		res.status(400).send(error); // bad request for changing the booking
+	});
+});
 
 
 app.post('/bookings/apply/:id', (req, res) => {
