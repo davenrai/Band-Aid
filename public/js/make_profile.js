@@ -2,12 +2,12 @@
 
 function updateProfileInfo() {
     // the URL for the request
-    const url = '/makeprofileperformer';
+    const url = '/updateprofile';
     const profileInfo = ['name', 'phone', 'location', 'genre', 'description'];
     const data = {};
     // check if non null input for profile info, if so then add to req body to update in patch
     for (let i = 0; i < profileInfo.length; i++) {
-        if (document.querySelector(`#${[profileInfo[i]]}`).value) {
+        if (document.querySelector(`#${[profileInfo[i]]}`).value.length > 0) {
             data[profileInfo[i]] = document.querySelector(`#${[profileInfo[i]]}`).value;
         }
     }
