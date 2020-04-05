@@ -292,12 +292,10 @@ app.get('/selectedFor', (req, res) => {
 
 
 // for make_profile.js
-// for performer to update their profile info
-app.patch('/makeprofileperformer', (req, res) => {
-	// get the updated name and year only from the request body.
+// for user to update their profile info
+app.patch('/updateprofile', (req, res) => {
+	// get the updated info only from the request body.
 	const id = req.session.user;
-	const { name, phone, location, genre, description } = req.body;
-	const body = { id, name, phone, location, genre, description };
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send();
 		return;
@@ -306,22 +304,18 @@ app.patch('/makeprofileperformer', (req, res) => {
 	User.findById(id).then((user) => {
 		if (!user) {
 			res.status(404).send();
-		} else {   
-			user.name = body.name;
-			user.phone = body.phone;
-			user.location = body.location;
-			user.genre = body.genre;
-			user.description = description;
-			user.save().then((result) => {
+		} else {
+			Object.keys(req.body).forEach(key => {
+				user[key] = req.body[key];
+			});
+			user.save().then((user) => {
 				res.send(user);
 			}).catch((error) => {
-				res.status(500).send();
+				res.status(500).send(error);
 			});
-			res.send(user);
-
 		}
 	}).catch((error) => {
-		res.status(400).send(); // bad request for changing the student.
+		res.status(400).send(error); // bad request for updating user
 	});
 });
 
