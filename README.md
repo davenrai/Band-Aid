@@ -2,7 +2,7 @@
 
 Our is app is Band-Aid. It matches musical performers (Performer) with the venues (Venue) looking to hire them for a show (Booking)
 
-Once the instructions below are carried out to install the app, you can use it by typing http://localhost:5000 in Chrome. You will be at the main page for our application, "Band-Aid." Initially you must signup as either a Performer or a Venue. Passwords must be 6 characters in length.  Upon subsequent log-ins, this immediately takes you to your Venue or Performer dashboard. There is also an admin login, which can be accessed with username "admin1" and password "admin1."
+Once the instructions below are carried out to install the app, you can use it by typing http://localhost:5000 in Chrome, or by visiting the delpoyed app at https://frozen-citadel-71740.herokuapp.com/index.html. You will be at the main page for our application, "Band-Aid." Initially you must signup as either a Performer or a Venue or you can sign in as a Performer (username: "user1" password: "123456") or as a Venue (username: "venue1" password: "123456"). Passwords must be 6 characters in length.  Upon subsequent log-ins, this immediately takes you to your Venue or Performer dashboard. There is also an admin login (username: "admin1" password: "admin1").
 
 Important note (For TA): We used another github repo temporarily for part of the project. Let us know if you would like to see that as well.
 
@@ -11,22 +11,27 @@ Important note (For TA): We used another github repo temporarily for part of the
 https://frozen-citadel-71740.herokuapp.com/index.html
 
 
-# Setup instructions (for running locally)
 
-(must install mongodb first.)
 
-## Install all modules (in the project root directory)
+# Setup instructions (for running locally on http://localhost:5000)
+
+install mongodb
+
+https://docs.mongodb.com/manual/installation/#mongodb-community-edition-installation-tutorials
+
+
+## Install all modules (run this command in the project root directory)
 
 $ npm install
 
-## Start a mongo server
+## Create a mongo data directory in the project root directory
 
 $ mkdir mongo-data
 
 ## Connect to mongo
 $ mongod --dbpath ./mongo-data
 
-## Start web server (in the project root directory)
+## Start web server (run this command in the project root directory)
 
 $ node server.js
 
