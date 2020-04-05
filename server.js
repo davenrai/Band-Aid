@@ -92,12 +92,12 @@ app.post("/users/login", sessionChecker, (req, res) => {
 				res.redirect('/admin'); // takes you to admin dash
 			} else if (req.session.usertype === 'performer') {
 				log("Performer logged in");
-				res.redirect('/dashboard-performer'); // takes you to dashboard timeline after login
+				res.redirect('/dashboard-performer');
 			} else if (req.session.usertype === 'venue') {
 				log("Venue logged in");
-				res.redirect('/dashboard-venue'); // takes you to dashboard timeline after login
+				res.redirect('/dashboard-venue');
 			} else {
-				res.redirect('/index'); // takes you to dashboard timeline after login
+				res.redirect('/index');
 			}
 		}
 	)
@@ -145,7 +145,6 @@ app.use("/img", express.static(__dirname + '/public/img'));
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
 app.post('/users/signup', sessionChecker, (req, res) => {
-	// log("req is: " + req);
 	log('Logged in:'+ req.body.username);
 	// Create a new user
 	const user = new User({
@@ -165,7 +164,7 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 			req.session.user = user._id;
 			req.session.username = user.username;
 			req.session.usertype = user.usertype;
-			log(req.session.usertype);
+
 			if (req.session.usertype === 'performer') {
 				res.redirect('/makeprofileperformer');
 			} else if (req.session.usertype === 'venue') {
@@ -232,7 +231,7 @@ app.get('/users/:username', (req, res) => {
 // a DELETE route to delete a specific user
 app.delete('/users', (req, res) => {
 	const username = req.body.username;
-	log(username);
+
 	// Find user
 	User.findOneAndDelete({ 'username': username }).then(user => {	
 		if (!user) {
@@ -274,7 +273,7 @@ app.patch('/users/pw', (req, res) => {
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
 	const username = req.session.username;
-	log("in /users/selectedFor " + username);
+
 	// Find user
 	// to get by _id uncomment one of the below lines
 	// User.findOne({ '_id': username}).then(user => {
@@ -319,7 +318,7 @@ app.patch('/makeprofileperformer', (req, res) => {
 				res.status(500).send();
 			});
 			res.send(user);
-			log(user);
+
 		}
 	}).catch((error) => {
 		res.status(400).send(); // bad request for changing the student.
@@ -356,7 +355,7 @@ app.post('/makeprofilevenue/:username', (req, res) => {
 
 // Set up a POST route to *create* a booking for a venue.
 app.post('/bookings', (req, res) => {
-	log(req.body);
+
 	// Create a new request
 	const booking = new Booking({
 		venuename: req.body.venuename,
@@ -436,16 +435,13 @@ app.patch('/bookings', (req, res) => {
 app.post('/bookings/apply/:id', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	const id = req.params.id;
-	log("in /bookings/apply");
-	log("id is: " + id);
-	log(req.session.username);
-	log(req.session.usertype);
+
 	// Good practise: Validate id immediately.
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send(); // if invalid id, definitely can't find resource, 404.
 		return; // so that we don't run the rest of the handler.
 	}
-	log("Booking.findById(id)" + Booking.findById(id));
+
 	// Otherwise, findById
 	Booking.findById(id).then((booking) => {
 		if (!booking) {
@@ -455,7 +451,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result);
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -482,9 +477,7 @@ app.post('/bookings/apply/:id', (req, res) => {
 app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 	const venuename = req.params.venuename;
-	log("in /bookings/applyByVenue/:venuename");
-	log(req.session.username);
-	log(req.session.usertype);
+
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
 	// 	res.status(404).send()  // if invalid id, definitely can't find resource, 404.
@@ -498,7 +491,7 @@ app.post('/bookings/applyByVenue/:venuename', (req, res) => {
 			booking.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result);
+
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
 				} else if (req.session.usertype === 'performer') {
@@ -522,8 +515,8 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	/// req.params has the wildcard parameters in the url, in this case, id.
 
 	const performername = req.params.performername;
-	log(req.body); // this will show object contents
-	log("req.body is: " + req.body); // this weill show [Object object]
+	// log(req.body); // this will show object contents
+	// log("req.body is: " + req.body); // this will show [Object object]
 
 	// Good practise: Validate id immediately.
 	// if (!ObjectID.isValid(id)) {
@@ -533,18 +526,14 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	// Otherwise, findById
 	User.findOne({ 'username': performername }).then(user => {	
 		if (!user) {
-			log("in if stmt /users/choosePerformer/:performername");
 			res.status(404).send(); // could not find this performer
 		} else {
-			log("req.body.booking is: " + req.body.booking);
-			log("req.body.venuename is: " + req.body.venuename);
 			user.selectedFor.push(req.body);
 			// below code saves an object to 
 			// user.selectedFor.push(req.body.venueName);
 			user.save().then((result) => {
 				// pass the reservation that was just pushed
 				// note that mongoose provided an _id when it was pushed
-				log(result);
 				res.send({ user });
 				if (req.session.usertype === 'admin') {
 					res.redirect('/admin'); // takes you to admin dash
