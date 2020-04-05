@@ -99,8 +99,37 @@ h1 {
     margin-left: 440px
 }
 
+/* .booking is for view-available-bookings.html */
 .booking {
 	background-color: thistle;
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	max-width: 20%;
+	min-width: 20%;
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+/* .availableBooking is for appliccants-for-booking.html */
+.availableBooking {
+	background-color: rgb(114, 171, 218);
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	max-width: 20%;
+	min-width: 20%;
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+/* .selectedForBooking is for applicant-selectedFor.html */
+.selectedForBooking {
+	background-color: rgb(189, 86, 189);
 	padding: 10px;
 	margin: 5px;
 	display: inline-block;

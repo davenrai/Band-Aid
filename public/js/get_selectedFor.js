@@ -29,7 +29,7 @@ function getSelectedFor() {
 
 
             const newRequest = document.createElement("div");
-            newRequest.className = "booking";
+            newRequest.className = "selectedForBooking";
             const reqText = document.createElement("p");
             const reqTitle = document.createElement("strong");
             reqTitle.innerHTML = `${b.venuename}`;
