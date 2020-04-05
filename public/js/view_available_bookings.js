@@ -1,7 +1,6 @@
 /* view_available_bookings.js */
 const log = console.log;
 
-// requestList.addEventListener("click", removeRequest);
 document.addEventListener("DOMContentLoaded", getAllBookings);
 
 function addToBookings(booking) {
@@ -40,7 +39,6 @@ function addToBookings(booking) {
 }
 
 function fulfillRequest(e) {
-    log("button clicked");
     applyToBookingsVenue(e);
     removeRequest(e);
     return e;
@@ -50,9 +48,7 @@ function fulfillRequest(e) {
 function removeRequest(e) {
     e.preventDefault();
     if (e.target.classList.contains("fulfill")) {
-        console.log("remove");
         const requestToRemove = e.target.parentElement;
-        console.log(requestToRemove);
         requestList.removeChild(requestToRemove);
     }
 }
@@ -89,8 +85,6 @@ function getAllBookings() {
 
 function applyToBookingsVenue(e) {
     const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText;
-    log("parent elemnt is: " + e.target.parentElement);
-    log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText);
 
     // the URL for the request
     const url = '/bookings/applyByVenue/' + venuename;
@@ -105,14 +99,11 @@ function applyToBookingsVenue(e) {
         },
     });
 
-    log("about to fetch");
     fetch(url, request)
         .then((res) => {
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
                 log("result is 200");
-                log(res.body);
-                log(res);
             } else {
                 alert('Could not apply to booking');
             }
