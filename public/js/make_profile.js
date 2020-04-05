@@ -3,13 +3,14 @@
 function updateProfileInfo() {
     // the URL for the request
     const url = '/makeprofileperformer';
-    let data = {
-        name: document.querySelector('#name').value,
-        phone: document.querySelector('#phone').value,
-        location: document.querySelector('#location').value,
-        genre: document.querySelector('#genre').value,
-        description: document.querySelector('#description').value
-    };
+    const profileInfo = ['name', 'phone', 'location', 'genre', 'description'];
+    const data = {};
+    // check if non null input for profile info, if so then add to req body to update in patch
+    for (let i = 0; i < profileInfo.length; i++) {
+        if (document.querySelector(`#${[profileInfo[i]]}`).value) {
+            data[profileInfo[i]] = document.querySelector(`#${[profileInfo[i]]}`).value;
+        }
+    }
     const request = new Request(url, {
         method: 'PATCH', 
         body: JSON.stringify(data),
