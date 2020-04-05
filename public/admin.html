@@ -12,17 +12,14 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <a style="color:white" class="navbar-brand" href="#">Admin Dashboard</a>
         <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+        <a style="color:white" class="navbar-brand" href="#">Admin Dashboard</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
-                </li>
                 <li>
                     <button class="btn btn-danger" onclick='window.location = "/users/logout"'
                         id='logoutbutton'>Logout</button>
@@ -34,36 +31,27 @@
     <div id="timeline">
         <div class="adminForm">
             <strong>Delete a User</strong>
-            <form id="deleteUser" action="/users" method="delete">
-                <input id="username" type="text" placeholder="Username">
-                <input type="submit" value="Delete User">
-            </form>
+            <input id="username" type="text" placeholder="Username">
+            <button onclick="deleteUser()">Delete User</button>
+            <p id='messageDeleteUser'></p>  
         </div>
         <div class="adminForm">
             <strong>Delete a Booking</strong>
-            <form id="deleteBooking" action="/bookings" method="delete">
-                <input id="venuename" type="text" placeholder="Venue Name">
-                <input type="submit" value="Delete Booking">
-            </form>
+            <input id="venuename" type="text" placeholder="Venue Name">
+            <button onclick="deleteBooking()">Delete Booking</button>
+            <p id='messageDeleteBooking'></p>  
         </div>
         <div class="adminForm">
-            <strong>Change a Password</strong>
-            <form id="changePassword" action="/users" method="post">
-                <input id="username" type="text" placeholder="Username">
-                <input id="password" type="text" placeholder="New Password">
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-        <div class="adminForm">
-            <strong>Change Details of an Booking</strong>
-            <form id="changeBooking" action="/bookings" method="post">
-                <input id="venuename" type="text" placeholder="Venue Name">
-                <input id="bookingDate" type="text" placeholder="Updated Date">
-                <input id="description" type="text" placeholder="Updated Description">
-                <input type="submit" value="Update Booking">
-            </form>
+            <strong>Update Details of an Booking</strong>
+            <input id="bookingId" type="text" placeholder="Venue Name">
+            <input id="bookingDate" type="text" placeholder="Updated Date">
+            <input id="description" type="text" placeholder="Updated Description">
+            <button onclick="updateBooking()">Update Booking</button>
+            <p id='messageUpdateBooking'></p>  
         </div>
     </div>
+    <script type="text/javascript" src="./js/admin.js"></script>
+
 </body>
 
 </html>

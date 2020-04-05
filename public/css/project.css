@@ -3,10 +3,6 @@
 
 /*** Completed body style below ***/
 
-
-#bodyLogin {
-	background-image: url(backgroundImage.jpeg)
-}
 body {
 	background-color: #F9F9F8;
 	margin: 0;
@@ -71,11 +67,10 @@ h1 {
 	margin: 10px;
 	padding: 10px;
 	display: inline-block;
-	margin-top: 130px;
 }
 
 .adminForm {
-	background-color: peachpuff;
+	background-color: grey;
 	margin: 10px;
 	padding: 10px;
 	margin-top: 10px;
@@ -87,25 +82,57 @@ h1 {
 }
 
 .dashboardBox {
-	background-color: thistle;
+	background-color: honeydew;
 	padding: 10px;
 	margin: 5px;
 	margin-top: 200px;
-	/* display: inline-block; */
 	max-width: 20%;
 	min-width: 20%;
 	float: left;
 
 }
 
-#buttonContainer {
-    display: block;
-    margin-top: 50px;
-    margin-left: 440px
+#dashboardbutton{
+	margin-right: 10px;
 }
 
-.request {
-	background-color: thistle;
+#buttonContainer {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* .booking is for view-available-bookings.html */
+.booking {
+	background-color: aliceblue;
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	max-width: 20%;
+	min-width: 20%;
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+/* .availableBooking is for appliccants-for-booking.html */
+.availableBooking {
+	background-color: aliceblue;
+	padding: 10px;
+	margin: 5px;
+	display: inline-block;
+	max-width: 20%;
+	min-width: 20%;
+	border: 1px solid lightgray;
+    border-radius: 5px;
+    box-sizing: border-box;
+
+}
+
+/* .selectedForBooking is for applicant-selectedFor.html */
+.selectedForBooking {
+	background-color: rgb(189, 86, 189);
 	padding: 10px;
 	margin: 5px;
 	display: inline-block;
@@ -208,15 +235,7 @@ ul {
 	table-layout: fixed;
   }
   
-/* ul li {
-	display: table-cell;
-	width: auto;
-	text-align: center;
-	background-color: thistle;
-	padding: 10px;
-	margin: 5px;
-	display: inline-block;
-	max-width: 20%;
-	min-width: 20%;
-  } */
-  
+
+#getprofileinfobutton {
+	padding-left: 47%;
+}

@@ -10,22 +10,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="./css/login.css"> -->
   <link rel="stylesheet" type="text/css" href="./css/project.css">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand" href="#"></a>
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
@@ -33,64 +30,36 @@
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="./" style="color:white">Home<span class="sr-only">(current)</span></a>
-      </ul>
-    </div>
   </nav>
 
-    <div id="title">
-      <h2><strong>Sign-Up</strong></h2>
-    </div>
-    <form id="signup center" action="/users/signup" method="post">
-      <div class="signupform">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" placeholder="Pick a username!">
-
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Pick a password!">
-
-        <!-- <div id ="buttonholder"> -->
-        <div class="usertypebuttons">
-          <label class="radiobutton">
-            <input type="radio" name="usertype" value="performer">
-            Performer
-          </label>
-          <label class="radiobutton">
-            <input type="radio" name="usertype" value="venue">
-            Venue
-          </label>
-          <label class="radiobutton">
-            <input type="radio" name="usertype" value="admin">
-            Admin
-          </label>
-      </div>
-
-      <!-- <h2>Optional info to enter</h2><br><h3>(This can be added later)</h3>
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name">
-            <label for="name">Phone</label>
-            <input type="text" id="phone" name="phone" placeholder="Your phone">
-            <label for="name">Location</label>
-            <input type="text" id="location" name="location" placeholder="Yourlocation">
-            <label for="name">Genre</label>
-            <input type="text" id="genre" name="genre" placeholder="Your genre">
-            <label for="name">Description</label>
-            <input type="text" id="description" name="description" placeholder="Your description"> -->
-
-        <div id="submitbutton">
-      <input type="submit" value="Submit">
-    </div>
-    </form>
-
-    
+  <div id="title">
+    <h2><strong>Sign-Up</strong></h2>
   </div>
-
-
-
+  <form id="signup center" action="/users/signup" method="post">
+    <div class="signupform">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Pick a username!">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Pick a password!">
+      <div class="usertypebuttons">
+        <label class="radiobutton">
+          <input type="radio" name="usertype" value="performer">
+          Performer
+        </label>
+        <label class="radiobutton">
+          <input type="radio" name="usertype" value="venue">
+          Venue
+        </label>
+        <label class="radiobutton">
+          <input type="radio" name="usertype" value="admin">
+          Admin
+        </label>
+      </div>
+      <div id="submitbutton">
+        <input type="submit" value="Submit">
+      </div>
+    </div>
+  </form>
 </body>
 
 </html>

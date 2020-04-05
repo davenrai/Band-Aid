@@ -10,24 +10,19 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <a class="navbar-brand" href="#" style="color:white">Bookings</a>
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+    <a class="navbar-brand" href="#" style="color:white">Bookings</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li>
-          <button type="button" class="btn btn-primary" onclick='window.location = "/dashboard"' id='dashboardbutton'>
+          <button type="button" class="btn btn-secondary" onclick='window.location = "/dashboard"' id='dashboardbutton'>
             My Dashboard
           </button>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="create-booking-request.html" style="color:white">Make Request</a>
         </li>
         <li>
           <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutbutton'>Logout</button>
@@ -36,17 +31,9 @@
     </div>
   </nav>
 
-
-
-  <div id="header">
-    <span id="title">These venues are looking for performers!</span>
-    <!-- <button onclick='window.location = "/users/logout"' class='headerLink'>Logout</button> -->
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <div>
+    <h1>These venues are looking for performers!</h1>
+  </div><br><br>
 
   <!-- // NEED TO LEAVE THIS IN !!!!!!!!!!!!!!!!!!!!!! -->
   <div id="timeline">
@@ -57,11 +44,8 @@
 
   <div>
     <ul id='allBookingsList'>
-
     </ul>
   </div>
-
 </body>
-
 
 </html>

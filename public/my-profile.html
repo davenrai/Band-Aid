@@ -10,48 +10,36 @@
 </head>
 
 <body>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
-    <a class="navbar-brand" style="color:white">My Profile</a>
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+    <a class="navbar-brand" style="color:white">My Profile</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a style="color:white" class="nav-link" href="dashboard-performer.html">My Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <!-- BLANK -->
+        <li>
+          <button type="button" class="btn btn-secondary" onclick='window.location = "/dashboard"' id='dashboardbutton'>
+            My Dashboard
+          </button>
         </li>
         <li>
           <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutButton'>Logout</button>
         </li>
       </ul>
     </div>
-
   </nav>
-
-
-  <h1> <u>Band Profile</u></h1>
-
-  <img id=profilePic src="./img/profilepic.png">
-  <iframe id="spotify" src="https://open.spotify.com/embed/album/31qVWUdRrlb8thMvts0yYL" width="300" height="380"
-    frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
-  <div id="profileInfo">
-    <b>Name:</b> Tame Impala<br>
-    <b>Members:</b> Kevin Parker, Jay Watson, Cam Avery, Dominic Simper, Julien Barbagallo<br>
-    <b>Genre:</b> Psychedelic rock, Psychedelic pop, Neo-psychedelia<br>
-    <b>Location:</b> Perth, Australia
+  <h1><u>My Profile</u></h1>
+  <!-- Create profile from performer here -->
+  <div id="getprofileinfobutton">
+    <button class="btn btn-warning" onclick='getProfileInfo()'>Get Profile</button>
   </div>
+  <div>
+    <ul id='performerList'>
+    </ul>
+  </div>
+  <script type="text/javascript" src="./js/my_profile.js"></script>
 </body>
 
 </html>

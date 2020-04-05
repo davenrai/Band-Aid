@@ -10,38 +10,29 @@
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
-    <a class="navbar-brand" style="color:white">Create Booking</a>
     <img src="./img/logo.png" width="100" height="100" class="d-inline-block align-top" alt="logo">
-
+    <a class="navbar-brand" style="color:white">Create Booking</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" style="color:white" href="./index.html">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
-          <!-- BLANK -->
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" style="color:white" href="dashboard-venue.html">My Dashboard</a>
+          <button type="button" class="btn btn-secondary" onclick='window.location = "/dashboard"'
+            id='dashboardbutton'>My Dashboard</button>
         </li>
         <li>
           <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutButton'>Logout</button>
         </li>
       </ul>
     </div>
-
   </nav>
 
-  <span id="title">Find performers for your venue here!</span>
+  <div>
+    <h1>Create a booking request to find a performer!</h1>
+  </div>
 
   <div id="newRequest">
     <strong>New request for a performer</strong>

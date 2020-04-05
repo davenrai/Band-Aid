@@ -4,62 +4,41 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./css/project.css">
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="./css/project.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        
-        <a class="navbar-brand" href="#"style="color:white">Dashboard</a>
-        <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#"style="color:white">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <!-- BLANK -->
-            </li>
-            <li>
-                <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutButton'>Logout</button>
-            </li>
-          </ul>
-        </div>
-
-      </nav>
-
-
-    <div id="buttonContainer">
-        <!-- <a class="dashboardBox" href="view-available-bookings.html">View available bookings</a> -->
-        <!-- <a class="dashboardBox" href="my-profile.html">My Profile</a> -->
-        <div class="btn-group-vertical", margin-left: 200px>
-          <a class="btn btn-lg btn-primary" href="view-available-bookings.html">View available booking openings</a>
-          <br>
-          <a class="btn btn-lg btn-primary" href="applicant-selectedFor.html">View which bookings/venues I have been selected for</a>
-          <br>
-          <a class="btn btn-lg btn-primary" href="my-profile.html">My Profile</a>
-          <br>
-          <a class="btn btn-lg btn-primary" href="makeprofileperformer.html">Edit my Profile</a>
-          <br>
-          <a class="btn btn-lg btn-primary" aria-disabled="">Coming soon</a>
-        </div>  
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
+    <a class="navbar-brand" href="#" style="color:white">Performer Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutButton'>Logout</button>
+        </li>
+      </ul>
     </div>
-
-
-
-
+  </nav><br><br>
+  <div id="buttonContainer">
+    <div class="btn-group-vertical" , margin-left: 200px>
+      <a class="btn btn-lg btn-primary" href="view-available-bookings.html">View available booking openings</a>
+      <br>
+      <a class="btn btn-lg btn-primary" href="applicant-selectedFor.html">View Bookings I am selected for</a>
+      <br>
+      <a class="btn btn-lg btn-primary" href="my-profile.html">My Profile</a>
+      <br>
+      <a class="btn btn-lg btn-primary" href="editprofile.html">Edit my Profile</a>
+    </div>
+  </div>
 
 </body>
-
 
 </html>

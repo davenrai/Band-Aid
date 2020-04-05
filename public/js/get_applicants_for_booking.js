@@ -1,7 +1,8 @@
 /* AJAX fetch() calls */
 
 const log = console.log;
-log('Loaded front-end javascript.');
+
+document.addEventListener("DOMContentLoaded", getApplicants);
 
 // A function to send a GET aaplicants for have applied for a booking.
 function getApplicants() {
@@ -21,59 +22,50 @@ function getApplicants() {
     .then((json) => {  // the resolved promise with the JSON body
         performersList = document.querySelector('#performersList');
         performersList.innerHTML = '';
-        log(json);
         json.bookings.map((b) => {
             for (let i = 0; i < b.applications.length; i++) {
-                li = document.createElement('li');
-                const venueTitle = document.createElement("strong");
-                venueTitle.innerText = 'Venue Name: ';
-                li.appendChild(venueTitle);
-                const divVenueName = document.createElement("span");
-                //this also works
-                // const divVenueName = document.createElement("div");
-                // how to createTextNode using ${} notation
-                divVenueName.innerHTML = `${b.venuename}`;
-                li.appendChild(divVenueName);
-                // use &nbsp (non-breaking line space)  ???
-                const lineSpace1 = document.createTextNode("---");
-                li.appendChild(lineSpace1);
+                const newRequest = document.createElement("div");
+                newRequest.className = "availableBooking";
+                const reqText = document.createElement("p");
+                const reqTitle = document.createElement("strong");
+                reqTitle.innerHTML = `${b.venuename}`;
+                reqText.appendChild(reqTitle);
                 
-                const dateTitle = document.createElement("strong");
-                dateTitle.innerText = 'Date: ';
-                li.appendChild(dateTitle);
-                const divBookingDate = document.createElement("span");
-                divBookingDate.innerHTML = `${b.bookingDate}`;
-                li.appendChild(divBookingDate);
-                const lineSpace2 = document.createTextNode("---");
-                li.appendChild(lineSpace2);
-                
-                const locationTitle = document.createElement("strong");
-                locationTitle.innerText = 'Location: ';
-                li.appendChild(locationTitle);
+                const lineBreak1 = document.createElement("br");
+                reqText.appendChild(lineBreak1);
+
                 const divLocation = document.createElement("span");
                 divLocation.innerHTML = `${b.location}`;
-                li.appendChild(divLocation);
-                const lineSpace3 = document.createTextNode("---");
-                li.appendChild(lineSpace3); 
+                reqText.appendChild(divLocation);
+
+                const lineBreak2 = document.createElement("br");
+                reqText.appendChild(lineBreak2);
+               
                 
-                const applicantTitle = document.createElement("strong");
-                applicantTitle.innerText = 'Performer Name: ';
-                li.appendChild(applicantTitle);
+                const divBookingDate = document.createElement("span");
+                divBookingDate.innerHTML = `${b.bookingDate}`;
+                reqText.appendChild(divBookingDate);
+
+                const lineBreak3 = document.createElement("br");
+                reqText.appendChild(lineBreak3);
+                const lineBreak4 = document.createElement("br");
+                reqText.appendChild(lineBreak4);
+
                 const divPerformerName = document.createElement("span");
                 divPerformerName.innerHTML = `${b.applications[i]}`;
-                li.appendChild(divPerformerName);
-                const lineSpace4 = document.createTextNode("---");
-                li.appendChild(lineSpace4);            
+                reqText.appendChild(divPerformerName);
 
-                // li.innerHTML = `Venue Name: <strong>${b.venuename}</strong>, Applicants: <strong>${b.applications[i]}</strong>`
+                newRequest.appendChild(reqText);
+
                 const chooseApplicantButton = document.createElement("button");
                 chooseApplicantButton.className = "choose";
                 const buttonText = document.createTextNode("I choose you!");
                 chooseApplicantButton.appendChild(buttonText);
                 chooseApplicantButton.addEventListener("click", chooseApplicant);
-                li.appendChild(chooseApplicantButton);
-                performersList.appendChild(li);
-                log(b);
+                newRequest.appendChild(chooseApplicantButton);
+
+                performersList.appendChild(newRequest);
+
             }
         });
     }).catch((error) => {
@@ -81,35 +73,31 @@ function getApplicants() {
     });
 }
 
+
+
 function chooseApplicant(e) {
-    log("button clicked");
     addBookingtoPerformer(e);
     removeRequest(e);
     return e;
 }
 
 
+
 function removeRequest(e) {
     e.preventDefault();
     if (e.target.classList.contains("choose")) {
-        console.log("remove");
         const requestToRemove = e.target.parentElement;
-        console.log(requestToRemove);
         performersList.removeChild(requestToRemove);
     }
 }
 
 
 function addBookingtoPerformer(e) {
-    //parentElement of button is the list item li
-    const venuename = e.target.parentElement.childNodes[1].innerText;
-    const bookingDate = e.target.parentElement.childNodes[4].innerText;
-    const location = e.target.parentElement.childNodes[7].innerText;
-    const performerName = e.target.parentElement.childNodes[10].innerText;
-    log("parent element is: " + e.target.parentElement);
-    log("venueName is: " + venuename);
-    log("performerName is: " + performerName);
-    
+    const venuename = e.target.parentElement.firstChild.childNodes[0].innerText;
+    const location = e.target.parentElement.firstChild.childNodes[2].innerText;
+    const bookingDate = e.target.parentElement.firstChild.childNodes[4].innerText;
+    const performerName = e.target.parentElement.firstChild.childNodes[7].innerText;
+
     // the URL for the request
     const url = '/users/choosePerformer/' + performerName;
     const data = {
@@ -118,9 +106,6 @@ function addBookingtoPerformer(e) {
         location: location
 
     };
-
-    log("data object is: " + data);
-    log("data.booking field is: " + data.booking);
 
     const request = new Request(url, {
         method: 'POST', 
@@ -131,15 +116,11 @@ function addBookingtoPerformer(e) {
         },
     });
     
-    log("about to fetch");
-    // fetch(url, request)  // DO NOT use this
-    fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fetch(request)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
             log("result is 200");
-            log(res.body);
-            log(res);
         } else {
             alert('Could not apply to a (performer) user');
         }                

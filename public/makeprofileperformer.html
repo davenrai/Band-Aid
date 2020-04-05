@@ -1,73 +1,41 @@
 <!DOCTYPE html>
 <html>
-
 <!-- Input form adapted from https://www.mockplus.com/blog/post/bootstrap-form-template -->
 
 <head>
   <meta charset="utf-8">
-  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src 'self';font-src 'self'; img-src 'self' data: https:; style-src 'self' ; script-src 'self'"> -->
-  <title>Bandaid-Profile Info</title>
+  <title>Profile Info</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="./css/signup.css"> -->
   <link rel="stylesheet" type="text/css" href="./css/project.css">
 </head>
 
 <body>
-
-  <!-- <button type="button" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-      </button>
-
-    <div><span class="glyphicon glyphicon-home"></span></div>
-
-    <div><i class="glyphicon glyphicon-heart"></i></div> -->
-
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-
-    <a class="navbar-brand" href="#" style="color:white">Login</a>
-    <a class="navbar-brand" href="#"></a>
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
-
+    <a class="navbar-brand" href="#" style="color:white">Additional Login</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#" style="color:white">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li>
           <button type="button" class="btn btn-secondary" onclick='window.location = "/dashboard"'
             id='dashboardbutton'>My
             Dashboard</button>
         </li>
-        <li class="nav-item">
-          <!-- BLANK -->
-        </li>
         <li>
           <button class="btn btn-danger" onclick='window.location = "/users/logout"' id='logoutbutton'>Logout</button>
         </li>
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
-
-  </nav>
-
-  <br>
+  </nav><br>
 
   <form class="well form-horizontal" action="/dashboard-performer" method="get" id="contact_form">
-
     <legend>
       <h2 style="text-align: center;"><b>Additional profile info</b></h2>
     </legend><br>
-
-    <!-- Text input-->
 
     <div class="form-group">
       <label class="col-md-4 control-label">Name</label>
@@ -79,8 +47,6 @@
       </div>
     </div>
 
-    <!-- Text input-->
-
     <div class="form-group">
       <label class="col-md-4 control-label">Phone</label>
       <div class="col-md-4 inputGroupContainer">
@@ -90,22 +56,6 @@
         </div>
       </div>
     </div>
-
-
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label">email</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="glyphicon glyphicon-envelope"></span>
-          <input name="email" id='email' placeholder="email address" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Text input-->
 
     <div class="form-group">
       <label class="col-md-4 control-label">Location</label>
@@ -117,9 +67,6 @@
       </div>
     </div>
 
-
-    <!-- Text input-->
-
     <div class="form-group">
       <label class="col-md-4 control-label">Genre</label>
       <div class="col-md-4 inputGroupContainer">
@@ -130,8 +77,6 @@
       </div>
     </div>
 
-    <!-- Text input-->
-
     <div class="form-group">
       <label class="col-md-4 control-label">Description</label>
       <div class="col-md-4 inputGroupContainer">
@@ -141,13 +86,11 @@
         </div>
       </div>
     </div>
-    <button onclick='updateProfileInfo()'
-      class="btn btn-warning">SUBMIT</button>
+    <button onclick='updateProfileInfo()' class="btn btn-warning">Submit</button>
   </form>
   </div>
 
   <script type="text/javascript" src="./js/make_profile.js"></script>
-
 </body>
 
 </html>

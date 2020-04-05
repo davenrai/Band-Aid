@@ -1,13 +1,9 @@
-/* AJAX fetch() calls */
-
-const log = console.log;
-log('Loaded front-end javascript.');
+document.addEventListener("DOMContentLoaded", getSelectedFor);
 
 // A function to send a GET aaplicants for have applied for a booking.
 function getSelectedFor() {
     // the URL for the request
     const url = '/selectedFor';
-
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
     .then((res) => { 
@@ -21,40 +17,36 @@ function getSelectedFor() {
     .then((json) => {  // the resolved promise with the JSON body
         performersList = document.querySelector('#selectedForList');
         performersList.innerHTML = '';
-        log(json);
-        log(json.selectedFor)
         json.selectedFor.map((b) => {
-                li = document.createElement('li');
-                const venueTitle = document.createElement("strong");
-                venueTitle.innerText = 'Venue Name: ';
-                li.appendChild(venueTitle);
-                const divVenueName = document.createElement("span");
-                divVenueName.innerHTML = `${b.venuename}`;
-                li.appendChild(divVenueName);
+            const newRequest = document.createElement("div");
+            newRequest.className = "selectedForBooking";
+            const reqText = document.createElement("p");
+            const reqTitle = document.createElement("strong");
+            reqTitle.innerHTML = `${b.venuename}`;
+            reqText.appendChild(reqTitle);
+            
+            const lineBreak1 = document.createElement("br");
+            reqText.appendChild(lineBreak1);
 
+            const divLocation = document.createElement("span");
+            divLocation.innerHTML = `${b.location}`;
+            reqText.appendChild(divLocation);
 
-                // *** will use code below once selectedFor array holds the date
-                // // use &nbsp (non-breaking line space)  ???
-                const lineSpace1 = document.createTextNode("---");
-                li.appendChild(lineSpace1);
-                const dateTitle = document.createElement("strong");
-                dateTitle.innerText = 'Date: ';
-                li.appendChild(dateTitle);
-                const divBookingDate = document.createElement("span");
-                divBookingDate.innerHTML = `${b.bookingDate}`;
-                li.appendChild(divBookingDate);
+            const lineBreak2 = document.createElement("br");
+            reqText.appendChild(lineBreak2);
+            
+            const divBookingDate = document.createElement("span");
+            divBookingDate.innerHTML = `${b.bookingDate}`;
+            reqText.appendChild(divBookingDate);
 
-                const lineSpace2 = document.createTextNode("---");
-                li.appendChild(lineSpace2);
-                const locationTitle = document.createElement("strong");
-                locationTitle.innerText = 'Location: ';
-                li.appendChild(locationTitle);
-                const divLocation = document.createElement("span");
-                divLocation.innerHTML = `${b.location}`;
-                li.appendChild(divLocation);
-                
-                selectedForList.appendChild(li);
-                log(b);
+            const lineBreak3 = document.createElement("br");
+            reqText.appendChild(lineBreak3);
+            const lineBreak4 = document.createElement("br");
+            reqText.appendChild(lineBreak4);
+
+            newRequest.appendChild(reqText);
+
+            selectedForList.appendChild(newRequest);
         });
     }).catch((error) => {
         log(error);

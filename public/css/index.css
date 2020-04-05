@@ -16,13 +16,16 @@
 }
 
 #intro {
-    color:black;
+    color:white;
     text-align: center;
+    top: 20vh;
+    font-size: large;
+    text-shadow: 1.5px 1.5px black;
 }
 
 #loginButtons{
     display:inline-block;
-    top: 35vh;
+    top: 40vh;
     margin: auto;
 }
 
@@ -71,18 +74,9 @@
 
 body {
     background-color: #F9F9F8;
-    background-image: url(backgroundImage.jpeg);
+    background-image: url(../img/index_pic3_small.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
 
-#musicnote1 {
-    width: 200px;
-    height: 200px;
-    margin-left: 520px;
-    margin-top: 100px;
-}
-
-#musicnote2 {
-    width: 200px;
-    height: 200px;
-    margin-top: 100px;
-}

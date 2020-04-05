@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs');
 
 // a Mongoose Schema allows us to add additional functionality.
 const BookingSchema = new mongoose.Schema({
-    venuename: String,
+	venuename: String,
 	bookingDate: String,
 	location: String
 });
@@ -53,7 +53,7 @@ const UserSchema = new mongoose.Schema({
 		required: false,
 		minlength: 0
 	},
-	selectedFor: [BookingSchema] // array of venue usernames
+	selectedFor: [BookingSchema]
 });
 
 // An example of Mongoose middleware.

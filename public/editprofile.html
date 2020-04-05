@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <!-- Input form adapted from https://www.mockplus.com/blog/post/bootstrap-form-template -->
 
 <head>
@@ -13,8 +12,9 @@
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand" href="#" style="color:white">Edit Profile</a>
+    <a class="navbar-brand" href="#"></a>
     <img src="./img/logo.png" width="110" height="110" class="d-inline-block align-top" alt="logo">
-    <a class="navbar-brand" href="#" style="color:white">Additional Login</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,11 +33,11 @@
     </div>
   </nav><br>
 
-  <form class="well form-horizontal" action="/dashboard-venue" method="get" id="contact_form">
+  <form class="well form-horizontal">
     <legend>
-      <h2 style="text-align: center;"><b>Additional profile info</b></h2>
+      <h2 style="text-align: center;"><b>Edit Profile Info</b></h2>
     </legend><br>
-    
+
     <div class="form-group">
       <label class="col-md-4 control-label">Name</label>
       <div class="col-md-4 inputGroupContainer">
@@ -69,7 +69,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label">Genre you're looking for</label>
+      <label class="col-md-4 control-label">Genre</label>
       <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
           <span class="glyphicon glyphicon-user"></span>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="form-group">
-      <label class="col-md-4 control-label">Description of your venue</label>
+      <label class="col-md-4 control-label">Description</label>
       <div class="col-md-4 inputGroupContainer">
         <div class="input-group">
           <span class="glyphicon glyphicon-user"></span>
@@ -87,11 +87,19 @@
         </div>
       </div>
     </div>
-    <button onclick='updateProfileInfo()' class="btn btn-warning" id="submitButton">Submit</button>
+    <button onclick='updateProfileInfo()' class="btn btn-warning">Submit</button>
   </form>
   </div>
 
+  <div class="form-group">
+    <strong>Change Your Password</strong>
+    <input id="password" type="password" placeholder="New Password">
+    <button onclick="updatePassword()">Change</button>
+    <p id='messagePwChange'></p>
+  </div>
+
   <script type="text/javascript" src="./js/make_profile.js"></script>
+
 </body>
 
 </html>
