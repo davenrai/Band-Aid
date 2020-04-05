@@ -98,7 +98,6 @@ function removeRequest(e) {
 
 
 function addBookingtoPerformer(e) {
-    //parentElement of button is the list item li
     log("length is " + (e.target.parentElement.firstChild.childNodes.length))
     log("parentElement is: " + e.target.parentElement);
     log("parentElement.firstChildchildNodes[0].innerText is: " + e.target.parentElement.firstChild.childNodes[0].innerText);
@@ -125,9 +124,6 @@ function addBookingtoPerformer(e) {
 
     };
 
-    log("data object is: " + data);
-    log("data.booking field is: " + data.bookingDate);
-
     const request = new Request(url, {
         method: 'POST', 
         body: JSON.stringify(data),
@@ -137,15 +133,11 @@ function addBookingtoPerformer(e) {
         },
     });
     
-    log("about to fetch");
-    // fetch(url, request)  // DO NOT use this
-    fetch(request)  // USE THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    fetch(request)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
             log("result is 200");
-            log(res.body);
-            log(res);
         } else {
             alert('Could not apply to a (performer) user');
         }                
