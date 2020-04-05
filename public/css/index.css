@@ -16,9 +16,11 @@
 }
 
 #intro {
-    color:black;
+    color:white;
     text-align: center;
     top: 20vh;
+    font-size: large;
+    text-shadow: 1.5px 1.5px black;
 }
 
 #loginButtons{
@@ -72,9 +74,9 @@
 
 body {
     background-color: #F9F9F8;
-    background-image: url(backgroundImage.jpeg);
+    background-image: url(../img/index_pic3.jpg);
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     
 }
 
