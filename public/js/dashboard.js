@@ -1,31 +1,5 @@
-/* Reservations.js */
+/* dashboard.js */
 const log = console.log;
-
-const addVenueRequest = (name, location, phone, description) => {
-    const request = {
-        "name": name,
-        "location": location,
-        "phone": phone,
-        "description": description
-    };
-    let allVenues = getAllVenues();
-    //complete this function
-};
-
-// const requestList = document.querySelector("#requestList");
-// requestList.addEventListener("click", removeRequest);
-// document.addEventListener("DOMContentLoaded", getAllVenues);
-
-// function addNewBandRequest(e) {
-//     e.preventDefault();
-//     const newBandRequest = {
-//         name: requestForm.venueName.value,
-//         location: requestForm.venueLoc.value,
-//         phone: requestForm.venuePhone.value,
-//         description: requestForm.reqDesc.value
-//     };
-//     addToRequestTimeline(newBandRequest);
-// }
 
 function addToRequestTimeline(request) {
     // TODO: clean up
@@ -59,11 +33,6 @@ function addToRequestTimeline(request) {
     requestList.appendChild(newRequest);
 }
 
-function fulfillRequest(e) {
-    // TODO: complete
-    return e;
-}
-
 function removeRequest(e) {
     e.preventDefault();
     if (e.target.classList.contains("fulfill")) {
@@ -75,7 +44,6 @@ function removeRequest(e) {
 }
 
 
-
 /* AJAX fetch() calls */
 
 // A function to send a GET request to the web server,
@@ -83,30 +51,29 @@ function removeRequest(e) {
 function getVenues() {
     // the URL for the request
     const url = '/venues';
-
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
     .then((res) => { 
         if (res.status === 200) {
             // return a promise that resolves with the JSON body
-           return res.json() 
+           return res.json() ;
        } else {
-            alert('Could not get venues')
+            alert('Could not get venues');
        }                
     })
     .then((json) => {  // the resolved promise with the JSON body
-        venuesList = document.querySelector('#venuesList')
+        venuesList = document.querySelector('#venuesList');
         venuesList.innerHTML = '';
-        log(json)
+        log(json);
         json.venues.map((v) => {
-            li = document.createElement('li')
-            li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`
-            venuesList.appendChild(li)
-            log(v)
-        })
+            li = document.createElement('li');
+            li.innerHTML = `Name: <strong>${v.name}</strong>, Year: <strong>${v.location}</strong>`;
+            venuesList.appendChild(li);
+            log(v);
+        });
     }).catch((error) => {
-        log(error)
-    })
+        log(error);
+    });
 }
 
 
@@ -115,36 +82,24 @@ function getVenues() {
 function getAllBookings() {
         // the URL for the request
         const url = '/bookings';
-    
         // Since this is a GET request, simply call fetch on the URL
         fetch(url)
         .then((res) => { 
             if (res.status === 200) {
                 // return a promise that resolves with the JSON body
-               return res.json() 
+               return res.json();
            } else {
-                alert('Could not get bookings')
+                alert('Could not get bookings');
            }                
         })
         .then((json) => {  // the resolved promise with the JSON body
-            bookingsList = document.querySelector('#allBookingsList')
+            bookingsList = document.querySelector('#allBookingsList');
             bookingsList.innerHTML = '';
-            log(json)
+            log(json);
             json.bookings.map((b) => {
-                // li = document.createElement('li')
-                // li.innerHTML = `Name: <strong>${b.venuename}</strong><br>
-                // ${b.location}<br>
-                // ${b.phone}<br>
-                // <br>
-                // ${b.description}<br>
-                // <br>
-                // <button class="fulfill">I'm down!</button>`
-                
-                // bookingsList.appendChild(li)
-                // log(b)
-                addToRequestTimeline(b)
-            })
+                addToRequestTimeline(b);
+            });
         }).catch((error) => {
-            log(error)
-        })
+            log(error);
+        });
 }
