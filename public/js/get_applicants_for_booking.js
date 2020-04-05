@@ -27,7 +27,7 @@ function getApplicants() {
         json.bookings.map((b) => {
             for (let i = 0; i < b.applications.length; i++) {
                 const newRequest = document.createElement("div");
-                newRequest.className = "booking";
+                newRequest.className = "availableBooking";
                 const reqText = document.createElement("p");
                 const reqTitle = document.createElement("strong");
                 reqTitle.innerHTML = `${b.venuename}`;
