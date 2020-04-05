@@ -82,11 +82,10 @@ h1 {
 }
 
 .dashboardBox {
-	background-color: thistle;
+	background-color: honeydew;
 	padding: 10px;
 	margin: 5px;
 	margin-top: 200px;
-	/* display: inline-block; */
 	max-width: 20%;
 	min-width: 20%;
 	float: left;
@@ -101,7 +100,7 @@ h1 {
 
 /* .booking is for view-available-bookings.html */
 .booking {
-	background-color: thistle;
+	background-color: aliceblue;
 	padding: 10px;
 	margin: 5px;
 	display: inline-block;
@@ -115,7 +114,7 @@ h1 {
 
 /* .availableBooking is for appliccants-for-booking.html */
 .availableBooking {
-	background-color: rgb(114, 171, 218);
+	background-color: aliceblue;
 	padding: 10px;
 	margin: 5px;
 	display: inline-block;
