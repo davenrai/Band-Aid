@@ -1,15 +1,9 @@
-/* AJAX fetch() calls */
-
-const log = console.log;
-log('Loaded front-end javascript.');
-
 document.addEventListener("DOMContentLoaded", getSelectedFor);
 
 // A function to send a GET aaplicants for have applied for a booking.
 function getSelectedFor() {
     // the URL for the request
     const url = '/selectedFor';
-
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
     .then((res) => { 
@@ -23,11 +17,7 @@ function getSelectedFor() {
     .then((json) => {  // the resolved promise with the JSON body
         performersList = document.querySelector('#selectedForList');
         performersList.innerHTML = '';
-        log(json);
-        log(json.selectedFor)
         json.selectedFor.map((b) => {
-
-
             const newRequest = document.createElement("div");
             newRequest.className = "selectedForBooking";
             const reqText = document.createElement("p");
@@ -44,7 +34,6 @@ function getSelectedFor() {
 
             const lineBreak2 = document.createElement("br");
             reqText.appendChild(lineBreak2);
-           
             
             const divBookingDate = document.createElement("span");
             divBookingDate.innerHTML = `${b.bookingDate}`;
