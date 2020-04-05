@@ -6,8 +6,12 @@ Once the instructions below are carried out to install the app, you can use it b
 
 Important note (For TA): We used another github repo temporarily for part of the project. Let us know if you would like to see that as well.
 
+# Deployed app
 
-# Setup instructions
+https://frozen-citadel-71740.herokuapp.com/index.html
+
+
+# Setup instructions (for running locally)
 
 (must install mongodb first.)
 
