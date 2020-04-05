@@ -58,7 +58,6 @@ function removeRequest(e) {
 }
 
 
-
 /* AJAX fetch() calls */
 
 // A function to send a GET request to the web server,
@@ -66,7 +65,6 @@ function removeRequest(e) {
 function getAllBookings() {
     // the URL for the request
     const url = '/bookings';
-
     // Since this is a GET request, simply call fetch on the URL
     fetch(url)
         .then((res) => {
@@ -90,7 +88,6 @@ function getAllBookings() {
 }
 
 function applyToBookingsVenue(e) {
-
     const venuename = e.target.parentElement.childNodes[0].childNodes[0].innerText;
     log("parent elemnt is: " + e.target.parentElement);
     log("parent elemnt.childNodes[0] is: " + e.target.parentElement.childNodes[0].childNodes[0].innerText);
