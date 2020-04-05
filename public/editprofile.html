@@ -15,13 +15,6 @@
 
 <body>
 
-  <!-- <button type="button" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-      </button>
-
-    <div><span class="glyphicon glyphicon-home"></span></div>
-
-    <div><i class="glyphicon glyphicon-heart"></i></div> -->
 
   <nav class="navbar navbar-expand-lg navbar-light bg-dark">
 
@@ -56,16 +49,15 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form> -->
     </div>
-
   </nav>
-
   <br>
 
   <form class="well form-horizontal" action="/dashboard-performer" method="get" id="contact_form">
 
     <legend>
       <h2 style="text-align: center;"><b>Edit Profile Info</b></h2>
-      <h4 style="text-align: center;"> Note: if you leave an input field empty, then your info for that will be empty. </h4>
+      <h4 style="text-align: center;"> Note: if you leave an input field empty, then your info for that will be empty.
+      </h4>
     </legend><br>
 
     <!-- Text input-->
@@ -92,21 +84,7 @@
       </div>
     </div>
 
-
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label">Email</label>
-      <div class="col-md-4 inputGroupContainer">
-        <div class="input-group">
-          <span class="glyphicon glyphicon-envelope"></span>
-          <input name="email" id='email' placeholder="email address" class="form-control" type="text">
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Text input-->
+    <!-- Text input for Location -->
 
     <div class="form-group">
       <label class="col-md-4 control-label">Location</label>
@@ -118,8 +96,7 @@
       </div>
     </div>
 
-
-    <!-- Text input-->
+    <!-- Text input for Genre -->
 
     <div class="form-group">
       <label class="col-md-4 control-label">Genre</label>
@@ -131,7 +108,7 @@
       </div>
     </div>
 
-    <!-- Text input-->
+    <!-- Text input for Description-->
 
     <div class="form-group">
       <label class="col-md-4 control-label">Description</label>
@@ -142,12 +119,18 @@
         </div>
       </div>
     </div>
-    <button onclick='updateProfileInfo()'
-      class="btn btn-warning">Submit</button>
+    <button onclick='updateProfileInfo()' class="btn btn-warning">Submit</button>
   </form>
   </div>
 
-   <script type="text/javascript" src="./js/make_profile.js"></script>
+  <div class="form-group">
+    <strong>Change Your Password</strong>
+    <input id="password" type="password" placeholder="New Password">
+    <button onclick="updatePassword()">Change</button>
+    <p id='messagePwChange'></p>
+  </div>
+
+  <script type="text/javascript" src="./js/make_profile.js"></script>
 
 </body>
 

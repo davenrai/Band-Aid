@@ -4,6 +4,8 @@ Our is app is Band-Aid. It matches musical performers (Performer) with the venue
 
 Once the instructions below are carried out to install the app, you can use it by typing http://localhost:5000 in Chrome. You will be at the main page for our application, "Band-Aid." Initially you must signup as either a Performer or a Venue. Passwords must be 6 characters in length.  Upon subsequent log-ins, this immediately takes you to your Venue or Performer dashboard. There is also an admin login, which can be accessed with username "admin1" and password "admin1."
 
+Important note (For TA): We used another github repo temporarily for part of the project. Let us know if you would like to see that as well.
+
 
 # Setup instructions
 

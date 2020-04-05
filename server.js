@@ -141,7 +141,6 @@ app.get('/', (req, res) => {
 app.use("/img", express.static(__dirname + '/public/img'));
 
 
-
 /** User routes below **/
 // Set up a POST route to *create* a user of your web app.
 // Note both performers and venues are performers.
@@ -176,7 +175,7 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 				res.redirect('/admin');
 			} 
 			else{
-				res.redirect('/')
+				res.redirect('/');
 			}
 		},
 		(error) => {
@@ -184,7 +183,6 @@ app.post('/users/signup', sessionChecker, (req, res) => {
 		}
 	);
 });
-
 
 
 // A route to logout a user
@@ -200,7 +198,6 @@ app.get('/users/logout', (req, res) => {
 });
 
 
-
 // a GET route to get all users
 app.get('/users', (req, res) => {
 	User.find().then((users) => {
@@ -209,7 +206,6 @@ app.get('/users', (req, res) => {
 		res.status(500).send(error); // server error
 	});
 });
-
 
 
 // a GET route to get a specific user
@@ -233,11 +229,10 @@ app.get('/users/:username', (req, res) => {
 });
 
 
-
 // a DELETE route to delete a specific user
 app.delete('/users', (req, res) => {
 	const username = req.body.username;
-	log(username)
+	log(username);
 	// Find user
 	User.findOneAndDelete({ 'username': username }).then(user => {	
 		if (!user) {
@@ -254,7 +249,7 @@ app.delete('/users', (req, res) => {
 // for make_profile.js, user to change password
 app.patch('/users/pw', (req, res) => {
 	// get the new password from the request body.
-	const username = req.body.username;
+	const username = req.session.username;
 	const password = req.body.password;
 	// Update the user's password
 	User.findOne({ 'username': username }).then(user => {
@@ -279,7 +274,7 @@ app.patch('/users/pw', (req, res) => {
 app.get('/selectedFor', (req, res) => {
 	// const username = req.body.username;
 	const username = req.session.username;
-	log("in /users/selectedFor " + username)
+	log("in /users/selectedFor " + username);
 	// Find user
 	// to get by _id uncomment one of the below lines
 	// User.findOne({ '_id': username}).then(user => {
@@ -304,12 +299,10 @@ app.patch('/makeprofileperformer', (req, res) => {
 	const id = req.session.user;
 	const { name, phone, location, genre, description } = req.body;
 	const body = { id, name, phone, location, genre, description };
-
 	if (!ObjectID.isValid(id)) {
 		res.status(404).send();
 		return;
 	}
-
 	// Update the performer by their id.
 	User.findById(id).then((user) => {
 		if (!user) {
@@ -320,7 +313,6 @@ app.patch('/makeprofileperformer', (req, res) => {
 			user.location = body.location;
 			user.genre = body.genre;
 			user.description = description;
-			
 			user.save().then((result) => {
 				res.send(user);
 			}).catch((error) => {
@@ -485,7 +477,6 @@ app.post('/bookings/apply/:id', (req, res) => {
 });
 
 
-
 // for view_available_bookings.js
 // for performer to their username to a booking
 app.post('/bookings/applyByVenue/:venuename', (req, res) => {
@@ -571,6 +562,7 @@ app.post('/users/choosePerformer/:performername', (req, res) => {
 	});
 });
 
+
 app.get('/profile', (req, res) => {
 	// get the updated name and year only from the request body.
 	const username = req.session.username;
@@ -578,13 +570,14 @@ app.get('/profile', (req, res) => {
 		if (!user) {
 			res.status(404).send();  // could not find this user
 		} else {
-			log('sending user')
+			log('sending user');
 			res.send(user);
 		}
 	}).catch((error) => {
 		res.status(500).send(error);  // server error
 	});
 });
+
 
 // ****************************************************************************
 // sessionChecker will run before the route handler and check if we are
