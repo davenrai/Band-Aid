@@ -92,6 +92,10 @@ h1 {
 
 }
 
+#dashboardbutton{
+	margin-right: 10px;
+}
+
 #buttonContainer {
 	text-align: center;
 	margin-left: auto;
