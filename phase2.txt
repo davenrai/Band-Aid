@@ -1,5 +1,6 @@
 # Team 08
 
+
 Our is app is Band-Aid. It matches musical performers (Performer) with the 
 venues (Venue) looking to hire them for a show (Booking)
 
