@@ -15,9 +15,9 @@ a {
 	color: black;
 }
 
-h1 {
+h1, h2 {
 	color: black;
-	font-size: 350%;
+	font-size: 250%;
 	text-align: center;
 	margin: 25px;
 }
@@ -238,4 +238,17 @@ ul {
 
 #getprofileinfobutton {
 	padding-left: 47%;
+}
+
+.loginForm {
+	width: 400px;
+	height: 350px;
+	margin: auto;
+	margin-top: 10vh;
+	padding: 10px;
+	border: 2px solid black;
+}
+
+.forms {
+	width: 95%;
 }
