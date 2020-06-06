@@ -1,6 +1,6 @@
-# Team 08
+# CSC309 Project
 
-Our is app is Band-Aid. It matches musical performers (Performer) with the venues (Venue) looking to hire them for a show (Booking)
+Our app is Band-Aid. It matches musical performers (Performer) with the venues (Venue) looking to hire them for a show (Booking)
 
 Once the instructions below are carried out to install the app, you can use it by typing <http://localhost:5000> in Chrome, or by visiting the delpoyed app at <https://frozen-citadel-71740.herokuapp.com/index.html.> You will be at the main page for our application, "Band-Aid." Initially you must signup as either a Performer or a Venue or you can sign in as a Performer (username: "user1" password: "123456") or as a Venue (username: "venue1" password: "123456"). Passwords must be 6 characters in length.  Upon subsequent log-ins, this immediately takes you to your Venue or Performer dashboard. There is also an admin login (username: "admin1" password: "admin1").
 
@@ -10,9 +10,11 @@ Important note (For TA):
 
 2) There is a React folder which is unused but demonstrates some React code that we learnt.
 
-## Deployed app
+## Initial Deployed app
 
 <https://frozen-citadel-71740.herokuapp.com/index.html>
+
+## My revised deployed app
 
 ## Setup instructions (for running locally on <http://localhost:5000)>
 
