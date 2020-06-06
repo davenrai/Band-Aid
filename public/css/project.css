@@ -11,9 +11,9 @@ body {
 
 /*** Removes default style from links ***/
 a {
-	text-decoration: none;
-	color: black;
+	text-decoration: underline;
 }
+
 
 h1, h2 {
 	color: black;
@@ -241,12 +241,12 @@ ul {
 }
 
 .loginForm {
-	width: 400px;
+	width: 600px;
 	height: 350px;
 	margin: auto;
-	margin-top: 10vh;
+	margin-top: 5vh;
 	padding: 10px;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 
 .forms {
