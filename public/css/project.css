@@ -246,9 +246,12 @@ ul {
 	margin: auto;
 	margin-top: 5vh;
 	padding: 10px;
-	border: 1px solid black;
 }
 
 .forms {
 	width: 95%;
+}
+
+#performersList {
+	margin: 10px;
 }
